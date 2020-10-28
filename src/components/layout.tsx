@@ -8,9 +8,17 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { Container, Content, Footer } from "rsuite";
+import Prism from "prism-react-renderer/prism";
+
+(typeof global !== "undefined" ? global : window).Prism = Prism;
+
+require("prismjs/components/prism-kotlin");
+require("prismjs/components/prism-dart");
+require("prismjs/components/prism-clojure");
 
 import Header from "./header"
-import "./layout.css"
+import "./layout.less"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -26,22 +34,12 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer style={{
-          marginTop: `2rem`
-        }}>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
+      <Container>
+        <Content>
+          <main>{children}</main>
+        </Content>
+      </Container>
+      <Footer></Footer>
     </>
   )
 }
