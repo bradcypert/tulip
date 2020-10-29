@@ -25,7 +25,6 @@ const MdxBlock: React.FunctionComponent<any> = ({ children }) => {
 }
 
 const BlogLayout = ({ data }) => {
-    console.log(data);
     return (
         <>
             <Layout>

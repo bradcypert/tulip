@@ -4,7 +4,6 @@ import theme from 'prism-react-renderer/themes/palenight'
 import Prism from "prism-react-renderer/prism";
 
 export default (props) => {
-    console.log(props);
     const className = props.children.props.className || ''
     const matches = className.match(/language-(?<lang>.*)/)
     return (
