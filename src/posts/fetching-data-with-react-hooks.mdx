@@ -1,6 +1,6 @@
 ---
 title: "Fetching Data with React Hooks"
-date: 01.09.20
+date: 2020/01/09
 status: publish
 permalink: /fetching-data-with-react-hooks
 author: "Brad Cypert"
@@ -44,19 +44,19 @@ In Apollo, I’m able to use the `useQuery` hook, which exposes the status of th
 For this example, we’ll build a simple component that queries github for the repos for a specific user. First, we want to leverage[ the `useState` hook](https://reactjs.org/docs/hooks-state.html) to statefully store our response data (the repos) in our component. Let’s set up our functional component like so:
 
 ```typescript
-import axios from "axios"
-import * as React from "react"
+import axios from "axios";
+import * as React from "react";
 
 const Repos: React.FunctionComponent<{}> = () => {
-  const [repos, setRepos] = React.useState([])
+  const [repos, setRepos] = React.useState([]);
   return (
     <div>
       {repos.map(repo => (
         <div key={repo.id}>{repo.name}</div>
       ))}
     </div>
-  )
-}
+  );
+};
 ```
 
 ## The useEffect hook
@@ -68,30 +68,30 @@ React.useEffect(() => {
   const fetchData = async () => {
     const response = await axios.get(
       "https://api.github.com/users/bradcypert/repos"
-    )
-    setRepos(response.data)
-  }
+    );
+    setRepos(response.data);
+  };
 
-  fetchData()
-}, [])
+  fetchData();
+}, []);
 ```
 
 This effect does a couple of interesting things. First, let’s note the second parameter to the `useEffect` invocation. It’s `[]` or an empty array. This indicates that there are no dependencies for this `useEffect` hook, which means it will only run once. The second thing to note is that the `useEffect` callback cannot be asynchronous. Instead, React recommends declaring an async function in your callback and executing it immediately. This is exactly what we’re doing above. Let’s add this snippet to our component.
 
 ```typescript
 const Repos = () => {
-  const [repos, setRepos] = React.useState([])
+  const [repos, setRepos] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
         "https://api.github.com/users/bradcypert/repos"
-      )
-      setRepos(response.data)
-    }
+      );
+      setRepos(response.data);
+    };
 
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -99,26 +99,26 @@ const Repos = () => {
         <div key={repo.id}>{repo.name}</div>
       ))}
     </div>
-  )
-}
+  );
+};
 ```
 
 That should do it! But what if we want our users to be configured by a prop? And what if we want to refetch the repos for that user whenever that prop changes? Actually, its a fairly simple change. Let’s do that now.
 
 ```typescript
 const Repos = ({ user }) => {
-  const [repos, setRepos] = React.useState([])
+  const [repos, setRepos] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
         `https://api.github.com/users/${user}/repos`
-      )
-      setRepos(response.data)
-    }
+      );
+      setRepos(response.data);
+    };
 
-    fetchData()
-  }, [user])
+    fetchData();
+  }, [user]);
 
   return (
     <div>
@@ -128,8 +128,8 @@ const Repos = ({ user }) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 ```
 
 The only thing that we changed from the original full implementation is that we’ve changed our URL to be backticks. That URL also now interpolates the user into the new URL. That user comes from our props, which is destructured in our component declaration. Finally, we added `user` to our `useHook` dependency array. This will make our hook execute every time that the `user` prop is changed.

@@ -1,7 +1,7 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-exports.createPages = ({ graphql, actions }) => {
+function createBlogPosts(graphql, actions) {
   const { createPage } = actions
 
   const blogPost = path.resolve(`./src/components/blog-layout.tsx`)
@@ -49,7 +49,56 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
-  })
+  });
+}
+
+function createTagPages(graphql, actions) {
+  const { createPage } = actions
+  const tagLayout = path.resolve(`./src/components/tag-page.tsx`)
+  return graphql(
+    `
+    {
+      allMdx {
+        edges {
+          node {
+            id
+            frontmatter {
+              tag
+            }
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    if (result.errors) {
+      throw result.errors
+    }
+
+    // Create blog posts pages.
+    const edges = result.data.allMdx.edges
+    const tags = [...new Set(edges
+      .map(e => e.node.frontmatter.tag)
+      .reduce((acc, cur) => acc.concat(...cur), []).map(e => e.toLowerCase()))
+    ]; 
+
+    tags.forEach((tag, index) => {
+      createPage({
+        path: "/tags/"+tag,
+        component: tagLayout,
+        context: {
+          tag: `/^${tag}$/i`,
+          cleanTag: tag
+        },
+      })
+    })
+  });
+}
+
+exports.createPages = ({ graphql, actions }) => {
+  return createBlogPosts(graphql, actions).then(() => {
+    return createTagPages(graphql, actions);
+  });
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

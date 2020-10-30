@@ -10,7 +10,7 @@ import LearnSomething from "./learn-something";
 import { MDXProvider } from "@mdx-js/react";
 import CodeBlock from './code-block';
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 
 const components = {
     pre: CodeBlock
@@ -25,14 +25,8 @@ const MdxBlock: React.FunctionComponent<any> = ({ children }) => {
 }
 const formatter = new Intl.DateTimeFormat('en-US');
 
-const BlogLayout = ({ data }) => {
-
-    const date = new Date();
-    const dateStr = data.mdx.frontmatter.date;
-    const expDateStr = dateStr.split("/");
-    date.setMonth(+expDateStr[1]);
-    date.setDate(+expDateStr[2]);
-    date.setFullYear(+expDateStr[0]);
+const TagPage = (props) => {
+    console.log(props);
     return (
         <>
             <Layout>
@@ -49,12 +43,23 @@ const BlogLayout = ({ data }) => {
                         <FlexboxGridItem colspan={1} />
                         <FlexboxGridItem colspan={12}>
                             <main className="blog-content">
-                                <h1>{data.mdx.frontmatter.title}</h1>
-                                <h4>Posted: {formatter.format(date)}</h4>
-                                {!!data.mdx.frontmatter.lastUpdated ? <h4>Last Updated: {data.mdx.frontmatter.date}</h4> : null}
-                                <div className="mdx">
-                                    <MdxBlock>{data.mdx.body}</MdxBlock>
-                                </div>
+                                <h1>Tag: {props.pageContext.cleanTag}</h1>
+                                {props.data.allMdx.nodes.map(node => {
+                                    const date = new Date();
+                                    const dateStr = node.frontmatter.date;
+                                    const expDateStr = dateStr.split("/");
+                                    date.setMonth(+expDateStr[1]);
+                                    date.setDate(+expDateStr[2]);
+                                    date.setFullYear(+expDateStr[0]);
+
+                                    return <article className="tag-block">
+                                        <Link to={`/${node.slug}`}>
+                                            <h3>{node.frontmatter.title}</h3>
+                                        </Link>
+                                        <h4>Published: {formatter.format(date)}</h4>
+                                        <p>{node.excerpt}</p>
+                                    </article>
+                                })}
                             </main>
                         </FlexboxGridItem>
                     </FlexboxGrid>
@@ -64,28 +69,25 @@ const BlogLayout = ({ data }) => {
     )
 }
 
-BlogLayout.propTypes = {
+TagPage.propTypes = {
     children: PropTypes.node.isRequired,
 }
 
-export default BlogLayout
+export default TagPage
 
 export const query = graphql`
-  query($slug: String!) {
-    site {
-      siteMetadata {
-        title
-        author
+  query($tag: String!) {
+    allMdx(filter: {frontmatter: {tag: {regex: $tag}}}, sort: {fields: frontmatter___date}) {
+      nodes {
+        id
+        slug
+          excerpt(pruneLength: 500)
+          frontmatter {
+            tag
+            title
+            date
+          }
       }
     }
-    mdx(fields: { slug: { eq: $slug } }) {
-      id
-      excerpt(pruneLength: 160)
-      frontmatter {
-        title
-        date
-      }
-      body
-    }
-  }
+  }  
 `

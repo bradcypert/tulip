@@ -1,6 +1,6 @@
 ---
 title: "Typescript &#8211; What is a Partial?"
-date: 01.10.20
+date: 2020/01/10
 status: publish
 permalink: /typescript-what-is-a-partial
 author: "Brad Cypert"
@@ -35,10 +35,10 @@ Imagine that we have the following interface.
 
 ```typescript
 interface User {
-  id: int
-  email: string
-  password: string
-  hairColor: string
+  id: int;
+  email: string;
+  password: string;
+  hairColor: string;
 }
 ```
 
@@ -49,17 +49,17 @@ const baldMan = {
   id: 1,
   email: "bald@man.com",
   password: "iShaveMyHeadBecauseItsCool123",
-}
+};
 ```
 
 This isn’t a valid `User` as it doesn’t have a `hairColor`. You may say, “Well, we can just add `hairColor` as an empty string” and you’re right, but that’s not the most accurate way to represent this structure. The most accurate way would be to make `hairColor` an optional parameter:
 
 ```typescript
 interface User {
-  id: int
-  email: string
-  password: string
-  hairColor?: string
+  id: int;
+  email: string;
+  password: string;
+  hairColor?: string;
 }
 ```
 

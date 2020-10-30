@@ -1,6 +1,6 @@
 ---
 title: "Understanding React Lifecycle Methods"
-date: 02.05.20
+date: 2020/02/05
 status: publish
 permalink: /understanding-react-lifecycle-methods
 author: "Brad Cypert"
@@ -62,9 +62,9 @@ You **should not call `setState()`** in the `constructor()`. Instead, if your co
 ```typescript
 class Component {
   constructor(props) {
-    super(props) //always call this
-    setState({ foo: "bar" }) //never do this
-    this.state = { foo: "bar" } //do this instead
+    super(props); //always call this
+    setState({ foo: "bar" }); //never do this
+    this.state = { foo: "bar" }; //do this instead
   }
 }
 ```
@@ -81,9 +81,9 @@ This lifecycle method is optional, but if you define it, the method should retur
 class Component {
   static getDerivedStateFromProps(props, state) {
     if (props.animating) {
-      return { ...state, x: state.x + 50 }
+      return { ...state, x: state.x + 50 };
     } else {
-      return null
+      return null;
     }
   }
 }
@@ -102,7 +102,7 @@ The `render()` function should be pure, meaning that it does not modify componen
 ```typescript
 class Component {
   render() {
-    return <h1>Hello! 👋</h1>
+    return <h1>Hello! 👋</h1>;
   }
 }
 ```
@@ -121,8 +121,8 @@ The most common use case for this lifecycle method is to load data from a remote
 class Component {
   componentDidMount() {
     fetch("http://example.com/movies.json").then(response => {
-      this.setState({ movies: response.json() })
-    })
+      this.setState({ movies: response.json() });
+    });
   }
 }
 ```
@@ -151,9 +151,9 @@ However, if you have props or state that may change but might not necessarily tr
 class Component {
   componentShouldUpdate(newProps, newState) {
     if (state.hash == newState.hash) {
-      return false
+      return false;
     }
-    return true
+    return true;
   }
 }
 ```
@@ -168,10 +168,10 @@ A somewhat common example might be scroll position in a chat application. As new
 class Component {
   getSnapshotBeforeUpdate(prevProps, prevState) {
     if (prevState.list.length < this.state.list.length) {
-      const list = this.listRef.current
-      return list.scrollHeight - list.scrollTop
+      const list = this.listRef.current;
+      return list.scrollHeight - list.scrollTop;
     }
-    return null
+    return null;
   }
 }
 ```
@@ -187,8 +187,8 @@ class Component {
   componentDidUpdate(prevProps) {
     if (prevProps.user.id != this.props.user.id) {
       loadUserData(this.props.user.id).then(user => {
-        this.setState({ userData: user })
-      })
+        this.setState({ userData: user });
+      });
     }
   }
 }
@@ -235,10 +235,10 @@ Here’s a simple hook as an example.
 ```typescript
 const Component = () => {
   useEffect(() => {
-    console.log("Here's an effect function")
-  })
-  return null // return null to render nothing in this case
-}
+    console.log("Here's an effect function");
+  });
+  return null; // return null to render nothing in this case
+};
 ```
 
 ## Replacing `componentDidUpdate`
@@ -248,10 +248,10 @@ We can add a depedency array to the hook as a second parameter to determine how 
 ```typescript
 const Component = ({ user }) => {
   useEffect(() => {
-    console.log("user has changed")
-  }, [user])
-  return null
-}
+    console.log("user has changed");
+  }, [user]);
+  return null;
+};
 ```
 
 This most recent example should sound a lot like `componentDidUpdate`. Let’s take our `componentDidUpdate` method from above and translate that into hooks. Here’s the class syntax one more for context:
@@ -261,8 +261,8 @@ class Component {
   componentDidUpdate(prevProps) {
     if (prevProps.user.id != this.props.user.id) {
       loadUserData(this.props.user.id).then(user => {
-        this.setState({ userData: user })
-      })
+        this.setState({ userData: user });
+      });
     }
   }
 }
@@ -272,11 +272,11 @@ It’s worth mentioning that our above example sets state, too! We’ll have to 
 
 ```typescript
 const Component = ({ user }) => {
-  const [userData, setUserData] = useState(null)
+  const [userData, setUserData] = useState(null);
   useEffect(() => {
-    loadUserData(user.id).then(user => setUserData(user))
-  }, [user.id])
-}
+    loadUserData(user.id).then(user => setUserData(user));
+  }, [user.id]);
+};
 ```
 
 There we go! This will only run once the `user` prop’s `id` is changed.
@@ -291,8 +291,8 @@ To that I’d say – “Great question!” An empty array will run once. This c
 class Component {
   componentDidMount() {
     fetch("http://example.com/movies.json").then(response => {
-      this.setState({ movies: response.json() })
-    })
+      this.setState({ movies: response.json() });
+    });
   }
 }
 ```
@@ -301,14 +301,14 @@ And converting that over to a hook is as simple as…
 
 ```typescript
 const Component = () => {
-  const [movies, setMovies] = useState(null)
+  const [movies, setMovies] = useState(null);
 
   useEffect(() => {
     fetch("http://example.com/movies.json").then(response => {
-      setMovies(response.json)
-    })
-  }, [])
-}
+      setMovies(response.json);
+    });
+  }, []);
+};
 ```
 
 Since our dependency array is empty, our diff will never change (an empty list’s contents will always be an empty list!) which means our function will only run once.
@@ -321,16 +321,16 @@ Let’s use a full example for this one. Imagine we have some RxJS observable th
 
 ```typescript
 const Component = () => {
-  ;[sub, setSub] = useState(null)
+  [sub, setSub] = useState(null);
   useEffect(() => {
-    const obs = httpClient.get("bradcypert.com/feed.xml").asPolledObservable()
-    setSub(obs.subscribe())
+    const obs = httpClient.get("bradcypert.com/feed.xml").asPolledObservable();
+    setSub(obs.subscribe());
 
     return () => {
-      sub.unsubscribe()
-    }
-  }, [])
-}
+      sub.unsubscribe();
+    };
+  }, []);
+};
 ```
 
 Without a doubt, this is our most complicated hook yet. If you’re unfamiliar with RxJS (or my made up httpClient library), you just need to know that a polled observable is a long-lived object that keeps emitting every time a poll interval takes place. You’ll notice above that we have an empty dependency array. That’s because we only want to initialize this subscription once.
@@ -344,7 +344,7 @@ If, for some reason, you find yourself needing to port over constructor logic, y
 ```typescript
 class Component {
   constructor() {
-    this.state = { food: "tacos" }
+    this.state = { food: "tacos" };
   }
 }
 ```
@@ -353,8 +353,8 @@ We can port it over to function components and hooks like so:
 
 ```typescript
 const Component = () => {
-  ;[food, setFood] = useState("tacos")
-}
+  [food, setFood] = useState("tacos");
+};
 ```
 
 ### A case for hooks

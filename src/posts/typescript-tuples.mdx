@@ -1,6 +1,6 @@
 ---
 title: "TypeScript Tuples"
-date: 04.09.20
+date: 2020/04/09
 status: publish
 permalink: /typescript-tuples
 author: "Brad Cypert"
@@ -167,19 +167,19 @@ Other languages treat tuples as their own structure and are not backed by an arr
 Tuples are extremely easy to leverage in your TypeScript code. For example, let’s say that we want a tuple containing a function, and the number of arguments that you can pass to that function. We could represent that example like so:
 
 ```typescript
-let myTuple: [(...args: any[]) => any, number]
+let myTuple: [(...args: any[]) => any, number];
 ```
 
 This is a pretty interesting type. The element in the tuple has to be a function that takes any number of arguments and returns anything. The second parameter has to be a number. If we fail to uphold these requirements, the typescript compiler will yell at us.
 
 ```typescript
-let myTuple: [(...args: any[]) => any, number]
+let myTuple: [(...args: any[]) => any, number];
 
 // this is valid
-myTuple = [(x, y, z) => x + y + z, 2]
+myTuple = [(x, y, z) => x + y + z, 2];
 
 // this isn't
-myTuple = ["Hello World", { foo: "bar" }]
+myTuple = ["Hello World", { foo: "bar" }];
 ```
 
 ## When would you use a tuple?
@@ -209,37 +209,37 @@ React recently pushed out an API update that allows developers to leverage hooks
 The `useState` hook returns a tuple where the first element is the current state and the second element is a function to update the current state. Let’s look at an example.
 
 ```typescript
-const [counter, setCounter] = React.useState(0)
+const [counter, setCounter] = React.useState(0);
 ```
 
 You’ll notice that, because tuples are arrays under the hood, we can destructure them just like we would an array. I would argue that this syntax is cleaner than if the hook was to return an object.
 
 ```typescript
-const { value, updateValueFn } = React.useState(0)
+const { value, updateValueFn } = React.useState(0);
 ```
 
 If you’re familiar with destructuring, you’ll also immediately recognize that, in the tuple example, we can name our destructured parameters whatever we want — they’re index-based. However, In the object example, we have to name them based on the keys provided by React in the returned object. Let’s look at a more complicated example to see where this really becomes problematic. With tuples:
 
 ```typescript
-const [bradsAge, setBradsAge] = React.useState(0)
-const [megansAge, setMegansAge] = React.useState(0)
-const [stevesAge, setStevesAge] = React.useState(0)
+const [bradsAge, setBradsAge] = React.useState(0);
+const [megansAge, setMegansAge] = React.useState(0);
+const [stevesAge, setStevesAge] = React.useState(0);
 
-setBradsAge(26)
-setMegansAge(22)
-setStevesAge(49)
+setBradsAge(26);
+setMegansAge(22);
+setStevesAge(49);
 ```
 
 If we were to try and write them same thing in a world where `useState` returned objects, we’d end up with something like this:
 
 ```typescript
-const { value, updateValueFn } = React.useState(0) // this is for brad
-const megan = React.useState(0) // we cant destructure anymore because we've already defined those consts
-const steve = React.useState(0)
+const { value, updateValueFn } = React.useState(0); // this is for brad
+const megan = React.useState(0); // we cant destructure anymore because we've already defined those consts
+const steve = React.useState(0);
 
-updateValueFn(26)
-megan.updateValueFn(22)
-steve.updateValueFn(49)
+updateValueFn(26);
+megan.updateValueFn(22);
+steve.updateValueFn(49);
 ```
 
 With this example, its easy to see how the tuples provide a much cleaner API to work with!

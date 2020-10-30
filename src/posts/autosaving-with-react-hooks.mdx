@@ -1,6 +1,6 @@
 ---
 title: "Autosaving with React Hooks"
-date: 12.21.19
+date: 2019/12/21
 status: publish
 permalink: /autosaving-with-react-hooks
 author: "Brad Cypert"
@@ -41,12 +41,12 @@ The `useEffect` hook effectively replaces `componentDidMount`, `componentWillUpd
 
 ```typescript
 useEffect(() => {
-  doWhateverIsHereOnMountandUpdate()
+  doWhateverIsHereOnMountandUpdate();
 
   return () => {
-    doWhateverIsHereOnWillUnmount()
-  }
-}, [skipUntilThisStateOrPropHaschanged])
+    doWhateverIsHereOnWillUnmount();
+  };
+}, [skipUntilThisStateOrPropHaschanged]);
 ```
 
 It’s worth mentioning that the `skipUntilThisStateOrPropHasChanged` is optional, and leaving it out will cause it to process the hook on every render.
@@ -56,8 +56,8 @@ It’s worth mentioning that the `skipUntilThisStateOrPropHasChanged` is optiona
 Now that we understand our hook, the autosave functionality becomes fairly trivial. We’ll use a couple of state hooks as well to help us manage the text that a user types in as well as the last value we saved (we can skip network requests if they’re the same).
 
 ```typescript
-const [lastText, setLastText] = React.useState("")
-const [text, setText] = React.useState("")
+const [lastText, setLastText] = React.useState("");
+const [text, setText] = React.useState("");
 ```
 
 You’ll see how we use `lastText` in our `useEffect` hook below, but for now, you just need to know that `text` represents the state of what the user has typed in. If you’d like more information on how this works, [React’s documentation for Controlled Components is a great place to start](https://reactjs.org/docs/forms.html#controlled-components).
@@ -65,22 +65,22 @@ You’ll see how we use `lastText` in our `useEffect` hook below, but for now, y
 Now, we need a function to trigger to persist our data to the server. In my case, I’ll use an Apollo mutation since the server API processes graphql.
 
 ```typescript
-const [updateContent] = useMutation(UPDATE_CHAPTER_CONTENT.MUTATION)
+const [updateContent] = useMutation(UPDATE_CHAPTER_CONTENT.MUTATION);
 ```
 
 Finally, we can write our `useEffect` hook:
 
 ```typescript
-const AUTOSAVE_INTERVAL = 3000
+const AUTOSAVE_INTERVAL = 3000;
 React.useEffect(() => {
   const timer = setTimeout(() => {
     if (lastText != text) {
-      updateContent({ variables: { content: text, id: chapterId } })
-      setLastText(text)
+      updateContent({ variables: { content: text, id: chapterId } });
+      setLastText(text);
     }
-  }, AUTOSAVE_INTERVAL)
-  return () => clearTimeout(timer)
-}, [text])
+  }, AUTOSAVE_INTERVAL);
+  return () => clearTimeout(timer);
+}, [text]);
 ```
 
 We’re doing a couple of neat things here. First, we’re setting up our `useEffect` hook. It creates a timer via `setTimeout`, and when that hook unmounts, it removes that timer. That’s the “meat-and-potatoes” behind it. You’ll notice that our setTimeout function checks to see if the text has changed before posting our data, and then sets the last text if it has changed.

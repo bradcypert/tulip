@@ -1,6 +1,6 @@
 ---
 title: "A Brief Comparison of FlowRouter and Iron:Router for Meteor.js"
-date: 09.11.15
+date: 2015/09/11
 status: publish
 permalink: /a-brief-comparison-of-flowrouter-and-iron-router-for-meteor-js
 author: "Brad Cypert"
@@ -61,8 +61,8 @@ var adminGroup = FlowRouter.group({
 Doing the same thing in Iron:Router yields the following:
 
 ```javascript
-Router.route("/api")
-Router.route("/api/posts/")
+Router.route("/api");
+Router.route("/api/posts/");
 ```
 
 #### Rendering
@@ -77,9 +77,9 @@ FlowRouter.route("/post/:_id", {
   action: function (parameters) {
     ReactLayout.render(SomeLayout, {
       content: <Post _id={parameters._id} />,
-    })
+    });
   },
-})
+});
 ```
 
 #### Reactive Router Content
@@ -108,42 +108,42 @@ var adminRoutes = FlowRouter.group({
   name: "admin",
   triggersEnter: [
     function (context, redirect) {
-      console.log("running group triggers")
+      console.log("running group triggers");
     },
   ],
-})
+});
 
 // handling /admin route
 adminRoutes.route("/", {
   action: function () {
-    BlazeLayout.render("componentLayout", { content: "admin" })
+    BlazeLayout.render("componentLayout", { content: "admin" });
   },
   triggersEnter: [
     function (context, redirect) {
-      console.log("running /admin trigger")
+      console.log("running /admin trigger");
     },
   ],
-})
+});
 
 // handling /admin/posts
 adminRoutes.route("/posts", {
   action: function () {
-    BlazeLayout.render("componentLayout", { content: "posts" })
+    BlazeLayout.render("componentLayout", { content: "posts" });
   },
-})
+});
 ```
 
 While the same thing in Iron:Router can roughly be accomplished with…
 
 ```javascript
 Router.route("/admin", function () {
-  console.log("running admin/")
-  this.render("componentLayout", { content: "admin" })
-})
+  console.log("running admin/");
+  this.render("componentLayout", { content: "admin" });
+});
 
 Router.route("/admin/posts", function () {
-  this.render("componentLayout", { content: "posts" })
-})
+  this.render("componentLayout", { content: "posts" });
+});
 ```
 
 #### The TLDR
