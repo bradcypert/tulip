@@ -23,8 +23,16 @@ const MdxBlock: React.FunctionComponent<any> = ({ children }) => {
         </MDXProvider>
     )
 }
+const formatter = new Intl.DateTimeFormat('en-US');
 
 const BlogLayout = ({ data }) => {
+
+    const date = new Date();
+    const dateStr = data.mdx.frontmatter.date;
+    const expDateStr = dateStr.split(".");
+    date.setMonth(+expDateStr[0]);
+    date.setDate(+expDateStr[1]);
+    date.setFullYear(+expDateStr[2]);
     return (
         <>
             <Layout>
@@ -42,7 +50,11 @@ const BlogLayout = ({ data }) => {
                         <FlexboxGridItem colspan={12}>
                             <main className="blog-content">
                                 <h1>{data.mdx.frontmatter.title}</h1>
-                                <MdxBlock>{data.mdx.body}</MdxBlock>
+                                <h4>Posted: {formatter.format(date)}</h4>
+                                {!!data.mdx.frontmatter.lastUpdated ? <h4>Last Updated: {data.mdx.frontmatter.date}</h4> : null}
+                                <div className="mdx">
+                                    <MdxBlock>{data.mdx.body}</MdxBlock>
+                                </div>
                             </main>
                         </FlexboxGridItem>
                     </FlexboxGrid>
