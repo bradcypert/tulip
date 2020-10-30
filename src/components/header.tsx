@@ -11,12 +11,12 @@ const Header = ({ siteTitle }) => (
           to="/"
           style={{
             textDecoration: `none`,
-          }}
-        ><Nav.Item icon={<Icon icon="home" />}>
+          }}>
+          <div className="navbar-brand">
             BradCypert.com
-        </Nav.Item>
+          </div>
         </Link>
-        <Dropdown title="Language Specific Resources">
+        <Dropdown key="1" trigger={['click', 'hover']} title="Language Specific Resources">
           <Link to="/clojure-resources">
             <Dropdown.Item>Clojure</Dropdown.Item>
           </Link>
@@ -45,7 +45,7 @@ const Header = ({ siteTitle }) => (
             <Dropdown.Item>Scala</Dropdown.Item>
           </Link>
         </Dropdown>
-        <Dropdown title="Apps">
+        <Dropdown key="2" trigger={['click', 'hover']} title="Apps">
           <Dropdown.Menu title="Image2Text">
             <a href="https://play.google.com/store/apps/details?id=com.bradcypert.image2text" target="_blank">
               <Dropdown.Item>On the Play Store</Dropdown.Item>
@@ -56,7 +56,7 @@ const Header = ({ siteTitle }) => (
           </Dropdown.Menu>
         </Dropdown>
 
-        <Dropdown title="About">
+        <Dropdown key="3" trigger={['click', 'hover']} title="About">
           <Link to="/contact">
             <Dropdown.Item>Contact</Dropdown.Item>
           </Link>

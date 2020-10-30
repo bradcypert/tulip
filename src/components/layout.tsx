@@ -8,15 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { Container, Content, Footer } from "rsuite";
-import Prism from "prism-react-renderer/prism";
-
-(typeof global !== "undefined" ? global : window).Prism = Prism;
-
-require("prismjs/components/prism-kotlin");
-require("prismjs/components/prism-dart");
-require("prismjs/components/prism-clojure");
-
+import { Container, Content, Footer, FlexboxGrid } from "rsuite";
 import Header from "./header"
 import "./layout.less"
 
@@ -36,7 +28,12 @@ const Layout = ({ children }) => {
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <Container>
         <Content>
-          <main>{children}</main>
+          <FlexboxGrid>
+            <FlexboxGrid.Item colspan={2} />
+            <FlexboxGrid.Item colspan={22}>
+              {children}
+            </FlexboxGrid.Item>
+          </FlexboxGrid>
         </Content>
       </Container>
       <Footer></Footer>

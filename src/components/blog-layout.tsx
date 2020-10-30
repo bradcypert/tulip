@@ -38,16 +38,15 @@ const BlogLayout = ({ data }) => {
             <Layout>
                 <div style={{ margin: "15px 0" }}>
                     <FlexboxGrid>
-                        <FlexboxGridItem colspan={2} />
-                        <FlexboxGridItem colspan={4}>
+                        <FlexboxGrid.Item colspan={4}>
                             <div>
                                 <Panel bordered>
                                     <LearnSomething />
                                 </Panel>
                             </div>
-                        </FlexboxGridItem>
-                        <FlexboxGridItem colspan={1} />
-                        <FlexboxGridItem colspan={12}>
+                        </FlexboxGrid.Item>
+                        <FlexboxGrid.Item colspan={1} />
+                        <FlexboxGrid.Item colspan={12}>
                             <main className="blog-content">
                                 <h1>{data.mdx.frontmatter.title}</h1>
                                 <h4>Posted: {formatter.format(date)}</h4>
@@ -56,7 +55,7 @@ const BlogLayout = ({ data }) => {
                                     <MdxBlock>{data.mdx.body}</MdxBlock>
                                 </div>
                             </main>
-                        </FlexboxGridItem>
+                        </FlexboxGrid.Item>
                     </FlexboxGrid>
                 </div>
             </Layout>
