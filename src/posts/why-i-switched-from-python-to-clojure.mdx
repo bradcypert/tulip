@@ -56,7 +56,7 @@ When I moved from Java to Python, I fell in love with Mutable Dictionaries. I be
 
 When I learned about Clojure, I was baffled by their lack of classes, but felt liberated by the thought of only writing functions in namespaces. I decided to give it a try and immediately started thinking of Dictionaries in Python and how I didn’t enjoy writing classes. With Clojure, I’m able to focus on what the data looks like, and not on how an object is expected to act (What’s an instance of a class but a hash-map with some namespaced functions anyways?).
 
-## Immutable Data &amp; Stateless Code
+## Immutable Data & Stateless Code
 
 Like most now-functional programmers, I had **THE** incident. I had a class with several methods, but only two were particularly important. Both methods were getters, but the 1st method updated the value that was returned by the 2nd. This was extremely misleading when the code executed. In fact, almost all of the bugs with this code revolved around this theme. I didn’t know what to do and I thought this was the expected way to write code. I later read a great post on immutable data and tried writing my python code this way. This worked great – until I started working with other developers.
 

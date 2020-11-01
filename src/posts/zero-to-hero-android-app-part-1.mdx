@@ -1,5 +1,5 @@
 ---
-title: "Zero to Hero &#8211; Android App &#8211; Part 1 &#8211; Views"
+title: "Zero to Hero: Android App - Part 1 - Views"
 date: 2016/09/15
 status: publish
 permalink: /zero-to-hero-android-app-part-1
@@ -46,18 +46,6 @@ Finally, we’ll have one more set of prompts. For activity name, type: **AddTas
 
 Technically, you’ve just built your first Android app, even though doesn’t really do anything – yet. We’re going to change that.
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
 #### A Few Tips Before We Start Coding
 
 Android Studio can be overwhelming, especially if you’ve never used an IDE (Integrated Development Environment) before. There are a lot of buttons and a massive list of files. I’m going to do my best to give you exact instructions, but here are a few tips:
@@ -75,7 +63,7 @@ Views in Android are written in XML. If you have little or no experience with XM
 
 In the right-most pane, you should see some Java Code. At the top of that pane, you should see some tabs opened. Click the tab labeled **activity_add_task.xml**. You should see something like this:
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -99,16 +87,15 @@ If you don’t see that, but instead see a picture of an Android Phone that says
 
 Go ahead and delete it all. We’re going to build our view from scratch and I’ll talk about each element as we add them. The first thing we want to add is the `<xml>` tag.
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
-
 ```
 
 This specifics that the version of XML used to parse this document is version 1.0, and it’s encoded in UTF-8. Don’t worry too much about fully understanding what that means, just know that each XML document that we’ll add needs this line.
 
 Next, we have to define the base layout that we want for our view. We’re going to add a `LinearLayout`. A `LinearLayout` tells our Android Application that the direct children of this view should be rendered in a vertical line. Add this code:
 
-```
+```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -126,14 +113,14 @@ There’s a **lot** happening in this element. Let’s talk about each attribute
 
 - `xmlns:android` defines the default android namespace. This is used to resolve the rest of the child elements and their attributes. For now, just know that **it’s needed on every root element**.
 - `xmlns:tools` defines the namespace for our tools. You can usually leave this one off, but you get a lot of benefits for having it here as well, so we’re going to keep it.
-- `android_layout_height` &amp; `android layout_width` define the height and width of the application. `match_parent` tells the Application that this view is going to be the same size as it’s parent. This view has no parent, so it’s going to be the size of the full screen.
+- `android_layout_height` & `android layout_width` define the height and width of the application. `match_parent` tells the Application that this view is going to be the same size as it’s parent. This view has no parent, so it’s going to be the size of the full screen.
 - `android:paddingWhatever` defines how much space is in between this view and it’s parent. The value of this is usually a number followed by `dp`, so something like `10dp`. This is valid, but we have another alternative as well. If we want to easily reuse a value, we can make a reference to it. That way, if we ever want to change the value in every place that uses it, we can just update the reference to be the new value. For us, that reference looks like `@dimen/activity_horizontal_margin` or `@dimen/activity_vertical_margin`. These are values provided to us by the Android system.
 - `tools:context` tells the Android Application’s tools that this view is intended to be used with a specific activity. In this case, `com.bradcypert.turnip.AddTodoActivity`. We’ll talk more about activities in our next tutorial.
 - `android:orientation` defines the orientation for this view. Vertical means that the children will be in separate rows; horizontal means that the children will be in separate columns.
 
 Phew. A mouthful! Next, we’re going to add something called an `EditText`. An `EditText` is simply a way for users to input text. We’ll use this as a means to let users name the task that they want to complete.
 
-```
+```xml
 <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -146,7 +133,7 @@ You might notice a few different things here. For example, we’re using `wrap_c
 
 Next, we’re going to add some space in between our views. There’s actually several ways to do this, but one of the most obvious ones is creating a new `Space` element. So let’s go ahead and do that.
 
-```
+```xml
 <Space
     android:layout_width="20dp"
     android:layout_height="20dp"/>
@@ -157,7 +144,7 @@ This tells our Application that I want a space of 20DP tall to be in between the
 
 Next, we want to add something called a switch. Android switches come with a few defaults setup for the text that it’s displayed, and while that’s something we can overwrite, we’re just going to choose to leave the text off of the switch and create a text element instead. Basically, we want these to be side by side so they look as if they belong together. To do that, we’ll leverage a tool that we’ve already used, called a LinearLayout. Remember how we can define the `android:orientation` for a linear layout? That’s exactly what we need.
 
-```
+```xml
 <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -197,7 +184,7 @@ I won’t go over all of these properties, as you should be able to figure most 
 
 We’ve covered almost all of the elements and their property, so this next block of XML to add will be the biggest block yet, however, we only need to talk about Buttons and Button types. Here we go!
 
-```
+```xml
    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -257,7 +244,6 @@ We’ve covered almost all of the elements and their property, so this next bloc
         android:minHeight="50dp" />
 
 </LinearLayout>
-
 ```
 
 First thing’s first. Remember how I said we’d have to close out that LinearLayout earlier when I mentioned how XML-savvy you were? Well, we close that out here. We add another `TextView` to present the user with some more text, and we add a `LinearLayout` to put some `ToggleButton`s next to each other. Lastly, we create a Button.
@@ -269,18 +255,6 @@ ToggleButtons are interesting. A ToggleButton is simply a button that can be tur
 #### Buttons
 
 Ah. The de facto of user interaction. The button that we’ve added at the end will act as our save button. When we press it, we’re going to get all of the values that the user has entered above and do something with them – but not yet! Instead of setting up `height`, we’ve decided to set a `minHeight` of `50dp`, which means this element will always be taller than `49dp`.
-
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
 #### Design Tab
 
@@ -298,7 +272,7 @@ In the far left, **right-click on Java** and then **click on “New”**, and fi
 
 Now, go ahead and click “Okay.” If you did everything properly, you should now be looking at this:
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -312,7 +286,7 @@ A Drawable is a resource that the Android Operating system (and by association �
 
 We’re going to add three new items where the dots are below:
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     ...
@@ -322,7 +296,7 @@ We’re going to add three new items where the dots are below:
 
 First, we’re going to add the default button style. We’ll create an `item` element and define that shape and color via child elements within it. Once again, you’ll the dots in the above example with this code:
 
-```
+```xml
 <item>
     <shape android:shape="rectangle">
         <padding
@@ -339,7 +313,7 @@ We have a few new elements we’re working with here. `shape` simply defines a s
 
 We simply add another item! For this item, add it above the one that you just added, but still within the selector tag.
 
-```
+```xml
 <item android:state_checked="true">
     <shape android:shape="rectangle" >
         <corners android:radius="3dip" />
@@ -361,7 +335,7 @@ Next, we’re setting `solid` and the property `android:color`. `solid` is the m
 
 We can add one more item to our list, one that will show when the user is pressing the button. Add the following above the previous item as well:
 
-```
+```xml
 <item android:state_pressed="true">
     <shape android:shape="rectangle" >
         <corners android:radius="3dip" />
@@ -385,7 +359,7 @@ In the top of the rightmost pane, if you click **activity_add_task.xml**, you’
 
 Following the same process as earlier, add a new Android Resource file. This time, however, make sure it’s name is “**select_button_color**” and it’s resource type is set to “**color**“. Click “**Okay**” and you’ll be taken to a new file. Replace that file’s contents with the following:
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
@@ -404,18 +378,6 @@ Let’s go back to design view. We should no longer see our errors and everythin
 #### Developer Options
 
 Developer options allows you to push code and apps to your phone without the app store. This is commonly used to test code before deploying it to millions of actual users and is common part of the development cycle. Sadly, the process of turning Developer Options on varies heavily depending on your phone. Your best bet is Googling for how to turn on developer options for your specific phone. Once you’ve done that and hit play, make sure your phone model is selected in the list. It should also go without saying that your phone needs to be connected to your computer via USB for your app to be pushed to it.
-
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
 #### Emulators
 

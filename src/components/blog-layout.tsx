@@ -4,7 +4,6 @@ import { FlexboxGrid, Panel } from "rsuite";
 
 import Layout from "./layout";
 import "./layout.less"
-import FlexboxGridItem from "rsuite/lib/FlexboxGrid/FlexboxGridItem";
 import LearnSomething from "./learn-something";
 
 import { MDXProvider } from "@mdx-js/react";
@@ -38,6 +37,7 @@ const BlogLayout = ({ data }) => {
             <Layout>
                 <div style={{ margin: "15px 0" }}>
                     <FlexboxGrid>
+                        <FlexboxGrid.Item colspan={2} />
                         <FlexboxGrid.Item colspan={4}>
                             <div>
                                 <Panel bordered>

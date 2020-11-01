@@ -68,7 +68,7 @@ Since I’m setting up the Vagrant environment, I’ll detail the steps needed h
 
 There’s a lot you can do with this, but Im going to set it up for my project and walk you through that. Here’s what Im going to modify my Vagrantfile to look like.
 
-```
+```ruby
 Vagrant.configure("2") do |config|
   config.vm.box = "hashicorp/precise64"
 
@@ -89,34 +89,21 @@ Lastly, we’re going to toss that idea of a shell script for provisioning the v
 
 So what is Ansible? It’s a tool used for provisioning machines (virtual or otherwise). It’s in the same realm of business as Puppet, Chef, or Salt – merely a different tool. The main concept behind Ansible is simple, you write a `.yml` file called a playbook that describes the provisioned state of the server. Then, you can run Ansible to provision a server to meet that end state. In fact, Vagrant has a provisioner for Ansible that comes with it, which is part of the reason we’ve decided to use it.
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
 You’ll likely have noticed that in our Vagrant file, we’ve added two filepaths to the Ansible section. We’re going to need to go ahead and create those file paths now.
 
 ###### requirements.yml
 
-```
+```yml
 ---
 - src: ANXS.postgresql
 - src: geerlingguy.nodejs
-
 ```
 
 The `requirements.yml` file allows us to download “roles” (a piece of reusable provisioning code) from Ansible’s “Galaxy”. Think of it as Maven, but for sensible roles. So instead of writing the Postgres role from scratch, we can use ANXS’s Postgres role. Same with GeerlingGuy’s NodeJS role. We’re going to write our own role for the JDK, Leiningen, and Boot (just in case you want to use boot instead) in just a moment. But first, let’s create our playbook.
 
 ###### setup.yml
 
-```
+```yml
 ---
 - name: install java, clojure, and devtools
   hosts: all
@@ -127,25 +114,24 @@ The `requirements.yml` file allows us to download “roles” (a piece of reusab
     database_name: ‘your_db_name’
     database_user: ‘my_user’
     database_password: ‘my_password’
-    database_hostname: 'localhost'
+    database_hostname: "localhost"
 
   roles:
     - clojure
 
     - role: ANXS.postgresql
       postgresql_databases:
-      - name: "{{database_name}}"
+        - name: "{{database_name}}"
       postgresql_users:
-      - name: "{{database_user}}"
-        pass: "{{database_password}}"
-        encrypted: no
+        - name: "{{database_user}}"
+          pass: "{{database_password}}"
+          encrypted: no
       postgresql_user_privileges:
-      - name: "{{database_user}}"
-        db: "{{database_name}}"
-        priv: "ALL"
+        - name: "{{database_user}}"
+          db: "{{database_name}}"
+          priv: "ALL"
 
     - role: geerlingguy.nodejs
-
 ```
 
 If you don’t have experience with `.yml` files, fret not! It takes 20 minutes to learn the formatting and is quite similar to JSON. Ansible allows you to specify which “hosts” you’d like to run this on. You can specify whatever you want here (perhaps you only want to run this playbook on DB servers?) but we’re just going to use “all” for now. We’re telling Ansible to use the root user on the machine its provisioning. `become` is a flag that’s needed when you’re telling Ansible to act as a user different than whomever is currently logged in when the command runs. `become method` is used to specify how the user should become the targeted user. We’re simply setting this to sudo. Then, we define some variables to be used in our roles below.
@@ -156,7 +142,7 @@ Let’s write our Clojure role! We’re going to create a file in `my_project_pa
 
 ###### main.yml
 
-```
+```yml
 ---
 - name: Add Java8 repo to apt
   apt_repository: repo='ppa:openjdk-r/ppa'
@@ -197,7 +183,7 @@ Let’s write our Clojure role! We’re going to create a file in `my_project_pa
 
 - name: download leiningen
   get_url:
-    url:  https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+    url: https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
     dest: "{{ user_bin_dir }}"
 
 - name: add executable permission for lein script
@@ -211,24 +197,22 @@ Let’s write our Clojure role! We’re going to create a file in `my_project_pa
   shell: bash -c "cd /usr/local/bin && curl -fsSLo boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh && chmod 755 boot"
   become: yes
   become_method: sudo
-
 ```
 
 Alright, there’s quite a bit here, and technically the Lein install could be dropped down to a shell-script similar to Clj-boot, but I wanted to showcase some Ansible goodies to you. Let’s tackle it block by block.
 
-```
+```yml
 - name: Add Java8 repo to apt
   apt_repository: repo='ppa:openjdk-r/ppa'
   tags:
     - install
   become: yes
   become_method: sudo_
-
 ```
 
 This block of code simply adds the OpenJDK repo to our APT (remember, we’re using Ubuntu for our VM) installation.
 
-```
+```yml
  name: Accept Java license
   debconf: name=oracle-java8-installer question='shared/accepted-oracle-license-v1-1' value=true vtype=select
 
@@ -236,7 +220,7 @@ This block of code simply adds the OpenJDK repo to our APT (remember, we’re us
 
 This was a pain to figure out. You have to accept some terms when installing the JDK, but this config option sets them to auto accept. It’s not like anyone reads those anyways, right?
 
-```
+```yml
 - name: Update apt cache
   apt: update_cache=yes
 
@@ -245,12 +229,11 @@ This was a pain to figure out. You have to accept some terms when installing the
 
 - name: Set Java environment variables
   apt: name=oracle-java8-set-default state=latest
-
 ```
 
 This block of code updates the apt repository for us, allowing us make sure we’re using the latest and greatest packages. Then, we install Java8, and finally, we’re setting the Java8 environment variables for our VM (`JAVA_HOME`, etc.).
 
-```
+```yml
 - name: System Setup
   apt: pkg="{{ item }}" state=installed update-cache=yes
   with_items:
@@ -261,33 +244,19 @@ This block of code updates the apt repository for us, allowing us make sure we�
     - install
   become: yes
   become_method: sudo
-
 ```
 
 This block of code ensures that we have some basic things on our system. Namely, `wget`, `vim`, and `curl`. Tools that are often used. We needed to install these as sudo, so naturally we use `become`.
 
-```
+```yml
 - name: set user bin directory
   set_fact:
     user_bin_dir: /usr/bin
-
 ```
-
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
 This block simply sets a local `fact` (kind of like a variable for Ansible) that we can use in the rest of our task. In this case, it points to the `/usr/bin` directory. This is where we’ll install Leiningen.
 
-```
+```yml
   get_url:
     url:  https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
     dest: "{{ user_bin_dir }}"
@@ -307,12 +276,11 @@ This block here fetches the Leiningen binary from github and plops it into `/usr
 
 Perhaps you’ve explored using `Boot` with your clojure projects. In fact, you may even have a few projects using `Boot` like I do. For simplicity reasons, it’d be great if our VM had boot on it too. You can actually write this Ansible task similar to the Leiningen one above, but I wanted to show you that you can also simply leverage a shell script via Ansible.
 
-```
+```yml
 - name: Install Clj-Boot
   shell: bash -c "cd /usr/local/bin && curl -fsSLo boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh && chmod 755 boot"
   become: yes
   become_method: sudo
-
 ```
 
 This simply executes the shell command above, which changes into the `bin` directory, and then makes a `curl` request for the boot shell script, and finally makes it executable.
@@ -321,13 +289,12 @@ This simply executes the shell command above, which changes into the `bin` direc
 
 With the Ansible playbook that we’ve written, the Vagrant file, and the roles we’ve written or leveraged, you now have a way to boot up a brand new VM provisioned for Clojure and Node applications. In fact, you can go into your project folder now and try it!
 
-```
+```yml
 vagrant up
 vagrant ssh
 node —version
 java -version
 lein repl
-
 ```
 
 Huzzah! We’ve successfully provisioned a VM for a new project using Clojure, JDK8, Postgres, and NodeJS!

@@ -33,26 +33,23 @@ To get started with Clojure’s spec library, you’ll need to make sure you’r
 
 Then you can leverage it in your namespace like so:
 
-```
+```clojure
 (ns spec.demo
   (:require [clojure.spec.alpha :as spec]))
-
 ```
 
 #### Writing a Spec
 
 Now that we’ve added Spec to our project, we can start writing our first spec. Let’s create a simple spec definition that validates that a symbol resolves to a string.
 
-```
+```clojure
 (spec/def ::id string?)
-
 ```
 
 Indeed, it is that simple. We can now leverage that spec definition in our code, for example, to check validity.
 
-```
+```clojure
 (spec/valid? ::id "ABC-123")
-
 ```
 
 Alright, you’re probably thinking “But Brad, we can just use `(string? "ABC-123")`“, and you’re totally right. However, you get two key benefits from using Clojure’s Spec: You can check validity against one singular interface (`valid?`) **and** you can compose spec definitions. That’s right. Composition.
@@ -61,7 +58,7 @@ Alright, you’re probably thinking “But Brad, we can just use `(string? "ABC-
 
 Perhaps we want to allow the id to be an integer or a string that meets a certain regex. We can compose two different specs to create an applicable spec. In this case, we’ll define a spec for the integer and one for the regex and combine them using `spec/or` and `spec/and`.
 
-```
+```clojure
 (def id-regex #"^[0-9]*$")
 (spec/def ::id int?)
 (spec/def ::id-regex
@@ -69,15 +66,13 @@ Perhaps we want to allow the id to be an integer or a string that meets a certai
     string?
     #(re-matches id-regex %)))
 (spec/def ::id-types (spec/or ::id ::id-regex))
-
 ```
 
 Now we can check the validity like so:
 
-```
+```clojure
 (spec/valid? ::id-types "12345")
 (spec/valid? ::id-types 12435)
-
 ```
 
 You’re probably thinking “This is cool, but I’m a strong independent Clojure developer and I use maps. How do I make this work with maps?”
@@ -86,64 +81,46 @@ You’re probably thinking “This is cool, but I’m a strong independent Cloju
 
 And in fact, we can go deeper. We can leverage `spec.keys` to compose a map specification built off of existing specifications. Let’s imagine we have a map for representing a developer that looks like this:
 
-```
+```clojure
 {::name "Brad" ::age 24 ::skills '()}
-
 ```
 
 Let’s define some specs for this map!
 
-```
+```clojure
 (spec/def ::name string?)
 (spec/def ::age int?)
 (spec/def ::skills list?)
-
 ```
 
 Great! This is really basic and you can make these as fancy as you like, but this will work for our example. Let’s compose a map with these values! Let’s make one more assumption though: A developer does not necessarily have to have any skills, but will have a name and an age.
 
-```
+```clojure
 (spec/def ::developer (spec/keys :req [::name ::age]
                                  :opt [::skills]))
 
 (spec/valid? ::developer {::name "Brad" ::age 24 ::skills '()})
-
 ```
 
 That’ll do it! But what if we’re parsing something like JSON via Chesire? Our keys won’t be namespaced and our map will actually look like this:
 
-```
+```clojure
 {:name "Brad" :age 24 :skills '()}
-
 ```
 
 Oh dear, well this won’t work at all. We can modify our developer spec so that the keys required don’t have to be namespaced.
 
-```
+```clojure
 (spec/def ::developer (spec/keys :req-un [::name ::age]
                                  :opt-un [::skills]))
-
 ```
-
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
 #### Failing a validity check
 
 One of the nice things about spec is that it offers you an actual error message (Yes, clojure can do real error messaging) when a value fails to meet a spec. You can ask Clojure to explain the issue using `spec/explain`.
 
-```
+```clojure
 (spec/explain ::id-types "Wrong!")
-
 ```
 
 #### What the Heck is with the Double Colon?
@@ -158,9 +135,8 @@ Spec does something interesting with all of the definitions that you create. It 
 
 If you don’t want to use the registry, you can actually avoid defining the spec and just check the validity directly.
 
-```
+```clojure
 (spec/valid int? 1234)
-
 ```
 
 #### Test.Check
@@ -169,20 +145,18 @@ You’re a savvy Clojure Developer. You’ve already added `[org.clojure/test.ch
 
 We can then leverage generation with the same sense of composition as a spec definition.
 
-```
+```clojure
 (gen/generate (spec/gen int?))
 > 612
-
 ```
 
 **Note: The value with be random**.
 
-```
+```clojure
 (gen/generate (spec/gen ::developer))
 > {:spec.demo/name "A1s41l"
    :spec.demo/age 9134
    :spec.demo/skills '()}
-
 ```
 
 You can use these in your tests and leverage your tests as a way to measure the quality of your specs. They compliment each other to help you write better code!

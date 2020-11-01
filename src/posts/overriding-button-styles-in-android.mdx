@@ -35,7 +35,7 @@ For now, let’s assume that will work, and I’ll show you a recent example whe
 
 First thing’s first, we’ll set up the layout for this view. Nothing fancy is going on here, I’m just creating a LinearLayout and adding a ToggleButton as a child of that layout. The magic comes later.
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
@@ -65,29 +65,13 @@ First thing’s first, we’ll set up the layout for this view. Nothing fancy is
 
 The two things to note are the following: `android:background` points to a drawable that doesn’t exist and `android:textColor` points to a color that doesn’t exist. Let’s make these now.
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>
-  <br />
-  (adsbygoogle = window.adsbygoogle || []).push({});
-  <br />
-</script>
-
 #### Flat Design ToggleButton
 
 For the sake of simplicity, we’re going to override our ToggleButton to be flat. Currently, It looks like something you’d find in the cockpit of _Flight Simulator 1998_ for Windows 95.
 
 Let’s create a new drawable resource file and call it `select_button.xml`. This file is going to take care of the overall shape of the button (handled via the background of the view). Let’s define a rectangle.
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
    <item>
@@ -105,7 +89,7 @@ Let’s create a new drawable resource file and call it `select_button.xml`. Thi
 
 Now, if you notice, we’re outlining a shape and just the padding. This will render as just the button text, which is fine for now. Now let’s add another item to handle the `checked` state. Add this `item` right after the last `item` but still as a child to `selector`.
 
-```
+```xml
 <item android:state_checked="true">
         <shape android:shape="rectangle" >
             <corners android:radius="3dip" />
@@ -127,14 +111,13 @@ This item is a conditional item. It’s only used when the view it’s used with
 
 One last thing! We still need to create the `xml` file for the text color. If you’re not using a bright color for the button background, you’ll probably notice that the text is hard to read, so we’ll define a custom color state. Create a new resource under `color` called `select_button_color.xml`
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true"
           android:color="#ffffff"/> <!-- pressed -->
     <item android:color="#000000"/> <!-- default -->
 </selector>
-
 ```
 
 This is even simpler than before, since we’re not worried about drawing rectangles or anything, and we’re just setting a value. If the state is `checked`, we set the color to a strong white. Otherwise, we set the color to a strong black. This will solve our problem with our button and it’s text not having enough contrast.

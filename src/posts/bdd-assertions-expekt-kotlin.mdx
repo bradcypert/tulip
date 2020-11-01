@@ -46,9 +46,7 @@ class FormatterTest {
 As of writing, the current version of Expekt is `0.5.0` so that’s the one we’ll include in our project. If you’re using Gradle, you can add the following to your dependency list in your build.gradle.
 
 ```gradle
-
 testImplementation "com.winterbe:expekt:0.5.0"
-
 ```
 
 If you’re using Maven, you can switch to Gradle (let the flame war commence). Alternatively, you can add the following to your pom.xml
@@ -107,7 +105,6 @@ class DollarFormatterTest {
 This isn’t bad, but its does feel less descriptive and looks less idiomatic. These will also fail to run and compiled. That’s because we haven’t even created our object yet! Let’s do that now!
 
 ```kotlin
-
 interface Formatter {
   fun format(): String
 }
@@ -116,7 +113,6 @@ object DollarFormatter {
     return "\$%.2f".format(num)
   }
 }
-
 ```
 
 Regardless of which assertion library you use, both of our tests should pass now! Hopefully you feel that you’ve had a good opportunity to sample a BDD library (Expekt) and see how easy it is to use Expekt to write concise and clear test cases!

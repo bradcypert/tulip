@@ -50,7 +50,7 @@ As someone who struggled when switching to Linux, this would have been a wonderf
 Earlier today, you wrote this wonderful `git` command. Perhaps it looked something like this
 
 ```
-git <span class="pl-k">for</span>-each-ref <span class="pl-s">--sort</span>=-committerdate refs/heads/ <span class="pl-s">--format</span>=<span class="pl-s"><span class="pl-pds">'</span>%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))<span class="pl-pds">'</span></span>
+git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 ```
 
 Normally, if you didn’t save this to a script, it would be lost in the void that is the shell’s history. Thankfully, with fish, you can simply type `git for-each` and then proceed to press the up arrow to cycle through commands you have previously ran that start with this snippet until you find the masterpiece you’re looking for. For what it’s worth, that’s a badass `git` command. I do recommend saving it to a function.
@@ -58,18 +58,6 @@ Normally, if you didn’t save this to a script, it would be lost in the void th
 #### Prettiness without Cruft
 
 This one, despite making me sound like a shallow developer whom cant handle the green-lit screen from the early 70’s that still mocks us today as modern developers, is kind of important to me. I can’t stand default bash. I like to have information at the ready. When I first found Zsh (Zshell), I was dumbfounded. I didn’t realize I could have the current git repo status, today’s date, mother’s maiden name, and today’s weather forecast all in my terminal only to be updated on every line. Plus, you can install crazy fonts to create shapes in your terminal to customize it even more. Nowadays, that’s a bit much for me, but I do appreciate having the current git repo’s status illustrated via my terminal. It’s something that readily influences 50% of the commands I run so its nice to have on hand.
-
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display: block; text-align: center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
 Thankfully, fish helps provide that just like Zsh. “What’s the difference?” you might be asking. If you’ve used Zshell before (and you probably used it with Oh-my-zsh!) you may have realized that its a bit slower to boot up when you open a new terminal. Fish still provides the prettiness and customizations that Zsh offers (conceptually; Zsh plugins wont work on Fish and vice versa) but doesn’t bog down your terminal. Fish boots cleanly and quickly when you create a new tab or terminal.
 

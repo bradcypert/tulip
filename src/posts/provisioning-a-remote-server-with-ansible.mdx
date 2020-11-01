@@ -43,18 +43,6 @@ Here you can choose the standard specs of your VM. Feel free to pick whatever is
 
 Finally, you’ll want to scroll down and hit “Create.” Great! Now we can get to start on our Ansible work! **Just make sure you grab your IP address from your new droplet!**
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
 #### Our First Ansible Playbook
 
 Ansible uses an idea of “Playbooks”. Playbooks are essentially the policy that you want your provisioned servers to follow. We’ll cover a few common scenarios with our playbook. Namely, we’ll write our own role, use a user-created role, and set up an inventory (or a target to provision).
@@ -78,12 +66,11 @@ You’ll want to create the following files (in your project or elsewhere):
 
 We’ll start by building our inventory so we don’t lose that IP address that’s hanging out in our copy/paste buffer. Let’s open `./provisioning/inventories/prod/hosts` and add the following lines:
 
-```
+```yml
 default ansible_ssh_host=192.168.1.101 ansible_ssh_user=root
 
 [webservers]
 default
-
 ```
 
 This will setup our inventory for prod with defaults of our IP and the user to run these commands as. Basically, after creating those defaults we’re setting up a target called `webservers` and we’re applying the defaults to that server. There are better ways to build inventories when you’re provisioning multiple machines at once, but for now, this works for us!
@@ -92,7 +79,7 @@ This will setup our inventory for prod with defaults of our IP and the user to r
 
 Ansible tasks can do quite a lot of things in one go. For simplicity, we have all of our tasks in `./provisioning/roles/common/tasks/main.yml`. We’ll accomplish a lot with just a little in this task, namely, we’ll install Java8, set our Java Environment Variables, add wget, vim, and curl, and finally download and install leinengen and clj-boot. Here’s what our task looks like:
 
-```
+```yml
 ---
 - name: Add Java8 repo to apt
   apt_repository: repo='ppa:openjdk-r/ppa'
@@ -133,7 +120,7 @@ Ansible tasks can do quite a lot of things in one go. For simplicity, we have al
 
 - name: download leiningen
   get_url:
-    url:  https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+    url: https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
     dest: "{{ user_bin_dir }}"
 
 - name: add executable permission for lein script
@@ -147,7 +134,6 @@ Ansible tasks can do quite a lot of things in one go. For simplicity, we have al
   shell: bash -c "cd /usr/local/bin && curl -fsSLo boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh && chmod 755 boot"
   become: yes
   become_method: sudo
-
 ```
 
 Ansible ships with a lot of configurable tasks that you can leverage and a lot of commands such as `get_url` or `shell` as shown in the example above but the real power of ansible comes from leverage community-built tasks to ensure you dont reinvent the wheel.
@@ -156,11 +142,10 @@ Ansible ships with a lot of configurable tasks that you can leverage and a lot o
 
 Realistically, if you want Postgres installed on a server, there’s only so many possible permutations of an installation you could want. This is where well-built community tasks come into play. Add the following to your `./provisioning/requirements.yml` file and I’ll explain them in a moment:
 
-```
+```yml
 ---
 - src: ANXS.postgresql
 - src: geerlingguy.nodejs
-
 ```
 
 Alright, this is is pretty straight-forward. We’re defining a few requirements from [Ansible Galaxy](https://galaxy.ansible.com/). We can download these requirements and run them as if we had written the tasks themselves. In this case, we’re depending on a Postgres role and a NodeJS role. You can find these roles and more like them on [Ansible Galaxy](https://galaxy.ansible.com/).
@@ -171,7 +156,7 @@ Let’s go ahead and run `ansible-galaxy install -r provisioning/requirements.ym
 
 Finally, its time to wire all of this together with our Playbook. I generally dont have many playbooks for an application so I call mine `setup.yml`, but you could call yours `dev.yml` or `prod.yml` or what have you. Let’s open `./provisioning/setup.yml` and add the following:
 
-```
+```yml
 ---
 # This playbook handles setting up Clojure and Postgres
 
@@ -181,10 +166,10 @@ Finally, its time to wire all of this together with our Playbook. I generally do
   become: yes
   become_method: sudo
   vars:
-    database_name: 'dev'
-    database_user: 'dev_user'
-    database_password: 'dev_pass'
-    database_hostname: 'localhost'
+    database_name: "dev"
+    database_user: "dev_user"
+    database_password: "dev_pass"
+    database_hostname: "localhost"
 
   roles:
     - common
@@ -192,18 +177,17 @@ Finally, its time to wire all of this together with our Playbook. I generally do
     - role: ANXS.postgresql
       postgresql_version: 9.6
       postgresql_databases:
-      - name: "{{database_name}}"
+        - name: "{{database_name}}"
       postgresql_users:
-      - name: "{{database_user}}"
-        pass: "{{database_password}}"
-        encrypted: no
+        - name: "{{database_user}}"
+          pass: "{{database_password}}"
+          encrypted: no
       postgresql_user_privileges:
-      - name: "{{database_user}}"
-        db: "{{database_name}}"
-        priv: "ALL"
+        - name: "{{database_user}}"
+          db: "{{database_name}}"
+          priv: "ALL"
 
     - role: geerlingguy.nodejs
-
 ```
 
 Now, we’ve defined out playbook as well as declared some vars. We’ve also mentioned `hosts: all` saying that this applies to all hosts, here we could have `webservers` as we’ve defined before, but for our sakes we’re just provisioning a single host. Then, we have our roles declared below that. We use our common role that we’ve defined, plus the two from Ansible Galaxy. You’ll notice that we’re providing a lot of config options to the Postgres role, but none to the NodeJS role. That’s due to the way that the roles are built and the defaults being acceptable.

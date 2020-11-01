@@ -27,7 +27,6 @@ If you want to follow along with the code examples, start a new project. I’m g
 
 ```bash
 lein new app warehouse
-
 ```
 
 Let’s open `warehouse/src/warehouse/core.clj` and modify it so it looks like this:
@@ -42,7 +41,6 @@ Let’s open `warehouse/src/warehouse/core.clj` and modify it so it looks like t
   "I don't do a whole lot ... yet."
   [& args]
   (println "Hello, World!"))
-
 ```
 
 The key thing to note is that we’re requiring clojure.core.async.
@@ -61,7 +59,6 @@ Let’s define our channel limit, and then define a channel. I’ll store the li
 (def warehouse-capacity 10)
 
 (def warehouse-channel (chan warehouse-capacity))
-
 ```
 
 Awesome, we have a warehouse-channel that will act as our warehouse, and we know that the limit of items we can store in that warehouse is 10 items. Let’s define a function to populate that channel with items.

@@ -28,7 +28,7 @@ Play is built with on top the Akka framework. “Build powerful reactive, concur
 
 You’ll want to start by creating a new file in your application. Generally, I put these in a `tasks` module, but a module named `actors` also would make a lot of sense. Then, create a new file in that module with the name `HelloTask.scala`. In that file, you’ll want to add the contents:
 
-```
+```scala
 package tasks
 
 import akka.actor.ActorSystem
@@ -53,7 +53,7 @@ That’ll do it for the actor. For those unacquainted, we’re creating a new ac
 
 This won’t actually do anything on it’s own, however. We have to create a module to hold this task and to bootstrap our play application with our newly created actor. We can do this by creating (in the same module) a file named `HelloTaskModule.scala` and adding the following code into it:
 
-```
+```scala
 package tasks
 
 import play.api.inject.{SimpleModule, _}
@@ -62,17 +62,6 @@ class HelloTaskModule extends SimpleModule(bind[HelloTask].toSelf.eagerly())
 
 ```
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display: block; text-align: center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 Now, believe it or not, we’re still not done, but we are pretty close. This file
 creates a SimpleModule and eagerly loads the HelloTask actor. Lastly, we have one
 final step.

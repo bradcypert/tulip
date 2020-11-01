@@ -28,7 +28,7 @@ For the sake of this example – A function is a named procedure that tells a co
 
 A macro, in the Clojure world, is effectively a function that operates upon code instead of values. A great real world example is telling someone to **not** take out the trash or **not** close the door. Take out the trash and close the door are functions, but not changes the meaning of those functions. In the case of a computer program, Macros change the execution of a function. A great example is this macro, called **do-nothing**.
 
-```
+```clojure
 (defmacro do-nothing
   "always returns nil"
   [f]
@@ -38,7 +38,7 @@ A macro, in the Clojure world, is effectively a function that operates upon code
 
 We can call it like so…
 
-```
+```clojure
 (do-nothing (list 1 2 3))
 
 ```
@@ -51,7 +51,7 @@ It’s important to keep in mind that the macros return value is executed in pla
 
 Most Clojure macros are written to manipulate a list of data and your code often expects a list to be returned from your Macros. An important tool for this is a macro called syntax quoting and it’s the backtick. That’s right, the backtick. Check out this Macro that uses the syntax quoting.
 
-```
+```clojure
 (defmacro do-second [f] `(rest ~f))
 
 (do-second (println (list 1 2 3)))
@@ -61,23 +61,11 @@ $> (1 2 3)
 
 Notice the backtick and the tilde. The backtick says, “I’m going to syntax quote everything unless told otherwise”, the tilde says “I’m telling you otherwise for this next item”. The backtick fully resolves all function names (core/rest in this case), which makes it valid in this context. Then, we use the unquote macro (**~**) to tell our code to “Use the parameter F, not a fully qualified version of the F symbol”. F, in this case, is `(println (list 1 2 3))`. Rest gives us everything but the first element, so we skip the println and evaluate the `(list 1 2 3)` bit.
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
 #### Macro Expansion
 
 Clojure has a great macro (look at that! A macro for dealing with macros) for helping you learn more about the macros you’re running. It’s called macroexpand. Let’s use it on our previous example.
 
-```
+```clojure
 (macroexpand '(do-second (println (list 1 2 3))))
 $> (clojure.core/rest (println (list 1 2 3)))
 

@@ -1,5 +1,5 @@
 ---
-title: "Android &#8211; ListView, RecyclerView, Adapters"
+title: "Android: ListView, RecyclerView, Adapters"
 date: 2016/09/27
 status: publish
 permalink: /android-listview-recyclerview-adapters
@@ -31,15 +31,14 @@ So what is a ListView? It’s a very commonly used view group in the Android eco
 
 So how do you get content into your list view? With an adapter! The Android standard libraries provide you with a few adapters out of the box that solve very common scenarios. A few examples are the `SimpleCursorAdapter` which is used for iterating over a SQLite Cursor and the `ArrayAdapter` which is used for iterating over the values of an array. You can also write your own adapters by implementing `android.widget.ListAdapter`. Here’s an example of quickly using an array adapter:
 
-```
+```java
 String[] groceryList = {"Milk", "Eggs", "Bacon"};
 setListAdapter(new ArrayAdapter(this,  android.R.layout.simple_list_item_1, groceryList));
-
 ```
 
 A more robust example of an adapter (taken from the **Zero-To-Hero** series) can leverage a SQLite cursor or even a non-iterable object to produce the list items.
 
-```
+```java
 package com.bradcypert.turnip.adapters;
 
 import android.content.Context;
@@ -133,31 +132,17 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return taskCursor.getCount();
     }
 }
-
 ```
 
 In the above example, you’ll notice that we’re writing this adapter for a RecyclerView instead of a ListView. You’ll also notice the ViewHolder internal class that I’ve written. Leveraging a ViewHolder is a very common practice when working with View Adapters.
 
 It’s important to keep in mind that the adapter does very little on it’s own. In fact, you need to remember to attach the adapter to a list view for it to work as expected. You can do that like so:
 
-```
+```java
 tasks = DBHelpers.getTasks(); //returns a cursor
 taskListAdapter = new TaskListAdapter(this, tasks);
 recyclerView.setAdapter(taskListAdapter);
-
 ```
-
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
 #### RecyclerView
 

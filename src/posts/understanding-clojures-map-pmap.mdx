@@ -30,7 +30,7 @@ If you’ve used `map` before, you’re probably aware of everything in the doc 
 
 A standard use case of map can be seen as:
 
-```
+```clojure
 (map inc (range 10))
 ;(1 2 3 4 5 6 7 8 9 10)
 
@@ -41,7 +41,7 @@ A standard use case of map can be seen as:
 
 As you can see, we take the numbers `0-9` and increment them by one in the first example. In the second, we use an anonymous function to describe how we want to multiply each value by two. But what happens if we provide multiple collections to map, perhaps with a different size?
 
-```
+```clojure
 (map list '(:a :b :c) '(foo-bar jazz))
 ;((:a foo-bar) (:b jazz))
 
@@ -51,7 +51,7 @@ In the above example, map produces a list, it also creates a list from the first
 
 Alright, we’ve seen passing in a single collection, multiple collections, but what happens if we don’t pass in a collection at all? We get a transducer.
 
-```
+```clojure
 (def t-inc (map inc))
 
 (transduce t-inc + (range 5))
@@ -64,18 +64,6 @@ Alright, we’ve seen passing in a single collection, multiple collections, but 
 
 Transducers can be intimidating at first, and I won’t go into them much here. For now, you can think of them as partials that describe data transformations that can be used with `transduce`. In the first example above, we take our `t-inc` transducer (which increments a value by one), and define the reducer as `+` and our collection as `(range 5)` or `0-4`. We apply the data transformation (incrementing each number by one, and reduce that down using our reducing function. Our end result is 15, because 1+2+3+4+5 = 15. In the second example, we take the same transducer and collection, but instead of reducing it down via add, we reduce it via `conj`. We increment our data set, and then reduce it into a vector.
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
 #### What about `pmap`?
 
 Alright, the moment you’ve all been waiting for – `pmap`, and why is it so slow?
@@ -84,7 +72,7 @@ Alright, the moment you’ve all been waiting for – `pmap`, and why is it so s
 
 You actually need a pretty intense example for `pmap` to be faster, simply incrementing the values in a collection by one isn’t a good enough example because the overhead of threads outweighs the minor operation you’re trying to perform. A better example would be something that’s computation heavy and such, `pmap` functions often do much more than `map` functions, simply to make the most of the over head. I don’t have any crazy algorithms or anything to share with you for pmap, so let’s use an example where we can “simulate” a long running computation.
 
-```
+```clojure
 (defn slow-task [n]
   (Thread/sleep 1000)
   (+ n 10))
@@ -96,7 +84,6 @@ You actually need a pretty intense example for `pmap` to be faster, simply incre
 (time (doall (pmap slow-task (range 4))))
 "Elapsed time: 1006.011012 msecs"
 (10 11 12 13)
-
 ```
 
 Why is it so much faster in this case? Each thread gets tied up doing “logic” (or in this case – sleeping), but when we can leverage multiple threads, we can have 4 threads sleep for one second, instead of 1 thread sleep for 1 second 4 different times. Pretty cool, right?

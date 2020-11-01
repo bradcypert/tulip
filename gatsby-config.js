@@ -60,7 +60,7 @@ module.exports = {
         defaultLayouts: {
           posts: require.resolve("./src/components/blog-layout.tsx"),
           blog: require.resolve("./src/components/blog-layout.tsx"),
-          default: require.resolve("./src/components/layout.tsx"),
+          default: require.resolve("./src/components/centered-layout.tsx"),
         },
       },
     },

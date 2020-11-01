@@ -25,7 +25,7 @@ It’s late at night so I’ll keep this post short. I’m going to quickly cove
 
 A future is simply a function that executes code on a background thread and can be dereferenced to get the result of that code. Here’s what they look like!
 
-```
+```clojure
 (future (println "foo") (+ 1 1))
 
 ```
@@ -44,7 +44,7 @@ I’ve recently been working on an “omnisearch” feature for a Clojure api th
 
 Here’s some code to accomplish that!
 
-```
+```clojure
 (let [users-future (search-users query limit offset)
       podcasts-future (search-podcasts query limit offset)
       episodes-future (search-episodes query limit offset)]
@@ -55,18 +55,6 @@ Here’s some code to accomplish that!
 ```
 
 In the let-binding we’re calling 3 functions that return futures, then we’re dereferencing them at the end as we place them in our data structure.
-
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
 #### A Case for Returning Futures
 

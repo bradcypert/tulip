@@ -24,42 +24,26 @@ Sometimes, you may find yourself in a situation (like using Scala with Spring) w
 
 You can start using it by importing the BeanProperty like so:
 
-```
+```scala
 import scala.reflect.BeanProperty
 ```
 
 Then in your class definition, you can use the decorator on your member fields to autogenerate the appropriate getters and setters to adhere to the Bean specification.
 
-```
-
+```scala
 case class Car(@BeanProperty var color: ColorDefinition,
                @BeanProperty var size: CarSize,
                @BeanProperty var owner: String) {}
-
 ```
-
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display: block; text-align: center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
 Alternatively, you can annotate the class fields instead of the constructor fields.
 
-```
-
+```scala
 class Car {
   @BeanProperty var color: ColorDefinition = null
   @BeanProperty var size: CarSize = CarSize.SEDAN
   @BeanProperty var owner: String = null
 }
-
 ```
 
 Either of theses styles of applying the decorators will work for you!

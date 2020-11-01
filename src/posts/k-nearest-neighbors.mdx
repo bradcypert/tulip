@@ -1,5 +1,5 @@
 ---
-title: "KNN &#8211; My Nearest Neighbors"
+title: "KNN: My Nearest Neighbors"
 date: 2017/06/03
 status: publish
 permalink: /k-nearest-neighbors
@@ -41,7 +41,7 @@ KNN is a really simple algorithm that can be broken down to a few simple steps. 
 
 For the sake of our project, let’s assume a single data point looks like this: `pos` is a pair of integers describing the data point’s position on our plane. Class is the class of that data point, in this case, we’re using “Windows”, “OSX” or “Unix”. For our data set, `:pos` is `[city-blocks-up-or-down, city-blocks-left-or-right]` where `[0,0]` is my apartment. We have now done Step #2 `Define what data points are relevant to classification distance`.
 
-```
+```clojure
 {
   :pos [4 9]
   :class "Windows"
@@ -53,7 +53,7 @@ In this case, we’re plotting the location and classification of my actual neig
 
 Here’s our training set defined in Clojure:
 
-```
+```clojure
 (def training-set
   [{:pos [ 2  0] :class "OSX"}
    {:pos [ 1  3] :class "Windows"}
@@ -76,7 +76,7 @@ Next, we need to define a function to determine the distance between two points.
 
 Let’s go ahead and define this in Clojure:
 
-```
+```clojure
 (defn euclidean-distance
   [vec1 vec2]
   (Math/sqrt
@@ -88,7 +88,7 @@ Let’s go ahead and define this in Clojure:
 
 Awesome, with step #3 out of the way, we can move on to step #4 and #5! Now let’s define the `nearest-neighbors` function. This function will take in our sample data, our query data point, and then `k`. We’ll associate the euclidean distance to the data point as `:score` and then sort by `:score`.
 
-```
+```clojure
 (defn nearest-neighbors
   [samples query k]
   (take k
@@ -99,23 +99,11 @@ Awesome, with step #3 out of the way, we can move on to step #4 and #5! Now let�
 
 ```
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
 #### The Classifier
 
 Alright, we’re almost done! Our final step is to Determine the most common “class” in the first K items of list L. We can do this by allowing the K Nearest Neighbors to vote on our query item’s class based on their own class. We can get the `frequencies` of each classification and bind that to `vote-freq`, then we can select the highest valued key from that map!
 
-```
+```clojure
 (defn knn
   [samples query k]
   (let [votes (nearest-neighbors samples query k)
@@ -128,7 +116,7 @@ Alright, we’re almost done! Our final step is to Determine the most common “
 
 The final product for this looks something like this!
 
-```
+```clojure
 (ns knn.core
   (:gen-class))
 

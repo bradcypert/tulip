@@ -24,7 +24,7 @@ Why is the typing important? Polymorphism. Most of you probably learned polymorp
 
 Behold, a multimethod in all of it’s glory!
 
-```
+```clojure
 (defmulti fight
   (fn [ranger]
     (:color ranger)))
@@ -33,7 +33,7 @@ Behold, a multimethod in all of it’s glory!
 
 Now, I’m going to go ahead and clear the air – this “multi” doesn’t really do anything, because we haven’t written any “methods” for it to dispatch to. The way that this “multi” works is like so – We can call `(fight my-power-ranger)` and it will look up the color of the ranger, then it will call the appropriate method for the given color (which we haven’t defined yet). Let’s go ahead and make a few rangers to play with.
 
-```
+```clojure
 (def r {:color :red :name "Steve"})
 
 (def b {:color :blue :name "Jessica"})
@@ -42,7 +42,7 @@ Now, I’m going to go ahead and clear the air – this “multi” doesn’t re
 
 Simply enough, we’re just binding maps of color and name values to symbols. Now that that’s out of the way, we can go ahead and define our methods.
 
-```
+```clojure
 (defmethod fight :red
   [ranger]
   (str (:name ranger) ", the red ranger, fights with the sword of light!"))
@@ -55,7 +55,7 @@ Simply enough, we’re just binding maps of color and name values to symbols. No
 
 If we run all the above code in our repl, we should see something like the following:
 
-```
+```clojure
 (fight r)
 ;Steve, the red ranger, fights with the sword of light.
 
@@ -64,21 +64,9 @@ If we run all the above code in our repl, we should see something like the follo
 
 ```
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
 Thats… cool. But certainly not something we need a multimethod for and that’s certainly not how the power rangers would fight. They’d fight together by fusion of their colors (basically, the red and blue ranger can become a red-blue ranger)! Let’s add a new method to handle this.
 
-```
+```clojure
 (def rb {:color '(:red :blue) :names '("Jessica" "Steve")})
 
 (defmethod fight '(:red :blue)

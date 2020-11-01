@@ -28,12 +28,7 @@ const Layout = ({ children }) => {
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <Container>
         <Content>
-          <FlexboxGrid>
-            <FlexboxGrid.Item colspan={2} />
-            <FlexboxGrid.Item colspan={22}>
-              {children}
-            </FlexboxGrid.Item>
-          </FlexboxGrid>
+          {children}
         </Content>
       </Container>
       <Footer></Footer>

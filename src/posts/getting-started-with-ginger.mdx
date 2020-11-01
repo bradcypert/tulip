@@ -42,7 +42,7 @@ First – Let’s add Ginger to our dependencies in build.gradle.
 
 **build.gradle**
 
-```
+```gradle
 group 'com.bradcypert'
 version '1.0-SNAPSHOT'
 
@@ -65,18 +65,6 @@ Nothing crazy here, especially if you’re familiar with Gradle. Just notice tha
 
 You can pull down the dependency with `gradle build`, so if you’re using an IDE like Intellij or Eclipse, it should recognize the library on the classpath and not throw a fit when you use Ginger classes.
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
 #### The Ginger Way
 
 Awesome. We’ve got our dependency downloaded, and we’re ready to quickly build a RESTful service. To make a simple `Todo` service, we’re going to need to create a few classes.
@@ -84,7 +72,7 @@ Awesome. We’ve got our dependency downloaded, and we’re ready to quickly bui
 Since we’re using H2, we’re going to make a very basic helper class to create our DB and execute queries (_this is **NOT** Ginger specific. Just a very generic class that executes queries and returns results_).  
 **src/main/java/H2Sample.java**
 
-```
+```java
 import java.sql.*;
 
   import org.h2.tools.DeleteDbFiles;
@@ -198,7 +186,7 @@ That being said, let’s define our `Model` and make it reach out to our H2Sampl
 
 **src/main/java/Todo.java**
 
-```
+```java
   import com.bradcypert.ginger.*;
 
   @Methods
@@ -256,7 +244,7 @@ Let’s create a new class, and I’ll call it Handler.java. Make note – This 
 
 **src/main/java/Handler.java**
 
-```
+```java
 import com.bradcypert.ginger.Resource;
 
   public class Handler {

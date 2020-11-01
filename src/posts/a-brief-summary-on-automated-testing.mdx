@@ -78,16 +78,15 @@ First, let’s talk about Spies. For the sake of simplicity, I’ll assume we’
 
 Stubs are spies, but they prevent the underlying function from executing. These are the bread and butter of testing boundaries. If you’re delegating to JQuery, Underscore, multithreading or making an XHR request, you probably want to leverage the support of stubs. Let’s talk the following example.
 
-```
+```javascript
 function fetch() {
   return $.GET("/foo");
 }
-
 ```
 
 We don’t actually want to make an XHR request during test – it could slow down the tests, network failures can cause intermittent test failures (flaky tests), or maybe we don’t want to make a **POST** or **DELETE** against an actual server. How we do we handle this in our tests?
 
-```
+```javascript
 describe("fetch", function(){
   it("should return a promise", function() {
     Sinon.stub($, "GET", function() {return new Promise(...);});

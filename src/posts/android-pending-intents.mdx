@@ -1,5 +1,5 @@
 ---
-title: "Android &#8211; Pending Intents"
+title: "Android: Pending Intents"
 date: 2017/04/03
 status: publish
 permalink: /android-pending-intents
@@ -43,7 +43,7 @@ A pending intent is a special type of intent. It wraps an existing intent and ha
 
 Here’s a more concrete example. I’ve been working on an SMS Messenger to replace the default one on my phone. As any good app developer, I want to leverage Android OS Notifications to let my users know when they’ve received a new message. As a good app developer with higher standards, I want them to be able to tap that notification and be brought to the message. This is where the pending intent comes in. I can create a new pending intent that points to my “SMS Message View” activity with the intent information preconfigured. Here’s some code to help you see what I mean. This is the activity that my pending intent is targeting:
 
-```
+```java
 public class ConversationDetails extends AppCompatActivity {
     public static final String KEY="id";
 
@@ -66,14 +66,13 @@ public class ConversationDetails extends AppCompatActivity {
         else return intent.getStringExtra(KEY);
     }
 }
-
 ```
 
 There’s nothing crazy here. This activity retrieves a value that is expected to exist on the intent that created this activity and then creates a small toast notification for it. Simple, but all we need to demonstrate how this all fits together.
 
 Now, we’re going to create a class that extends BroadcastReceiver. The point of this class is to listen to incoming SMS messages and create our notifications.
 
-```
+```java
 public class SmsListener extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {

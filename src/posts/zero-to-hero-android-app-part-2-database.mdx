@@ -1,5 +1,5 @@
 ---
-title: "Zero to Hero &#8211; Android App &#8211; Part 2 &#8211; Database"
+title: "Zero to Hero: Android App - Part 2 - Database"
 date: 2016/09/26
 status: publish
 permalink: /zero-to-hero-android-app-part-2-database
@@ -42,18 +42,6 @@ Lastly, and the method we’re going to use, is storing the data on the phone vi
 
 SQLite uses a concept of tables (as almost all databases do), so we’ll need to define what our table structure looks like. This is actually really easy to do so we’ll start our coding today with this.
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
 #### Coding Time
 
 Alright, let’s use a common pattern to define our structure called a “contract” pattern. In Android Studio, in the left-most pane, Expand the `Java` folder and right click on `com.yournamehere.turnip.` Click `new`, click `package`, and lastly type `contracts`. This is where we’ll store our contracts for our database. You should see a new folder labeled “contracts” and yes, we’re finally writing Java.
@@ -68,7 +56,7 @@ In our last example, we created a view that takes in data for the following thin
 
 Right click the `contracts` folder and click `new` then click `Java class`. Enter the name `TaskContract` and hit enter. You’ll be take to a new file in the rightmost pane and this is where we’ll add our contract code. If you’ve never seen Java code before, this part will likely be pretty confusing, but hang in there. It does get easier. As per usual, I’ll dump the code for this file and then we’ll talk about it and as always, I recommend coding this yourself and not copy/paste.
 
-```
+```java
 package com.bradcypert.turnip.contracts;
 
 import android.provider.BaseColumns;
@@ -113,9 +101,9 @@ So we have a contract that illustrates what our DB looks like and gives us some 
 
 In the leftmost pane, right click on `com.yournamehere.turnip` and add a new package named `helpers`. Now, right click that package and add a new Java class called `DBHelper`. This will be where we add all of our code to save and retrieve data from the database. Now’s a good time to mention that SQLite comes standard on Android phones and is the recommended data storage solution by the Android development team at Google. This means that the setup for this is actually quite easy.
 
-Don’t get overwhelmed by this next file, it’s the “meat &amp; potatoes” of this session and we’ll cover it more in depth than we did the contract.
+Don’t get overwhelmed by this next file, it’s the “meat & potatoes” of this session and we’ll cover it more in depth than we did the contract.
 
-```
+```java
 package com.bradcypert.turnip.helpers;
 
 import android.content.ContentValues;
@@ -247,7 +235,7 @@ Next, we have our constructor for DBHelper. Notice that this takes a context tha
 
 #### Adding a Task
 
-```
+```java
     public long addTask(String name, TaskContract.Frequency frequency, TaskContract.Notify notify) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -269,7 +257,7 @@ We create a method named `addTask` that takes in a name, frequency, and notifica
 
 #### Deleting a Task
 
-```
+```java
     public boolean removeTask(int id) {
         SQLiteDatabase db = getWritableDatabase();
         try {
@@ -284,21 +272,9 @@ We create a method named `addTask` that takes in a name, frequency, and notifica
 
 Next, we do something similar, except we’re setting up a delete this time. Like before, we get the writable database but we run a delete used the table name against the ID of the row to be deleted. There’s a risk that the row ID may not exist, so we have to handle that exception via a catch block.
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
 #### “Bumping” a Task
 
-```
+```java
     public boolean bumpTask(int id) {
         SQLiteDatabase db = getWritableDatabase();
         try {
@@ -324,7 +300,7 @@ In the above example, we’re updating a task’s total number of times complete
 
 #### Getting all the Tasks
 
-```
+```java
     public Cursor getTasks() {
         SQLiteDatabase db = getReadableDatabase();
         String[] projection = {
@@ -354,9 +330,9 @@ In the above example, we’re updating a task’s total number of times complete
 
 This method is particularly cool. It may look a little overwhelming, but we’re essentially just querying the database for all the tasks. You’ll notice this time we’re only getting a readable database, instead of a writeable one. That’s because we don’t need to add or modify any data in the database and care only to read what’s been stored. We also setup something called a “Projection”, which allows us to decide which columns of data should be returned. Remember: **It’s important to note that this method actually doesn’t return data.** Instead, it returns an iterable cursor that points to the data.
 
-#### OnCreate &amp; OnUpgrade
+#### OnCreate & OnUpgrade
 
-```
+```java
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(SQL_CREATE_TASKS);

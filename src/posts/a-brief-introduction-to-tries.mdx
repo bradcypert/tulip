@@ -45,7 +45,7 @@ You might be thinking “Brad, wait. ‘pro’ is a real word too.” You’re r
 
 Here’s how we can implement a node in our trie:
 
-```
+```java
 class Trie {
     char c;
     Trie[] children;
@@ -62,21 +62,9 @@ class Trie {
 
 We can use the `word` boolean to determine if a node is a word. We’re using `c` to store the current character and `children` is initialized to 26 because there are 26 letters in the English alphabet. We’ll set this when we build our trie from preset strings. In fact, let’s write that add method now.
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display: block; text-align: center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
 #### Adding a word to the trie
 
-```
+```java
  /**
      * Adds a word to the trie
      * @param toAdd
@@ -113,26 +101,25 @@ The `add` method takes in the string that we’d like to add to our trie. This m
 
 Let’s go ahead and implement the isWord method as well. This method will take our current trie and search for a word in it to see if it exists. This functional will also be recursive.
 
-```
- /**
-     * Checks to see if a word exists in the trie
-     * @param search
-     * @return
-     */
-    public boolean isWord(String search) {
-        int index = search.charAt(0) - 'a';
+```java
+/**
+ * Checks to see if a word exists in the trie
+ * @param search
+ * @return
+ */
+public boolean isWord(String search) {
+    int index = search.charAt(0) - 'a';
 
-        if (this.children[index] == null) {
-            return false;
-        }
-
-        if (search.length() == 1) {
-            return this.children[index].word;
-        }
-
-        return this.children[index].isWord(search.substring(1));
+    if (this.children[index] == null) {
+        return false;
     }
 
+    if (search.length() == 1) {
+        return this.children[index].word;
+    }
+
+    return this.children[index].isWord(search.substring(1));
+}
 ```
 
 This function does the following:
@@ -159,53 +146,53 @@ The private function will do the following:
 2. Iterate through the current node’s children and recurse.
 3. If our node is null, we can just return and skip this call.
 
-```
+```java
 /**
-     * Traverses to the node that represents the string
-     * then calls the private helper below
-     * @param search
-     * @return
-     */
-    public String[] predict(String search) {
-        ArrayList<String> words = new ArrayList<>();
-        Trie node = this;
+ * Traverses to the node that represents the string
+ * then calls the private helper below
+ * @param search
+ * @return
+ */
+public String[] predict(String search) {
+    ArrayList<String> words = new ArrayList<>();
+    Trie node = this;
 
-        //traverse the trie
-        for (int i = 0; i < search.length(); i++) {
-            //convert array index down to 0th indexing
-            int index = search.charAt(i) - 'a';
+    //traverse the trie
+    for (int i = 0; i < search.length(); i++) {
+        //convert array index down to 0th indexing
+        int index = search.charAt(i) - 'a';
 
-            if (node.children[index] == null) {
-                return new String[0];
-            }
-
-
-            node = node.children[index];
+        if (node.children[index] == null) {
+            return new String[0];
         }
-        predict(search, node, words);
 
-        return words.toArray(new String[0]);
+
+        node = node.children[index];
+    }
+    predict(search, node, words);
+
+    return words.toArray(new String[0]);
+}
+
+/**
+ * This populates the provided arraylist with word suggestions
+ * @param search - String you're predicting against
+ * @param node - node to predict from
+ * @param words - reference to an arraylist to hold word suggestions
+ */
+private void predict(String search, Trie node, ArrayList<String> words) {
+    if (node.word) {
+        words.add(search);
     }
 
-    /**
-     * This populates the provided arraylist with word suggestions
-     * @param search - String you're predicting against
-     * @param node - node to predict from
-     * @param words - reference to an arraylist to hold word suggestions
-     */
-    private void predict(String search, Trie node, ArrayList<String> words) {
-        if (node.word) {
-            words.add(search);
-        }
-
-        Trie[] childNodes = node.children;
-        for (Trie childNode : childNodes) {
-            if (childNode != null) {
-                char childChar = childNode.c;
-                predict(search + Character.toString(childChar), childNode, words);
-            }
+    Trie[] childNodes = node.children;
+    for (Trie childNode : childNodes) {
+        if (childNode != null) {
+            char childChar = childNode.c;
+            predict(search + Character.toString(childChar), childNode, words);
         }
     }
+}
 
 ```
 
@@ -213,7 +200,7 @@ The private function will do the following:
 
 Great, so this should allow us to enter a key to autocomplete. Let’s go ahead and write a main method to give it a shot!
 
-```
+```java
 public class Main {
 
     public static void main(String[] args) {
@@ -253,24 +240,11 @@ carriage
 cartoon
 
 Process finished with exit code 0
-
 ```
-
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display: block; text-align: center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
 #### TLDR: Here’s the source code
 
-```
+```java
 package com.bradcypert;
 
 import java.util.ArrayList;
@@ -400,5 +374,4 @@ public class Main {
         }
     }
 }
-
 ```
