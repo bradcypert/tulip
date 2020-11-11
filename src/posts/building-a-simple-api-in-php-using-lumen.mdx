@@ -105,7 +105,6 @@ Simply uncomment that line and your app hookup Eloquent to the database that you
 Alright, let’s write all of our PHP for this project. It’s not bad at all, should be easy to understand, and (for simplicity) we’ll be able to keep it all in one file. Let’s go ahead and start by modifying `public/index.php`.
 
 ```php
-
 <?php
 
 use IlluminateHttpRequest;
@@ -173,15 +172,12 @@ $app->patch('dev/{id}', function(Request $request, $id) {
 $dev->save();
   return response()->json($dev);
 });
-
 ```
 
 In this route, you’ll see we’re listening on `dev/{id}` again, but this time for a patch. We’re taking in the Request object once more (as we’ll need to extract data from it) and then the `$id`. We’re updating the values of the developer for that given id and then saving it. You’ll notice that we’re passing in a second parameter to `$request->input();`. That second parameter is the “default” value. If there is no data for ‘name’ for example, it’ll return `$dev->name`. This allows us to only update the values that are passed to us in our request. We then save it like before, and return the updated object. The last piece is up next, I swear!
 
 ```php
-
 \$app->run();
-
 ```
 
 And that’s it! That last line runs our application! The entire `public/index.php` file is here below for you to inspect in one solid piece.

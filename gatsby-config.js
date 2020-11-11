@@ -3,7 +3,7 @@ module.exports = {
     title: `BradCypert.com`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@bradcypert`,
-    siteUrl: "https://www.bradcypert.com"
+    siteUrl: "https://www.bradcypert.com",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -16,18 +16,6 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-      },
-    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -65,12 +53,12 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-web-font-loader',
+      resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ['Heebo', 'Open Sans']
-        }
-      }
+          families: ["Heebo", "Open Sans"],
+        },
+      },
     },
     `gatsby-plugin-sass`,
     {
@@ -80,10 +68,10 @@ module.exports = {
           javascriptEnabled: true,
         },
         javascriptEnabled: true,
-      }
+      },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

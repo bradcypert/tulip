@@ -26,7 +26,6 @@ const MdxBlock: React.FunctionComponent<any> = ({ children }) => {
 const formatter = new Intl.DateTimeFormat('en-US');
 
 const TagPage = (props) => {
-    console.log(props);
     return (
         <>
             <Layout>
