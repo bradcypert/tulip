@@ -28,7 +28,7 @@ const IndexPage = () => {
       <FlexboxGrid
         align="middle"
         className="fancy-background-1"
-        style={{ minHeight: "100vh" }}
+        style={{ minHeight: "95vh" }}
       >
         <FlexboxGrid.Item colspan="24">
           <Avatar
@@ -37,20 +37,20 @@ const IndexPage = () => {
             circle
             src={data.placeholderImage.childImageSharp.fluid.src}
           ></Avatar>
-          <h1>I'm Brad Cypert.</h1>
+          <h1>👋 I'm Brad Cypert.</h1>
           <h3>
             I code a lot. Sometimes I write. Sometimes I post content on{" "}
             <a href="https://www.youtube.com/bradcypert">Youtube</a>.
           </h3>
           <h4>
-            I run
+            I run{" "}
             <a href="https://pyrestudios.io" target="_blank">
               Pyre Studios LLC
             </a>
             , which has built apps such as{" "}
             <a href="https://www.lunajournal.app" target="_blank">
               Luna Journal
-            </a>
+            </a>{" "}
             and{" "}
             <a href="https://www.bluejay.app" target="_blank">
               Bluejay.app
