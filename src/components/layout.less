@@ -1,7 +1,8 @@
-@import "~rsuite/lib/styles/themes/dark/index.less";
-
+@import "~semantic-ui-less/semantic.less";
 @theme1: #40916c;
 @theme2: #ff6b6b;
+@primaryColor: #40916c;
+@secondaryColor: #ff6b6b;
 
 @body-bg: #131515;
 
@@ -62,6 +63,7 @@ p {
 p,
 li {
   font-size: 1.4em;
+  margin: 1em 0;
 }
 
 .blog-content {
@@ -93,9 +95,13 @@ li {
   border-bottom: 1px dashed @theme1;
 }
 
+.rs-navbar .rs-navbar-nav .rs-nav-item > .rs-nav-item-content {
+  padding: 0;
+}
+
 .learn-something-new {
-  .rs-tag {
-    margin: 3px;
+  .label {
+    margin: 3px !important;
   }
 }
 

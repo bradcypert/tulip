@@ -8,7 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { Container, Content, Footer, FlexboxGrid } from "rsuite";
+import { Container } from 'semantic-ui-react';
 import Header from "./header"
 import "./layout.less"
 
@@ -26,12 +26,12 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <Container>
-        <Content>
+      <Container fluid>
+        <main>
           {children}
-        </Content>
+        </main>
       </Container>
-      <Footer></Footer>
+      <footer></footer>
     </>
   )
 }

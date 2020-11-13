@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { FlexboxGrid, Panel } from "rsuite";
+import { Segment, Grid } from 'semantic-ui-react';
 
 import Layout from "./layout";
 import "./layout.less"
@@ -36,17 +36,17 @@ const BlogLayout = ({ data }) => {
         <>
             <Layout>
                 <div style={{ margin: "15px 0" }}>
-                    <FlexboxGrid>
-                        <FlexboxGrid.Item colspan={2} />
-                        <FlexboxGrid.Item colspan={4}>
+                    <Grid>
+                        <Grid.Column mobile={1} computer={1}>
+                        </Grid.Column>
+                        <Grid.Column mobile={14} computer={3}>
                             <div>
-                                <Panel bordered>
+                                <Segment>
                                     <LearnSomething />
-                                </Panel>
+                                </Segment>
                             </div>
-                        </FlexboxGrid.Item>
-                        <FlexboxGrid.Item colspan={1} />
-                        <FlexboxGrid.Item colspan={12}>
+                        </Grid.Column>
+                        <Grid.Column mobile={16} computer={10}>
                             <main className="blog-content">
                                 <h1>{data.mdx.frontmatter.title}</h1>
                                 <h4>Posted: {formatter.format(date)}</h4>
@@ -55,8 +55,8 @@ const BlogLayout = ({ data }) => {
                                     <MdxBlock>{data.mdx.body}</MdxBlock>
                                 </div>
                             </main>
-                        </FlexboxGrid.Item>
-                    </FlexboxGrid>
+                        </Grid.Column>
+                    </Grid>
                 </div>
             </Layout>
         </>

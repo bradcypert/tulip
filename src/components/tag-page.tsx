@@ -1,10 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { FlexboxGrid, Panel } from "rsuite";
 
 import Layout from "./layout";
 import "./layout.less"
-import FlexboxGridItem from "rsuite/lib/FlexboxGrid/FlexboxGridItem";
+import { Grid, Card } from "semantic-ui-react";
 import LearnSomething from "./learn-something";
 
 import { MDXProvider } from "@mdx-js/react";
@@ -30,17 +29,16 @@ const TagPage = (props) => {
         <>
             <Layout>
                 <div style={{ margin: "15px 0" }}>
-                    <FlexboxGrid>
-                        <FlexboxGridItem colspan={2} />
-                        <FlexboxGridItem colspan={4}>
+                    <Grid>
+                        <Grid.Column width={1} />
+                        <Grid.Column width={3}>
                             <div>
-                                <Panel bordered>
+                                <Card bordered>
                                     <LearnSomething />
-                                </Panel>
+                                </Card>
                             </div>
-                        </FlexboxGridItem>
-                        <FlexboxGridItem colspan={1} />
-                        <FlexboxGridItem colspan={12}>
+                        </Grid.Column>
+                        <Grid.Column width={10}>
                             <main className="blog-content">
                                 <h1>Tag: {props.pageContext.cleanTag}</h1>
                                 {props.data.allMdx.nodes.map(node => {
@@ -60,8 +58,8 @@ const TagPage = (props) => {
                                     </article>
                                 })}
                             </main>
-                        </FlexboxGridItem>
-                    </FlexboxGrid>
+                        </Grid.Column>
+                    </Grid>
                 </div>
             </Layout>
         </>

@@ -1,5 +1,5 @@
 import React from "react"
-import { Message } from 'rsuite';
+import { Segment } from 'semantic-ui-react';
 
 interface Props {
   title: String;
@@ -7,11 +7,10 @@ interface Props {
 
 const HeadsUp: React.FunctionComponent<Props> = ({ title, children }) => (
   <div style={{ margin: "10px" }}>
-    <Message
-      type="warning"
-      title={title}
-      description={children}
-    />
+    <Segment inverted color='orange'>
+      <h4>{title}</h4>
+      {children}
+    </Segment>
   </div>
 )
 

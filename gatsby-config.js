@@ -42,6 +42,7 @@ module.exports = {
     //     path: `${__dirname}/src/posts`,
     //   },
     // },
+    `gatsby-plugin-catch-links`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {

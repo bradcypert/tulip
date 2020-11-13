@@ -71,9 +71,7 @@ You’ll notice a couple of things:
 It’s worth mentioning that the HTML package in Elm allows you to create HTML elements and it’s API is rather simple. You import whatever element you’d like to create and then follow the pattern of `elementType [metadata] [children]`. In the example above, we’re writing
 
 ```elm
-
 div [] (List.map rowItem model.rows)
-
 ```
 
 This looks different than the pattern just mentioned, however, if you consider that the result of our `List.map` call returns a list of HTML elements and the pattern’s 3rd argument is a list of children (also HTML elements), then this should work fine!

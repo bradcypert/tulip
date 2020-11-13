@@ -1,10 +1,23 @@
-const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const path = require(`path`);
+const { createFilePath } = require(`gatsby-source-filesystem`);
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        "../../theme.config$": path.join(
+          __dirname,
+          "src/semantic/theme.config"
+        ),
+      },
+    },
+  });
+};
 
 function createBlogPosts(graphql, actions) {
-  const { createPage } = actions
+  const { createPage } = actions;
 
-  const blogPost = path.resolve(`./src/components/blog-layout.tsx`)
+  const blogPost = path.resolve(`./src/components/blog-layout.tsx`);
   return graphql(
     `
       {
@@ -29,15 +42,16 @@ function createBlogPosts(graphql, actions) {
     `
   ).then(result => {
     if (result.errors) {
-      throw result.errors
+      throw result.errors;
     }
 
     // Create blog posts pages.
-    const posts = result.data.allMdx.edges
+    const posts = result.data.allMdx.edges;
 
     posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node
-      const next = index === 0 ? null : posts[index - 1].node
+      const previous =
+        index === posts.length - 1 ? null : posts[index + 1].node;
+      const next = index === 0 ? null : posts[index - 1].node;
 
       createPage({
         path: post.node.fields.slug,
@@ -47,51 +61,55 @@ function createBlogPosts(graphql, actions) {
           previous,
           next,
         },
-      })
-    })
+      });
+    });
   });
 }
 
 function createTagPages(graphql, actions) {
-  const { createPage } = actions
-  const tagLayout = path.resolve(`./src/components/tag-page.tsx`)
+  const { createPage } = actions;
+  const tagLayout = path.resolve(`./src/components/tag-page.tsx`);
   return graphql(
     `
-    {
-      allMdx {
-        edges {
-          node {
-            id
-            frontmatter {
-              tag
+      {
+        allMdx {
+          edges {
+            node {
+              id
+              frontmatter {
+                tag
+              }
             }
           }
         }
       }
-    }
     `
   ).then(result => {
     if (result.errors) {
-      throw result.errors
+      throw result.errors;
     }
 
     // Create blog posts pages.
-    const edges = result.data.allMdx.edges
-    const tags = [...new Set(edges
-      .map(e => e.node.frontmatter.tag)
-      .reduce((acc, cur) => acc.concat(...cur), []).map(e => e.toLowerCase()))
-    ]; 
+    const edges = result.data.allMdx.edges;
+    const tags = [
+      ...new Set(
+        edges
+          .map(e => e.node.frontmatter.tag)
+          .reduce((acc, cur) => acc.concat(...cur), [])
+          .map(e => e.toLowerCase())
+      ),
+    ];
 
     tags.forEach((tag, index) => {
       createPage({
-        path: "/tags/"+tag,
+        path: "/tags/" + tag,
         component: tagLayout,
         context: {
           tag: `/^${tag}$/i`,
-          cleanTag: tag
+          cleanTag: tag,
         },
-      })
-    })
+      });
+    });
   });
 }
 
@@ -99,17 +117,17 @@ exports.createPages = ({ graphql, actions }) => {
   return createBlogPosts(graphql, actions).then(() => {
     return createTagPages(graphql, actions);
   });
-}
+};
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
+  const { createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode })
+    const value = createFilePath({ node, getNode });
     createNodeField({
       name: `slug`,
       node,
       value,
-    })
+    });
   }
-}
+};

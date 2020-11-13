@@ -68,7 +68,7 @@ You guys are doing a great job! Keep up the great work!
 
 Alright, we’ve got our test data out of the way. I’ll test against all four of those cases in the REPL once we get coding. First, let’s add Standford’s NLP library to our project. I won’t worry about editing the `lein` boilerplate.
 
-```
+```clojure
 (defproject nlp "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
@@ -89,25 +89,13 @@ Don’t forget to run `lein deps` to download your new dependencies. This could 
 
 Stanford’s Core-NLP library has a built in way to help determine text sentiment (called `sentiment`) and we’ll leverage that. We’ll run our text through the following pipeline – tokenize, ssplit, pos, llema, parse, sentiment. There are several other pipelines available for all sorts of different NLP use cases, and I’d recommend exploring them all if you’re just interested in the NLP aspects of this post.
 
-<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{" "}
-
-<ins
-  class="adsbygoogle"
-  data-ad-client="ca-pub-8945603214034079"
-  data-ad-format="fluid"
-  data-ad-layout="in-article"
-  data-ad-slot="2376037128"
-  style="display:block; text-align:center;"
-></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
 #### Let’s Code
 
 Crack open your `main.clj` file and let’s get started.
 
 First we want to add our dependencies.
 
-```
+```clojure
 (ns nlp.core
   (:import (edu.stanford.nlp.pipeline Annotation StanfordCoreNLP)
            (edu.stanford.nlp.sentiment SentimentCoreAnnotations$SentimentClass)
@@ -118,7 +106,7 @@ First we want to add our dependencies.
 
 Next, we’re going to define a function that’ll take care of creating the StanfordCoreNLP object. We’ll also go ahead and define our sentiment pipeline.
 
-```
+```clojure
 (def pipeline "tokenize, ssplit, pos, lemma, parse, sentiment")
 
 (defn build-nlp
@@ -132,7 +120,7 @@ Next, we’re going to define a function that’ll take care of creating the Sta
 
 Now, we define a function that will use our NLP Object to parse and annotate the text that we’re examining. We’ll end up passing in separate sentences later, so we’ll write this function to just parse and annotate one sentence at a time. Since this function will annotate our text for us, we’ll call this “annotate-text”.
 
-```
+```clojure
 (defn- annotate-text
   "Runs the given text through the NLP pipeline"
   [text]
@@ -142,7 +130,7 @@ Now, we define a function that will use our NLP Object to parse and annotate the
 
 Now, we want to write a function to pull the sentiment for a given annotated sentence. This is basically unpacking the value from the Java class. It’ll look something like this.
 
-```
+```clojure
 (defn- get-sentiment
   [anno-sentence]
   (.get anno-sentence SentimentCoreAnnotations$SentimentClass))
@@ -151,7 +139,7 @@ Now, we want to write a function to pull the sentiment for a given annotated sen
 
 Finally, we throw it all together with some sweet, sweet threading magic. You’ll notice that we’re not doing anything crazy here, just taking text and threading that through annotation and a few anonymous functions.
 
-```
+```clojure
 (defn get-sentiment
   [text]
   (-> text
@@ -167,7 +155,7 @@ Let’s run `get-sentiment` against a few of our above test cases, shall we?
 
 ###### Hate Mail
 
-```
+```clojure
 nlp.core=> (get-sentiment "Dude, your product freaking sucks. You guys charge way too freaking much and I can't stand all the bugs. It's absolute trash.")
 ("Negative" "Negative" "Negative")
 
@@ -177,7 +165,7 @@ Nice! It realized that the entire email was negative! That’s wonderful!
 
 ###### Happy Mail #1
 
-```
+```clojure
 nlp.core=> (get-sentiment "Hey there!
       #_=>
       #_=> Just wanted to say that what you're doing is really important. I'm really glad that there's people out there in the world trying to solve the problems that my son faces. Special needs is a field that always needs more love, and it's nice to see that you're providing that."
@@ -193,7 +181,7 @@ Not great, but this is a good time to mention two things.
 
 ###### Sarcastic Mail
 
-```
+```clojure
 (get-sentiment "Oh, your product is sooooo good. I just love that it breaks down on me all the time, and the bugs really come of as extra features and not a shitty user experience. I'm sooooo thankful that you guys are around.")
 ("Positive" "Negative" "Negative")
 
@@ -203,7 +191,7 @@ This is one that I was excited. The tone is positive although it’s littered wi
 
 ###### Happy Mail #2
 
-```
+```clojure
 (get-sentiment "You guys are doing a great job! Keep up the great work!")
 ("Positive" "Very positive")
 
@@ -215,7 +203,7 @@ You’ll notice in this one our first “Very positive”. Indeed, there is a �
 
 The code for this is rather small, so I’ve decided to include it all here for your enjoyment! Hope you were able to learn something new!
 
-```
+```clojure
 (ns nlp.core
   (:import (edu.stanford.nlp.pipeline Annotation StanfordCoreNLP)
            (edu.stanford.nlp.sentiment SentimentCoreAnnotations$SentimentClass)

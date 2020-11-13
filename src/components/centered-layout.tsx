@@ -1,6 +1,6 @@
 import React, { Children } from "react"
 import PropTypes from "prop-types"
-import { FlexboxGrid } from "rsuite";
+import { Grid } from "semantic-ui-react";
 import Layout from "./layout";
 import "./layout.less"
 
@@ -9,14 +9,15 @@ const CenteredLayout = ({ children, pageContext: { frontmatter: { title } } }) =
         <>
             <Layout>
                 <div className={`centered-page ${title.toLowerCase()}-page`} style={{ margin: "15px 0" }}>
-                    <FlexboxGrid>
-                        <FlexboxGrid.Item colspan={4} />
-                        <FlexboxGrid.Item colspan={16}>
+                    <Grid>
+                        <Grid.Column width={2}>
+                        </Grid.Column>
+                        <Grid.Column width={12}>
                             <main className="blog-content">
                                 {children}
                             </main>
-                        </FlexboxGrid.Item>
-                    </FlexboxGrid>
+                        </Grid.Column>
+                    </Grid>
                 </div>
             </Layout>
         </>
