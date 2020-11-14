@@ -25,8 +25,6 @@ const MdxBlock: React.FunctionComponent<any> = ({ children }) => {
 const formatter = new Intl.DateTimeFormat('en-US');
 
 const BlogLayout = ({ data }) => {
-
-    console.log(data);
     const date = new Date();
     const dateStr = data.mdx.frontmatter.date;
     const expDateStr = dateStr.split("/");
@@ -84,13 +82,6 @@ export const query = graphql`
       frontmatter {
         title
         date
-        thumbnail {
-          childImageSharp {
-            fluid(maxWidth: 800) {
-                ...GatsbyImageSharpFluid
-            }
-          }
-        }
       }
       body
     }
