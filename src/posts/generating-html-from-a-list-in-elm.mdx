@@ -7,7 +7,7 @@ author: "Brad Cypert"
 excerpt: ""
 type: post
 id: 1613
-thumbnail: ./post_images/acrylic-art-artistic-1289899.jpg
+thumbnail: ../static/post_images/acrylic-art-artistic-1289899.jpg
 category:
   - Elm
 tag:
@@ -91,6 +91,6 @@ rowItem id =
 
 From the function’s definition, you can see the `String -> Html Msg` transformation that I’ve mentioned above. Now, we plug this into our `List.map` call like so `(List.map rowItem model.rows)`. Lastly, we can plug that into our root element in the view: `div [] (List.map rowItem model.rows)`. And that’s how you generate HTML from a list of items in Elm!
 
-If you’d like to learn more about Elm, [you find more posts of mine on Elm here](https://www.bradcypert.com/tag/elm)!
+If you’d like to learn more about Elm, [you find more posts of mine on Elm here](/tags/elm)!
 
 PS: Elm has an awesome online Editor called Ellie. If you want,[ follow this link to load the above example into Ellie](https://ellie-app.com/5VWjfmpMfLGa1) and you can play with the code and follow along!

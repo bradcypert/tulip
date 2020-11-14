@@ -7,7 +7,7 @@ author: "Brad Cypert"
 excerpt: ""
 type: post
 id: 2027
-thumbnail: ./post_images/photo-of-light-bulb-1495580.jpg
+thumbnail: ../static/post_images/photo-of-light-bulb-1495580.jpg
 category:
   - React
 tag:
@@ -87,4 +87,4 @@ We’re doing a couple of neat things here. First, we’re setting up our `useEf
 We’re also only triggering this `useEffect` when `text` has changed (as indicated by `[text]` as the second parameter. We probably could clean this up a bit by removing the `if` in the timeout function body, and updating the `useEffect` dependency array to be `[text != lastText]`.
 
 And that should do it! Hopefully, this helps if you’re trying to build autosave functionality into React project.
-If you’d like to [learn more about React, you can find my other post on Facebook’s awesome framework here.](https://www.bradcypert.com/tag/react/)
+If you’d like to [learn more about React, you can find my other post on Facebook’s awesome framework here.](/tags/react/)

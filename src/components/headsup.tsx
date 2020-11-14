@@ -6,8 +6,8 @@ interface Props {
 }
 
 const HeadsUp: React.FunctionComponent<Props> = ({ title, children }) => (
-  <div style={{ margin: "10px" }}>
-    <Segment inverted color='orange'>
+  <div className="headsup" style={{ margin: "10px" }}>
+    <Segment inverted color='green'>
       <h4>{title}</h4>
       {children}
     </Segment>
