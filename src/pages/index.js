@@ -3,7 +3,7 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { Image, Grid } from "semantic-ui-react";
+import { Image, Grid, Popup } from "semantic-ui-react";
 
 const IndexPage = () => {
   const [isWindow, setIsWindow] = React.useState(false);
@@ -46,17 +46,32 @@ const IndexPage = () => {
             </h3>
             <h4>
               I run{" "}
-              <a href="https://pyrestudios.io" target="_blank">
-                Pyre Studios LLC
-              </a>
+              <Popup
+                content="Pyre Studios LLC is a small, independent multimedia studio in Louisville, Kentucky."
+                trigger={
+                  <a href="https://pyrestudios.io" target="_blank">
+                    Pyre Studios LLC
+                  </a>
+                }
+              />
               , which has built apps such as{" "}
-              <a href="https://www.lunajournal.app" target="_blank">
-                Luna Journal
-              </a>{" "}
+              <Popup
+                content="Luna Journal is a mobile and web app built to help track your pet's health and adventures, with the optional ability to forward entries to your pet's veterinary."
+                trigger={
+                  <a href="https://www.lunajournal.app" target="_blank">
+                    Luna Journal
+                  </a>
+                }
+              />{" "}
               and{" "}
-              <a href="https://www.bluejay.app" target="_blank">
-                Bluejay.app
-              </a>
+              <Popup
+                content="Bluejay.app helps aspiring writers succeed at writing their first book."
+                trigger={
+                  <a href="https://www.bluejay.app" target="_blank">
+                    Bluejay.app
+                  </a>
+                }
+              />
             </h4>
           </Grid.Column>
         </Grid>
