@@ -40,9 +40,7 @@ const BlogLayout = ({ data }) => {
                         </Grid.Column>
                         <Grid.Column mobile={14} computer={3}>
                             <div>
-                                <Segment>
-                                    <LearnSomething />
-                                </Segment>
+                                <LearnSomething />
                             </div>
                         </Grid.Column>
                         <Grid.Column mobile={16} computer={10}>

@@ -52,6 +52,11 @@ const Header = ({ siteTitle }) => (
             </Dropdown.Menu>
           </Dropdown>
         </Menu.Item>
+        <Menu.Item style={{ padding: "0 30px" }}>
+          <Link to="/blog">
+            Blog
+          </Link>
+        </Menu.Item>
         <Menu.Item>
           <Dropdown key="2" text="Apps">
             <Dropdown.Menu>

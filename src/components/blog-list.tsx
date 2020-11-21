@@ -3,13 +3,14 @@ import PropTypes from "prop-types"
 
 import Layout from "./layout";
 import "./layout.less"
-import { Grid, Segment } from "semantic-ui-react";
+import { Grid, Segment, Button } from "semantic-ui-react";
 import LearnSomething from "./learn-something";
 
 import { MDXProvider } from "@mdx-js/react";
 import CodeBlock from './code-block';
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { graphql, Link } from "gatsby";
+import SendFoxForm from "./sendfox-form";
 
 const components = {
     pre: CodeBlock
@@ -34,11 +35,16 @@ const TagPage = (props) => {
                         <Grid.Column width={3}>
                             <div>
                                 <LearnSomething />
+                                <Segment inverted>
+                                    <h4>Never miss a beat</h4>
+                                    <h5>Join my newsletter.</h5>
+                                    <SendFoxForm form="javascript" />
+                                </Segment>
                             </div>
                         </Grid.Column>
                         <Grid.Column width={10}>
                             <main className="blog-content">
-                                <h1>Tag: {props.pageContext.cleanTag}</h1>
+                                <h1>The Archives</h1>
                                 {props.data.allMdx.nodes.map(node => {
                                     const date = new Date();
                                     const dateStr = node.frontmatter.date;
@@ -55,6 +61,16 @@ const TagPage = (props) => {
                                         <p>{node.excerpt}</p>
                                     </article>
                                 })}
+                                {props.pageContext.currentPage != 1 && props.pageContext.currentPage != null &&
+                                    <Link to={`/blog/${props.pageContext.currentPage - 1}`}>
+                                        <Button content='Previous' icon='left arrow' labelPosition='left' />
+                                    </Link>
+                                }
+                                {props.pageContext.currentPage != props.pageContext.numPages &&
+                                    <Link to={`/blog/${props.pageContext.currentPage + 1}`}>
+                                        <Button content='Next' icon='right arrow' labelPosition='right' />
+                                    </Link>
+                                }
                             </main>
                         </Grid.Column>
                     </Grid>
@@ -71,8 +87,8 @@ TagPage.propTypes = {
 export default TagPage
 
 export const query = graphql`
-  query($tag: String!) {
-    allMdx(filter: {frontmatter: {tag: {regex: $tag}}}, sort: {fields: frontmatter___date, order: DESC}) {
+  query($skip: Int!, $limit: Int!) {
+    allMdx(sort: {fields: frontmatter___date, order: DESC}, limit: $limit, skip: $skip) {
       nodes {
         id
         slug

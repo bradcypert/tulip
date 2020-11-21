@@ -113,10 +113,70 @@ function createTagPages(graphql, actions) {
   });
 }
 
-exports.createPages = ({ graphql, actions }) => {
-  return createBlogPosts(graphql, actions).then(() => {
-    return createTagPages(graphql, actions);
+function createBlogPage(graphql, actions) {
+  const { createPage } = actions;
+
+  const blogPost = path.resolve(`./src/components/blog-list.tsx`);
+  return graphql(
+    `
+      {
+        allMdx(
+          sort: { fields: [frontmatter___date], order: DESC }
+          limit: 1000
+        ) {
+          edges {
+            node {
+              id
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+                date
+              }
+              body
+            }
+          }
+        }
+      }
+    `
+  ).then(result => {
+    if (result.errors) {
+      throw result.errors;
+    }
+
+    // Create blog posts pages.
+    const posts = result.data.allMdx.edges;
+    const postsPerPage = 6;
+    const numPages = Math.ceil(posts.length / postsPerPage);
+
+    posts.forEach((post, index) => {
+      const previous =
+        index === posts.length - 1 ? null : posts[index + 1].node;
+      const next = index === 0 ? null : posts[index - 1].node;
+
+      createPage({
+        path: index === 0 ? "/blog" : `/blog/${index + 1}`,
+        component: blogPost,
+        context: {
+          limit: postsPerPage,
+          skip: index * postsPerPage,
+          numPages,
+          currentPage: index + 1,
+        },
+      });
+    });
   });
+}
+
+exports.createPages = ({ graphql, actions }) => {
+  return createBlogPosts(graphql, actions)
+    .then(() => {
+      return createTagPages(graphql, actions);
+    })
+    .then(() => {
+      return createBlogPage(graphql, actions);
+    });
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

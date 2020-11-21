@@ -60,7 +60,7 @@ const SendFoxForm: React.FunctionComponent<Props> = ({ form }) => {
                     value=""
                 ></input>
             </div>
-            <button className="ui button" type="submit">Send me my free stuff now!</button>
+            <button className="ui button primary" type="submit">Send me my free stuff now!</button>
         </form>
     )
 }
