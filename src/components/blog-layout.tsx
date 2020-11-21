@@ -4,12 +4,12 @@ import { Segment, Grid } from 'semantic-ui-react';
 
 import Layout from "./layout";
 import "./layout.less"
-import LearnSomething from "./learn-something";
 
 import { MDXProvider } from "@mdx-js/react";
 import CodeBlock from './code-block';
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { graphql } from "gatsby";
+import LeftRail from "./left-rail";
 
 const components = {
     pre: CodeBlock
@@ -39,18 +39,18 @@ const BlogLayout = ({ data }) => {
                         <Grid.Column mobile={1} computer={1}>
                         </Grid.Column>
                         <Grid.Column mobile={14} computer={3}>
-                            <div>
-                                <LearnSomething />
-                            </div>
+                            <LeftRail />
                         </Grid.Column>
                         <Grid.Column mobile={16} computer={10}>
                             <main className="blog-content">
-                                <h1>{data.mdx.frontmatter.title}</h1>
-                                <h4>Posted: {formatter.format(date)}</h4>
-                                {!!data.mdx.frontmatter.lastUpdated ? <h4>Last Updated: {data.mdx.frontmatter.date}</h4> : null}
-                                <div className="mdx">
-                                    <MdxBlock>{data.mdx.body}</MdxBlock>
-                                </div>
+                                <Segment inverted>
+                                    <h1>{data.mdx.frontmatter.title}</h1>
+                                    <h4 style={{ marginBottom: "1rem" }}>Posted: {formatter.format(date)}</h4>
+                                    {!!data.mdx.frontmatter.lastUpdated ? <h4>Last Updated: {data.mdx.frontmatter.date}</h4> : null}
+                                    <div className="mdx">
+                                        <MdxBlock>{data.mdx.body}</MdxBlock>
+                                    </div>
+                                </Segment>
                             </main>
                         </Grid.Column>
                     </Grid>

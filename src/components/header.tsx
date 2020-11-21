@@ -7,7 +7,7 @@ const Header = ({ siteTitle }) => (
   <Grid>
     <Grid.Column width={1} />
     <Grid.Column width={14}>
-      <Menu stackable inverted style={{ marginTop: "1em" }}>
+      <Menu stackable inverted fluid widths={5} style={{ marginTop: "1em" }}>
         <Menu.Item>
           <Link
             to="/"
@@ -26,7 +26,7 @@ const Header = ({ siteTitle }) => (
                 <Dropdown.Item>Clojure</Dropdown.Item>
               </Link>
               <Link to="/dart-resources">
-                <Dropdown.Item>Dart</Dropdown.Item>
+                <Dropdown.Item>Dart & Flutter</Dropdown.Item>
               </Link>
               <Link to="/golang-resources">
                 <Dropdown.Item>Golang</Dropdown.Item>
@@ -38,13 +38,10 @@ const Header = ({ siteTitle }) => (
                 <Dropdown.Item>JavaScript / TypeScript</Dropdown.Item>
               </Link>
               <Link to="/kotlin-resources">
-                <Dropdown.Item>Kotlin</Dropdown.Item>
+                <Dropdown.Item>Kotlin & Android</Dropdown.Item>
               </Link>
               <Link to="/php-resources">
                 <Dropdown.Item>PHP</Dropdown.Item>
-              </Link>
-              <Link to="/python-resources">
-                <Dropdown.Item>Python</Dropdown.Item>
               </Link>
               <Link to="/scala-resources">
                 <Dropdown.Item>Scala</Dropdown.Item>
@@ -52,7 +49,7 @@ const Header = ({ siteTitle }) => (
             </Dropdown.Menu>
           </Dropdown>
         </Menu.Item>
-        <Menu.Item style={{ padding: "0 30px" }}>
+        <Menu.Item>
           <Link to="/blog">
             Blog
           </Link>

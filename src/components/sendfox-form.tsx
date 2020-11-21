@@ -13,6 +13,7 @@ const actions = {
 };
 
 const SendFoxForm: React.FunctionComponent<Props> = ({ form }) => {
+    const [gdprCheck, setGdprChecked] = React.useState(false);
     return (
         <form
             action={actions[form]}
@@ -26,7 +27,7 @@ const SendFoxForm: React.FunctionComponent<Props> = ({ form }) => {
                 <input
                     name="first_name"
                     placeholder="First Name"
-                    required=""
+                    required
                     type="text"
                 ></input>
             </div>
@@ -35,27 +36,29 @@ const SendFoxForm: React.FunctionComponent<Props> = ({ form }) => {
                 <input
                     name="last_name"
                     placeholder="Last Name"
-                    required=""
+                    required
                     type="text"
                 ></input>
             </div>
             <div className="field">
                 <label>Email</label>
-                <input name="email" placeholder="Email" required="" type="email"></input>
+                <input name="email" placeholder="Email" required type="email"></input>
             </div>
             <div className="field">
-                <div className="ui checkbox">
+                <div className={`ui checkbox ${gdprCheck && "checked"}`}>
+                    <input name="gdpr" required type="checkbox" value="1" checked={gdprCheck} onChange={() => {
+                        setGdprChecked(!gdprCheck);
+                    }}></input>
                     <label>
-                        <input name="gdpr" required="" type="checkbox" value="1"></input> I agree to
-                    receive email updates and promotions.
+                        I agree to receive email updates and promotions.
                     </label>
                 </div>
             </div>
             <div aria-hidden="true" style={{ position: "absolute", left: "-5000px" }}>
                 <input
-                    autocomplete="off"
+                    autoComplete="off"
                     name="a_password"
-                    tabindex="-1"
+                    tabIndex={-1}
                     type="text"
                     value=""
                 ></input>

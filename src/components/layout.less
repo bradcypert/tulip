@@ -66,6 +66,25 @@ li {
   margin: 1rem 0;
 }
 
+.ui.selection.dropdown {
+  color: black;
+}
+
+main .ui a {
+  color: #2ae792;
+  background: linear-gradient(to bottom, #2ae792 0%, #2ae792 100%);
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 4px 4px;
+  text-decoration: none;
+  transition: background-size 0.2s color 0.2s;
+
+  &:hover {
+    color: black;
+    background-size: 4px 50px;
+  }
+}
+
 .blog-content {
   .mdx {
     h1,
@@ -75,6 +94,11 @@ li {
     h5,
     h6 {
       margin: 1rem 0 0 0;
+    }
+
+    pre {
+      font-size: 1.4rem;
+      line-height: 2rem;
     }
 
     .aligncenter,
@@ -113,6 +137,12 @@ li {
 .form input[type="text"],
 .form input[type="email"] {
   color: black !important;
+}
+
+.inverted {
+  .ui.checkbox label:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
 }
 
 .learn-something-new {

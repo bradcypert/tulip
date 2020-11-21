@@ -10,6 +10,7 @@ import { MDXProvider } from "@mdx-js/react";
 import CodeBlock from './code-block';
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { graphql, Link } from "gatsby";
+import ArticleCard from "./article-card";
 
 const components = {
     pre: CodeBlock
@@ -40,20 +41,7 @@ const TagPage = (props) => {
                             <main className="blog-content">
                                 <h1>Tag: {props.pageContext.cleanTag}</h1>
                                 {props.data.allMdx.nodes.map(node => {
-                                    const date = new Date();
-                                    const dateStr = node.frontmatter.date;
-                                    const expDateStr = dateStr.split("/");
-                                    date.setMonth(+expDateStr[1]);
-                                    date.setDate(+expDateStr[2]);
-                                    date.setFullYear(+expDateStr[0]);
-
-                                    return <article className="tag-block">
-                                        <Link to={`/${node.slug}`}>
-                                            <h3>{node.frontmatter.title}</h3>
-                                        </Link>
-                                        <h4>Published: {formatter.format(date)}</h4>
-                                        <p>{node.excerpt}</p>
-                                    </article>
+                                    return <ArticleCard node={node} />
                                 })}
                             </main>
                         </Grid.Column>
