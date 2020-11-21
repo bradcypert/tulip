@@ -3,14 +3,14 @@ import PropTypes from "prop-types"
 
 import Layout from "./layout";
 import "./layout.less"
-import { Grid, Segment } from "semantic-ui-react";
-import LearnSomething from "./learn-something";
+import { Grid } from "semantic-ui-react";
 
 import { MDXProvider } from "@mdx-js/react";
 import CodeBlock from './code-block';
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { graphql, Link } from "gatsby";
 import ArticleCard from "./article-card";
+import LeftRail from "./left-rail";
 
 const components = {
     pre: CodeBlock
@@ -30,14 +30,13 @@ const TagPage = (props) => {
         <>
             <Layout>
                 <div style={{ margin: "15px 0" }}>
-                    <Grid>
-                        <Grid.Column width={1} />
-                        <Grid.Column width={3}>
-                            <div>
-                                <LearnSomething />
-                            </div>
+                    <Grid reversed='mobile vertically'>
+                        <Grid.Column mobile={1} computer={1}>
                         </Grid.Column>
-                        <Grid.Column width={10}>
+                        <Grid.Column mobile={16} computer={3}>
+                            <LeftRail />
+                        </Grid.Column>
+                        <Grid.Column mobile={16} computer={10}>
                             <main className="blog-content">
                                 <h1>Tag: {props.pageContext.cleanTag}</h1>
                                 {props.data.allMdx.nodes.map(node => {

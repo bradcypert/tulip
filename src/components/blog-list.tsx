@@ -29,12 +29,13 @@ const TagPage = (props) => {
         <>
             <Layout>
                 <div style={{ margin: "15px 0" }}>
-                    <Grid>
-                        <Grid.Column width={1} />
-                        <Grid.Column width={3}>
+                    <Grid reversed='mobile vertically'>
+                        <Grid.Column mobile={1} computer={1}>
+                        </Grid.Column>
+                        <Grid.Column mobile={16} computer={3}>
                             <LeftRail />
                         </Grid.Column>
-                        <Grid.Column width={10}>
+                        <Grid.Column mobile={16} computer={10}>
                             <main className="blog-content">
                                 <h1>The Archives</h1>
                                 {props.data.allMdx.nodes.map(node => {
