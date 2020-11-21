@@ -10,6 +10,7 @@ import CodeBlock from './code-block';
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { graphql } from "gatsby";
 import LeftRail from "./left-rail";
+import SEO from "./seo";
 
 const components = {
     pre: CodeBlock
@@ -34,6 +35,7 @@ const BlogLayout = ({ data }) => {
     return (
         <>
             <Layout>
+                <SEO post={data.mdx} />
                 <div style={{ margin: "15px 0" }}>
                     <Grid>
                         <Grid.Column mobile={1} computer={1}>
@@ -80,6 +82,8 @@ export const query = graphql`
       frontmatter {
         title
         date
+        description
+        excerpt
       }
       body
     }

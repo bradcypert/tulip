@@ -25,7 +25,7 @@ const IndexPage = () => {
   return (
     <div className="fancy-background-1">
       <Layout>
-        <SEO title="Home" />
+        <SEO />
         <Grid
           centered
           verticalAlign="middle"
