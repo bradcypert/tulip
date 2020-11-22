@@ -28,9 +28,9 @@ const Header = ({ siteTitle }) => (
               <Link to="/dart-resources">
                 <Dropdown.Item>Dart & Flutter</Dropdown.Item>
               </Link>
-              <Link to="/golang-resources">
+              {/* <Link to="/go-resources">
                 <Dropdown.Item>Golang</Dropdown.Item>
-              </Link>
+              </Link> */}
               <Link to="/java-resources">
                 <Dropdown.Item>Java</Dropdown.Item>
               </Link>
