@@ -9,7 +9,7 @@ const ArticleCard = ({ node }) => {
     const date = new Date();
     const dateStr = node.frontmatter.date;
     const expDateStr = dateStr.split("/");
-    date.setMonth(+expDateStr[1]);
+    date.setMonth(+expDateStr[1] - 1);
     date.setDate(+expDateStr[2]);
     date.setFullYear(+expDateStr[0]);
 
