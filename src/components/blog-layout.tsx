@@ -29,7 +29,7 @@ const BlogLayout = ({ data }) => {
     const date = new Date();
     const dateStr = data.mdx.frontmatter.date;
     const expDateStr = dateStr.split("/");
-    date.setMonth(+expDateStr[1]);
+    date.setMonth(+expDateStr[1] - 1);
     date.setDate(+expDateStr[2]);
     date.setFullYear(+expDateStr[0]);
     return (
