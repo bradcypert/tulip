@@ -10,6 +10,15 @@
 @nav-bar-default-bg: fade(#131515, 50);
 @nav-bar-default-font-color: @theme2;
 
+@keyframes animatedBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+
 * {
   font-family: "Open Sans";
 }
@@ -70,14 +79,14 @@ li {
   color: black;
 }
 
-main .ui a {
+main a {
   color: #2ae792;
   background: linear-gradient(to bottom, #2ae792 0%, #2ae792 100%);
   background-position: 0 100%;
   background-repeat: repeat-x;
   background-size: 4px 4px;
   text-decoration: none;
-  transition: background-size 0.2s color 0.2s;
+  transition: background-size 0.2s, color 0.2s;
 
   &:hover {
     color: black;
@@ -163,6 +172,7 @@ main .ui a {
 .fancy-background-1 {
   background-color: #131515;
   background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2340916c' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  animation: animatedBackground 40s linear infinite;
   h1,
   h2,
   h3,

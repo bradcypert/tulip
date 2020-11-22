@@ -14,10 +14,10 @@ const ArticleCard = ({ node }) => {
     date.setFullYear(+expDateStr[0]);
 
     return <Segment inverted>
-        <article className="tag-block">
-            <Link to={`/${node.slug}`}>
-                <h3>{node.frontmatter.title}</h3>
-            </Link>
+        <article>
+            <h3>
+                <Link to={`/${node.slug}`}>{node.frontmatter.title}</Link>
+            </h3>
             <h4>Published: {formatter.format(date)}</h4>
             <p>{node.excerpt}</p>
         </article>
