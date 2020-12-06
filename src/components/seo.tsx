@@ -28,7 +28,6 @@ const SEO = ({ post, frontmatter, postImage, isBlogPost }) => (
       const postMeta =
         frontmatter || post.frontmatter || {};
 
-      console.log(postMeta);
       const title = `${postMeta.title ? `${postMeta.title} | ` : ""}${seo.title}`;
       const description = postMeta.description || seo.description;
       const image = postImage ? `${seo.siteUrl}${postImage}` : seo.image;
