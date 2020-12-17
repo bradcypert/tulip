@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `BradCypert.com`,
+    title: `BradCypert.com | Programming Tutorials and Resources`,
     description: `Tutorials and resources for programming Android Apps, Web Servers and Web Clients. Languages include TypeScript, Kotlin, Dart, Go and many more!`,
     author: `@bradcypert`,
     siteUrl: "https://www.bradcypert.com",
