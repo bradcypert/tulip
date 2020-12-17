@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `BradCypert.com`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `Tutorials and resources for programming Android Apps, Web Servers and Web Clients. Languages include TypeScript, Kotlin, Dart, Go and many more!`,
     author: `@bradcypert`,
     siteUrl: "https://www.bradcypert.com",
   },
