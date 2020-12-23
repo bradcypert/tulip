@@ -22,11 +22,13 @@ Web Assembly is a language that, similar to TypeScript compiling down to JavaScr
 
 ### Why use Web Assembly?
 
-It's important to recognize that Web Assembly, just like JavaScript, is a tool to solve a problem. Web Assembly is _fast_ <sup><a href="https://www.smashingmagazine.com/2019/04/webassembly-speed-web-app/" target="_blank" rel="noreferrer">1</a></sup> <sup><a href="https://wasmboy.app/benchmark/" target="_blank" rel="noreferrer">2</a></sup>. Web Assembly requires <a href="https://hacks.mozilla.org/2017/07/memory-in-webassembly-and-why-its-safer-than-you-think/" target="_blank" rel="noreferrer">manual memory management (but the language that you write your application in may help handle this)</a>.
+It's important to recognize that Web Assembly, just like JavaScript, is a tool to solve a problem. Web Assembly is _fast_ <sup><a href="https://www.smashingmagazine.com/2019/04/webassembly-speed-web-app/" target="_blank" rel="noreferrer">1</a></sup> <sup><a href="https://wasmboy.app/benchmark/" target="_blank" rel="noreferrer">2</a></sup>. Additionally, Web Assembly, when built correctly can actually produce [an extremely small, preoptimized binary](https://dl.acm.org/doi/abs/10.1145/3062341.3062363).
+
+Its important to note that Web Assembly requires <a href="https://hacks.mozilla.org/2017/07/memory-in-webassembly-and-why-its-safer-than-you-think/" target="_blank" rel="noreferrer">manual memory management (but the language that you write your application in may help handle this)</a>.
 
 ### Can I intermingle?
 
-This is an extremely relevant question, in my opinion. Maybe you want to continue builing user interfaces in React, but have interest in migrating any business logic into WebAssembly for a possible performance gain. Maybe you want to reuse some code from your server that's written in Rust, Go, C or C++ (or any other language that can target web assembly). There are a lot of use cases where it makes sense to intermingle (use both) JavaScript and Web Assembly. Thankfully, they're made to be interoperable.
+This is an extremely relevant question, in my opinion. Maybe you want to continue building user interfaces in React, but have interest in migrating any business logic into WebAssembly for a possible performance gain. Maybe you just want to reuse some code from your server that's written in Rust, Go, C or C++ (or any other language that can target web assembly). There are a lot of use cases where it makes sense to intermingle (use both) JavaScript and Web Assembly. Thankfully, they're made to be interoperable.
 
 ### Our Simple Web Assembly Program
 
