@@ -63,6 +63,7 @@
     "type": "git",
     "url": "https://github.com/gatsbyjs/gatsby-starter-default"
   },
+  "resolutions": { "sharp": "0.24.0" },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
