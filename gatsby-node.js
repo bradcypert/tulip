@@ -23,6 +23,7 @@ function createBlogPosts(graphql, actions) {
       {
         allMdx(
           sort: { fields: [frontmatter___date], order: DESC }
+          filter: {frontmatter: {status: {eq: "publish"}}}
           limit: 1000
         ) {
           edges {
@@ -72,7 +73,11 @@ function createTagPages(graphql, actions) {
   return graphql(
     `
       {
-        allMdx {
+        allMdx(
+          sort: { fields: [frontmatter___date], order: DESC }
+          filter: {frontmatter: {status: {eq: "publish"}}}
+          limit: 1000
+        ) {
           edges {
             node {
               id
@@ -122,6 +127,7 @@ function createBlogPage(graphql, actions) {
       {
         allMdx(
           sort: { fields: [frontmatter___date], order: DESC }
+          filter: {frontmatter: {status: {eq: "publish"}}}
           limit: 1000
         ) {
           edges {

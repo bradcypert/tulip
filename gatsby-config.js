@@ -7,6 +7,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    "gatsby-remark-embed-video",
     "gatsby-plugin-robots-txt",
     {
       resolve: `gatsby-source-filesystem`,
@@ -51,6 +52,9 @@ module.exports = {
       options: {
         plugins: [
           {
+            resolve: "gatsby-remark-embed-video",
+          },
+          {
             resolve: `gatsby-remark-images`,
             options: {
               // It's important to specify the maxWidth (in pixels) of
@@ -89,9 +93,21 @@ module.exports = {
     //   },
     // },
     `gatsby-plugin-catch-links`,
+    `gatsby-remark-images`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: "gatsby-remark-embed-video",
+          },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+            },
+          },
+        ],
         defaultLayouts: {
           posts: require.resolve("./src/components/blog-layout.tsx"),
           blog: require.resolve("./src/components/blog-layout.tsx"),

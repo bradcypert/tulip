@@ -197,5 +197,14 @@ main a {
   }
 }
 
-.centered-page {
+// We do this because originally the old bradcypert.com site was a "light theme" only, so several PNGs had
+// transparent backgrounds and dark text.
+.gatsby-image-wrapper {
+  background: white;
+}
+
+.article-card-item {
+  .gatsby-image-wrapper {
+    max-height: 150px;
+  }
 }

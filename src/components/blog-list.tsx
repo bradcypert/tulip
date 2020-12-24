@@ -68,7 +68,7 @@ export default TagPage
 
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {
-    allMdx(sort: {fields: frontmatter___date, order: DESC}, limit: $limit, skip: $skip) {
+    allMdx(sort: {fields: frontmatter___date, order: DESC}, filter: {frontmatter: {status: {eq: "publish"}}}, limit: $limit, skip: $skip) {
       nodes {
         id
         slug
@@ -77,6 +77,13 @@ export const query = graphql`
             tag
             title
             date
+            thumbnail {
+                childImageSharp {
+                  fluid(maxHeight: 800) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
           }
       }
     }

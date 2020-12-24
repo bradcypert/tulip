@@ -1,0 +1,29 @@
+---
+title: "The Hidden Cost of Dependencies"
+date: 2020/12/20
+status: draft
+author: "Brad Cypert"
+excerpt: ""
+type: post
+id: 3405
+thumbnail: ../images/green-artichoke-on-gray-round-plate-3647046.jpg
+category:
+  - meta
+tag:
+  - meta
+---
+
+Stop. Wait. Don't do it. Don't `npm install that_hot_new_thing`. You probably don't need it. Did you know that modern browsers support the INTL (Internationalization) API? This means you (probably*) don't need momentjs or dayjs anymore. This means that the users browser is configured so that your one line of code can do what the 11kb of momentjs's library does. "Well, alright, lemme install Redux and get this party started." No. Stop. What are you building? Do you _NEED_ redux? Did you know that React has the context API that can help you with global state management? You're already using React so maybe your TODO list app doesn't need something as hefty as Redux.
+
+If the ask isn't obvious, I'd like for you to thoughtfully consider whether you really need to add another dependency to your project. Unfortunately, adding a dependency is significantly easier than maintaining that dependency or later removing it, so there's a tendency to install a dependency to solve your problems, especially when you're trying to move fast in a sprint or project.
+
+There are exceptions to this philosophy, of course. React itself is a dependency, but the calibre of that dependency is significantly different than using MomentJS for date formatting. Where MomentJS is specifically used for date-related pieces, React spans across your entire application. Generally, when the benefit spans across your entire project, I'd consider that dependency to be a "framework" instead of a "library", however, the React development team is fairly adamant about React being a library (and I can respect that, too). This does pose the question -- Should we differentiate between frameworks and libraries when it comes to dependencies?
+
+### Frameworks vs Libraries
+Talk about how they're usually the same thing, but the stigma behind them is what makes them different. People commit to a framework but dont commit to a library.
+
+### Maintenance
+
+### Nested Dependencies
+
+### 

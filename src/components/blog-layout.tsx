@@ -11,6 +11,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 import { graphql, Link } from "gatsby";
 import LeftRail from "./left-rail";
 import SEO from "./seo";
+import Img from "gatsby-image";
 
 const components = {
     pre: CodeBlock
@@ -32,6 +33,7 @@ const BlogLayout = ({ data }) => {
     date.setMonth(+expDateStr[1] - 1);
     date.setDate(+expDateStr[2]);
     date.setFullYear(+expDateStr[0]);
+    let featuredImgFluid = data.mdx.frontmatter.thumbnail?.childImageSharp?.fluid;
     return (
         <>
             <Layout>
@@ -46,6 +48,7 @@ const BlogLayout = ({ data }) => {
                         <Grid.Column mobile={16} computer={10}>
                             <main className="blog-content">
                                 <Segment inverted>
+                                    <Img alt={data.mdx.frontmatter.title} fluid={featuredImgFluid} />
                                     <h1>{data.mdx.frontmatter.title}</h1>
                                     <h4 style={{ marginBottom: "1rem" }}>Posted: {formatter.format(date)}</h4>
                                     <h5>Tagged under: {data.mdx.frontmatter.tag.map(tag =>
@@ -91,6 +94,13 @@ export const query = graphql`
         description
         excerpt
         tag
+        thumbnail {
+          childImageSharp {
+            fluid(maxHeight: 400) {
+                ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
       body
     }
