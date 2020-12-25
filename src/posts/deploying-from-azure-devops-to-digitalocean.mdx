@@ -57,14 +57,14 @@ From the Logged In screen, search the top of the page and find something similar
 
 <div class="wp-block-image">
   ![Digital Ocean's menu for creating a new
-  resource.](./post_images/Screenshot_2020-02-19-DigitalOcean-brad-cypert-project.png)
+  resource.](/post_images/Screenshot_2020-02-19-DigitalOcean-brad-cypert-project.png)
 </div>
 From there, select “Create” (the green button) and select “Droplets”. You’ll be presented
 with a rather long form. I’ll show you what you probably want to change, but you
 can leave the default value for most of the items.
 
 <div class="wp-block-image">
-  ![](./post_images/Screenshot_2020-02-19-DigitalOcean-Create-Droplets1.png)
+  ![](/post_images/Screenshot_2020-02-19-DigitalOcean-Create-Droplets1.png)
 </div>
 The first thing that DigitalOcean will ask you to do is choose an image. Feel free
 to choose what you’re most comfortable with but the rest of this guide assumes that
@@ -78,7 +78,7 @@ about DigitalOcean.
 <div class="wp-block-image">
   <figure class="aligncenter size-full">
     ![DigitalOcean's "choose a plan"
-    options](./post_images/Screenshot_2020-02-19-DigitalOcean-Create-Droplets2.png)
+    options](/post_images/Screenshot_2020-02-19-DigitalOcean-Create-Droplets2.png)
     <figcaption>Select Starter and $5/mo</figcaption>
   </figure>
 </div>
@@ -90,7 +90,7 @@ business/product’s needs.
 
 Once you’ve selected an image and a plan, you’ll want to scroll down to the authentication section. I always recommend using SSH keys instead of the one-time password option and DigitalOcean explains how to set up your SSH keys underneath that option. In fact, the rest of this guide assumes that you’re using SSH keys (as we’ll need those to deploy from Azure DevOps)!
 
-![Don't forget to setup your SSH keys!](./post_images/Screenshot_2020-02-19-DigitalOcean-Create-Droplets3.png)Finally, create that droplet and give it a moment to build! You’ll be presented with an IP address. Copy that to your clipboard, as we’ll use it in just a moment.
+![Don't forget to setup your SSH keys!](/post_images/Screenshot_2020-02-19-DigitalOcean-Create-Droplets3.png)Finally, create that droplet and give it a moment to build! You’ll be presented with an IP address. Copy that to your clipboard, as we’ll use it in just a moment.
 
 ## SSH Into Our Droplet
 
@@ -117,7 +117,7 @@ This will copy over your newly generated public key and add it to the authorized
 If you’ve made it to this point in the guide, Im going to assume that you’re already using Azure DevOps. If you’re not, I’ll throw together another guide for that soon and update this post to link to it. For now though, we’re going to proceed under the assumptions that you already have code you want to deploy in an Azure DevOps repository.
 
 <div class="wp-block-image">
-  ![](./post_images/Screenshot_2020-02-19-Pipelines-Recent.png)
+  ![](/post_images/Screenshot_2020-02-19-Pipelines-Recent.png)
 </div>
 From your Azure Navigation menu, click on Pipelines and then click on Pipelines under
 the Pipelines menu item (they should really rename one of those).
@@ -126,7 +126,7 @@ This will take you to the pipelines screen. You’ll want to create a new pipeli
 
 <figure class="wp-block-image size-full">
   ![Azure DevOps new
-  pipeline](./post_images/Screenshot_2020-02-19-New-pipeline-Pipelines1.png)
+  pipeline](/post_images/Screenshot_2020-02-19-New-pipeline-Pipelines1.png)
   <figcaption>
     Select your repository provider and then select your repo
   </figcaption>
@@ -135,17 +135,17 @@ Next, it’ll ask you if you want a pipeline starter. You can explore the pipeli
 that make sense for your application, but for now, let’s just select the starter
 pipeline.
 
-![](./post_images/Screenshot_2020-02-19-New-pipeline-Pipelines.png)Once your pipeline has been created, we’re going to go ahead and edit it. There are two things that our pipeline needs to accomplish. We need to build our project and then upload our project as an artifact to Azure DevOps. Later, we’ll write our release pipeline that takes artifacts from Azure DevOps and pushes them our DigitalOcean droplet.
+![](/post_images/Screenshot_2020-02-19-New-pipeline-Pipelines.png)Once your pipeline has been created, we’re going to go ahead and edit it. There are two things that our pipeline needs to accomplish. We need to build our project and then upload our project as an artifact to Azure DevOps. Later, we’ll write our release pipeline that takes artifacts from Azure DevOps and pushes them our DigitalOcean droplet.
 
 My pipeline for our Golang API looks like this:
 
-![](./post_images/Screenshot_2020-02-19-Porios-CI-Azure-DevOps-Services.png)We get sources for our project, install Go 1.13, fetch our dependencies with `go get`, build our app with `go build` (this produces a `main` file) and then we publish the main file as an artifact. The first three steps are specific to how we build our API, so if you’re building a JAR or other binary, follow the steps for your build pipeline. There are modules for most languages, but you should be able to run shell scripts as necessary.
+![](/post_images/Screenshot_2020-02-19-Porios-CI-Azure-DevOps-Services.png)We get sources for our project, install Go 1.13, fetch our dependencies with `go get`, build our app with `go build` (this produces a `main` file) and then we publish the main file as an artifact. The first three steps are specific to how we build our API, so if you’re building a JAR or other binary, follow the steps for your build pipeline. There are modules for most languages, but you should be able to run shell scripts as necessary.
 
 If you dont see a view like this, you likely need to add an job. Hovering over the top row (“Pipeline”) should show you three dots. Clicking on that will allow you to add jobs. For now, you probably want an “Agent Job”.
 
 If you we investigate our Publish Pipeline Artifact, we’ll see a view like this:
 
-![](./post_images/Screenshot_2020-02-19-Porios-CI-Azure-DevOps-Services1.png)Our `go build` step in our pipeline creates a `main` file in our `server` directory. I’m telling Azure to pick that up as the artifact and name it `go-server` so we can easily find it when we create our release pipeline later.
+![](/post_images/Screenshot_2020-02-19-Porios-CI-Azure-DevOps-Services1.png)Our `go build` step in our pipeline creates a `main` file in our `server` directory. I’m telling Azure to pick that up as the artifact and name it `go-server` so we can easily find it when we create our release pipeline later.
 
 This should be all we need to get our CI pipeline setup. **Make sure you save your
 changes!** If you’re a YAML person, the YAML for this agent is as follows:
@@ -182,19 +182,19 @@ This YAML represents our pipeline, so yours might look slightly different.
 Finally, we can create our Release Pipeline. Our release pipeline will take our artifact from Azure DevOps and push it over SSH to our DigitalOcean droplet. I’ll also give you an example of how you can run commands before/after the push.
 
 <div class="wp-block-image">
-  ![](./post_images/Screenshot_2020-02-19-Releases-Pipelines.png)
+  ![](/post_images/Screenshot_2020-02-19-Releases-Pipelines.png)
 </div>
 Click on Releases and create a new release. You’ll be prompted to select a template.
 Unfortunately, there’s not a template for copying files outside of Azure, so we’ll
 select “Empty Job” at the top of the “Choose Template” view.
 
 <div class="wp-block-image">
-  ![](./post_images/Screenshot_2020-02-19-New-release-pipeline-Pipelines.png)
+  ![](/post_images/Screenshot_2020-02-19-New-release-pipeline-Pipelines.png)
 </div>
 You should now see a small graph with two sections. First, click on Artifacts. You
 should then be presented with the artifact select screen.
 
-<div class="wp-block-image">![](./post_images/artifacts.jpg)</div>You’ll need to
+<div class="wp-block-image">![](/post_images/artifacts.jpg)</div>You’ll need to
 make sure you select your project, source and should give the source an alias.
 You can name the alias whatever you want. Additionally, if everything is wired
 up correctly, you should see the artifact alias that we created in our pipeline
@@ -204,7 +204,7 @@ Add this artifact source and then click on “1 job, 0 task” in Stage 1 (or wh
 you renamed this stage to).
 
 <div class="wp-block-image">
-  ![](./post_images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services.png)
+  ![](/post_images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services.png)
 </div>
 You should be presented with a familiar screen. You can rename your job and create
 tasks for it just like with a release. If you need an agent, click on the three dots
@@ -213,12 +213,12 @@ next to the job name and select “Add an Agent Job.”
 The key task here is to copy files over SSH. Make sure you add a task for that module.
 
 <div class="wp-block-image">
-  ![](./post_images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services3.png)
+  ![](/post_images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services3.png)
 </div>
 You’ll want to setup that task to do something like the following:
 
 <div class="wp-block-image">
-  ![](./post_images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services4-1.png)
+  ![](/post_images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services4-1.png)
 </div>
 I’ve blacked out a few private values, but hopefully this is still fairly legible.
 Your SSH service connection isn’t setup yet, so if you hit manage, you’ll be taken
@@ -227,21 +227,21 @@ to where you can set that up. Let’s do that now.
 <div class="wp-block-image">
   <figure class="aligncenter size-large">
     ![Click New Service
-    Connection](https://i1.wp.com/www.bradcypert.com/./post_images/Screenshot_2020-02-19-Settings-%C2%B7-Service-connections-Porios-Settings.png?fit=640%2C53&ssl=1)
+    Connection](https://i1.wp.com/www.bradcypert.com//post_images/Screenshot_2020-02-19-Settings-%C2%B7-Service-connections-Porios-Settings.png?fit=640%2C53&ssl=1)
   </figure>
 </div>
 Click on “New Service Connection” in the top right.
 
 <div class="wp-block-image">
   ![Search for SSH and select the SSH
-  option](./post_images/Screenshot_2020-02-19-Settings-%C2%B7-Service-connections-Porios-Settings1.png)
+  option](/post_images/Screenshot_2020-02-19-Settings-%C2%B7-Service-connections-Porios-Settings1.png)
 </div>
 In the search box, type “SSH” and click on the SSH option below. We’ll now fill our
 our SSH service connection details.
 
 <div class="wp-block-image">
   ![New SSH service connection
-  form](./post_images/Screenshot_2020-02-19-Settings-%C2%B7-Service-connections-Porios-Settings2.png)
+  form](/post_images/Screenshot_2020-02-19-Settings-%C2%B7-Service-connections-Porios-Settings2.png)
 </div>
 For hostname, provide the IP address of the DigitalOcean droplet. You can leave the
 port number empty, but you will need your private key. If you don’t have a terminal
@@ -259,7 +259,7 @@ Now we can go back to our release pipeline (its probably open in another tab) an
 
 <div class="wp-block-image">
   ![Settings for Copy Files over
-  SSH.](./post_images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services4-1.png)
+  SSH.](/post_images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services4-1.png)
 </div>
 Its worth mentioning a few things that are specific to my pipeline. `go-server` (in
 the Source Folder) is the alias of my go artifact from our build pipeline. You’ll
@@ -274,7 +274,7 @@ But how do you run the server? This is entirely up to you, but I run my server t
 systemctl. On my remote machine, I have a systemctl definition for the API that I
 deploy. Before I upload the files via SSH, I run an SSH command.
 
-![Run shell commands on remote machine](./post_images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services5.png)```
+![Run shell commands on remote machine](/post_images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services5.png)```
 
 ```bash
 sudo systemctl stop my-api
@@ -288,7 +288,7 @@ sudo systemctl start my-api
 
 This means that my task definition ultimately looks like this:
 
-![Three task plan for stopping a running service, replacing its binary, and starting it again.](./post_images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services6.png)Conclusion
+![Three task plan for stopping a running service, replacing its binary, and starting it again.](/post_images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services6.png)Conclusion
 
 Hopefully you’ve found this be a helpful guide on your journey of deploying code from Azure DevOps to DigitalOcean. I was really hesitant about Azure DevOps (especially coming from Netlify for frontend work) but I’ve turned around and enjoy the build pipelines quite a bit. It’s so much nicer than manually SCPing files from my laptop to a Droplet (we’ve all been there before)! Additionally, this lets anyone on the [Pyre Studios](https://pyrestudios.io) team deploy our project at the click of a button.
 

@@ -25,17 +25,17 @@ Hello there! Welcome back! Today I’m talking about Tries (pronounced “trys�
 
 Like most data structures, tries are easier to reason about when you have a picture to help explain it. Let’s take the word “propane” break it apart into a trie. Each character will be represented as a node.
 
-![](/./post_images/propane.png)
+![](//post_images/propane.png)
 
 Simple enough, right? Let’s add “butane” (the devil’s gas) to the Trie as well!
 
-![](/./post_images/propanebutane.png)
+![](//post_images/propanebutane.png)
 
 Notice that the new word branches from the root with a new character.
 
 Here’s where it gets interesting. Let’s add “bobby” and “protein” to the tree. Bare with me and I’ll explain in a moment.
 
-![](/./post_images/fulltrie-2.png)
+![](//post_images/fulltrie-2.png)
 
 Notice that “bobby” branches off of the “b” used in “butane” and “protein” branches off of the “pro” from “propane”. Considering these concepts, you might realize that given “pro” and this data structure, we can do things like suggest words in an auto-complete fashion or even if a word is a valid word (compared against our trie). You could even use it to help you find the best word at scrabble!
 
