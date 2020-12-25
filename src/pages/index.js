@@ -41,7 +41,7 @@ const IndexPage = () => {
             ></Image>
             <h1>👋 I'm Brad Cypert.</h1>
             <h3>
-              I'm a typed-language enthusiast. Sometimes I{" "}
+              I'm a programming language enthusiast. Sometimes I{" "}
               <Link to="/blog">write</Link>. Sometimes I post content on{" "}
               <a href="https://www.youtube.com/bradcypert">Youtube</a>.
             </h3>
