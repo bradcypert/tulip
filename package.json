@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@deckdeckgo/highlight-code": "^2.1.1",
+    "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.19",
     "@rsuite/responsive-nav": "^0.0.10",
     "dotenv": "^8.2.0",
@@ -63,7 +64,9 @@
     "type": "git",
     "url": "https://github.com/gatsbyjs/gatsby-starter-default"
   },
-  "resolutions": { "sharp": "0.24.0" },
+  "resolutions": {
+    "sharp": "0.24.0"
+  },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   }

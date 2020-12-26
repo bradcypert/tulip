@@ -224,25 +224,16 @@ I’ve blacked out a few private values, but hopefully this is still fairly legi
 Your SSH service connection isn’t setup yet, so if you hit manage, you’ll be taken
 to where you can set that up. Let’s do that now.
 
-<div class="wp-block-image">
-  <figure class="aligncenter size-large">
-    ![Click New Service
-    Connection](https://i1.wp.com/www.bradcypert.com/../images/Screenshot_2020-02-19-Settings-%C2%B7-Service-connections-Porios-Settings.png?fit=640%2C53&ssl=1)
-  </figure>
-</div>
+![Click New Service Connection](../images/Screenshot_2020-02-19-Settings--Service-connections-Porios-Settings.png)
 Click on “New Service Connection” in the top right.
 
-<div class="wp-block-image">
-  ![Search for SSH and select the SSH
-  option](../images/Screenshot_2020-02-19-Settings-%C2%B7-Service-connections-Porios-Settings1.png)
-</div>
+![Search for SSH and select the SSH option](../images/Screenshot_2020-02-19-Settings--Service-connections-Porios-Settings1.png)
+
 In the search box, type “SSH” and click on the SSH option below. We’ll now fill our
 our SSH service connection details.
 
-<div class="wp-block-image">
-  ![New SSH service connection
-  form](../images/Screenshot_2020-02-19-Settings-%C2%B7-Service-connections-Porios-Settings2.png)
-</div>
+![New SSH service connection form](../images/Screenshot_2020-02-19-Settings--Service-connections-Porios-Settings2.png)
+
 For hostname, provide the IP address of the DigitalOcean droplet. You can leave the
 port number empty, but you will need your private key. If you don’t have a terminal
 open, fire one up and run `cat ~/.ssh/azure | pbcopy` to copy your `azure` key to
@@ -257,10 +248,8 @@ again. Add your SSH Key Passphrase to the Password field.**
 
 Now we can go back to our release pipeline (its probably open in another tab) and select our new SSH connection. Here’s what that should look like again.
 
-<div class="wp-block-image">
-  ![Settings for Copy Files over
-  SSH.](../images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services4-1.png)
-</div>
+![Settings for Copy Files over SSH](../images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services4-1.png)
+
 Its worth mentioning a few things that are specific to my pipeline. `go-server` (in
 the Source Folder) is the alias of my go artifact from our build pipeline. You’ll
 want to use whatever you named yours instead. If you want to explore for that artifact,
