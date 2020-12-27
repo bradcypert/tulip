@@ -52,7 +52,7 @@ const BlogLayout = ({data, path}) => {
                                     <h1>{data.mdx.frontmatter.title}</h1>
                                     <h4 style={{ marginBottom: "1rem" }}>Posted: {formatter.format(date)}</h4>
                                     <h5>Tagged under: {data.mdx.frontmatter.tag.map(tag =>
-                                        <Link style={{ marginRight: "4px" }} to={`/tag/${tag}`}>
+                                        <Link style={{ marginRight: "4px" }} to={`/tags/${tag}`}>
                                             {tag}
                                         </Link>
                                     )}
