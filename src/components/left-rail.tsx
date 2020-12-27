@@ -1,5 +1,6 @@
 import React from "react"
-import { Dropdown, Segment } from "semantic-ui-react"
+import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
+import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import LearnSomething from "./learn-something"
 import SendFoxForm from "./sendfox-form"
 

@@ -46,16 +46,33 @@ I started a new Gatsby project with the Gatsby CLI:
 gatsby new tulip https://github.com/gatsbyjs/gatsby-starter-hello-world
 ```
 
-I chose the name Tulip because I like project names, and I think it embodies the goal of my
+I chose the name Tulip because I like fun project names and I think it embodies the goal of my
 personal sites/blog's redesign. In my source directory, I created a `components` folder, a `pages` folder, and a `posts` folder.
 My posts are MDX, components are TSX and my pages are a mix of MDX or TSX (depending on how complicated they are).
 
-I also decided to use [Semantic UI](https://semantic-ui.com/) for this project. This was actually a pain to setup, and I'll document
-that on the blog at some point.
+I also decided to use [Semantic UI](https://semantic-ui.com/) for this project. I had not used Semantic UI for anything before and opted to use the [Semantic UI React](https://react.semantic-ui.com/) package. Additionally, I wanted to configure the Semantic UI theme, so I had to install [Semantic UI LESS](https://github.com/Semantic-Org/Semantic-UI-LESS) as well. This lead to me creating a `semantic` folder that lives alongside `posts` and `pages`. Additionally, I had to copy the `site` folder and theme.config from Semantic UI LESS and point webpack to them. This lead to my `gatsby-node.js` looking like this:
 
-In my Gatsby Node, I setup three different additional page creation strategies. I created one to list
+```js
+const path = require(`path`);
+const { createFilePath } = require(`gatsby-source-filesystem`);
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        "../../theme.config$": path.join(
+          __dirname,
+          "src/semantic/theme.config"
+        ),
+      },
+    },
+  });
+};
+```
+
+Additionally, in `gatsby-node.js`, I setup three different additional page creation strategies. I created one to list
 posts by Tags, one to display a paginated list of posts (the blog), and the detailed blog post view.
-Here's my `gatsby-node.js` file:
+Here's my full `gatsby-node.js` file:
 
 ```js
 const path = require(`path`);

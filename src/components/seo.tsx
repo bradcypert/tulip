@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet";
 import { StaticQuery, graphql } from "gatsby";
 import PropTypes from "prop-types";
 
-const SEO = ({ post, frontmatter, postImage, isBlogPost }) => (
+const SEO = ({ post, frontmatter, postImage, isBlogPost, slug }) => (
   <StaticQuery
     query={graphql`
       {
@@ -31,9 +31,7 @@ const SEO = ({ post, frontmatter, postImage, isBlogPost }) => (
       const title = `${postMeta.title ? `${postMeta.title} | ` : ""}${seo.title}`;
       const description = postMeta.description || seo.description;
       const image = postImage ? `${seo.siteUrl}${postImage}` : seo.image;
-      const url = postMeta.slug
-        ? `${seo.siteUrl}/${postMeta.slug}/`
-        : seo.siteUrl;
+      const url = slug ? `${seo.siteUrl}${slug}` : seo.siteUrl;
       const datePublished = isBlogPost ? postMeta.datePublished : false;
 
       return (

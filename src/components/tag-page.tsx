@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import Layout from "./layout";
 import "./layout.less"
-import { Grid } from "semantic-ui-react";
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 
 import { MDXProvider } from "@mdx-js/react";
 import CodeBlock from './code-block';

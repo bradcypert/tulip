@@ -1,6 +1,6 @@
 import { Link } from "gatsby";
 import React from "react";
-import { Segment } from "semantic-ui-react";
+import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
 import Img from "gatsby-image";
 
 

@@ -3,7 +3,9 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { Image, Grid, Popup } from "semantic-ui-react";
+import Image from "semantic-ui-react/dist/commonjs/elements/Image";
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
+import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
 
 const IndexPage = () => {
   const [isWindow, setIsWindow] = React.useState(false);
@@ -23,9 +25,10 @@ const IndexPage = () => {
   `);
 
   return (
+    <>
+    <SEO />
     <div className="fancy-background-1">
       <Layout>
-        <SEO />
         <Grid
           centered
           verticalAlign="middle"
@@ -78,6 +81,7 @@ const IndexPage = () => {
         </Grid>
       </Layout>
     </div>
+    </>
   );
 };
 

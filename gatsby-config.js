@@ -116,6 +116,12 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-html-attributes',
+      options: {
+        lang: 'en'
+      }
+    },
+    {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {

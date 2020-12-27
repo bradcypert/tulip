@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Segment, Grid, Label } from 'semantic-ui-react';
+import { Segment, Grid } from 'semantic-ui-react';
 
 import Layout from "./layout";
 import "./layout.less"
@@ -26,7 +26,7 @@ const MdxBlock: React.FunctionComponent<any> = ({ children }) => {
 }
 const formatter = new Intl.DateTimeFormat('en-US');
 
-const BlogLayout = ({ data }) => {
+const BlogLayout = ({data, path}) => {
     const date = new Date();
     const dateStr = data.mdx.frontmatter.date;
     const expDateStr = dateStr.split("/");
@@ -37,7 +37,7 @@ const BlogLayout = ({ data }) => {
     return (
         <>
             <Layout>
-                <SEO post={data.mdx} />
+                <SEO post={data.mdx} slug={path} />
                 <div style={{ margin: "15px 0" }}>
                     <Grid reversed='mobile vertically'>
                         <Grid.Column mobile={1} computer={1}>

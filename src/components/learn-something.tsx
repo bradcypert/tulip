@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
 import React from "react"
-import { Label, Segment } from "semantic-ui-react";
+import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
+import Label from "semantic-ui-react/dist/commonjs/elements/Label";
 
 const LearnSomething = () => {
     return (

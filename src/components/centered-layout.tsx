@@ -1,6 +1,6 @@
 import React, { Children } from "react"
 import PropTypes from "prop-types"
-import { Grid } from "semantic-ui-react";
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 import Layout from "./layout";
 import "./layout.less"
 
