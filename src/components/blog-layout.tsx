@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Segment, Grid } from 'semantic-ui-react';
+import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 
 import Layout from "./layout";
 import "./layout.less"

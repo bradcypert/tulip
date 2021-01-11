@@ -8,7 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { Container } from 'semantic-ui-react';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
 import Header from "./header"
 import "./layout.less"
 

@@ -1,7 +1,9 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
-import { Dropdown, Menu, Grid } from 'semantic-ui-react'
+import { Link } from "gatsby";
+import PropTypes from "prop-types";
+import React from "react";
+import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
+import Menu from "semantic-ui-react/dist/commonjs/collections/Menu";
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 
 const Header = ({ siteTitle }) => (
   <Grid>
@@ -60,7 +62,7 @@ const Header = ({ siteTitle }) => (
               <Dropdown.Item>
                 <Dropdown text="Image2Text">
                   <Dropdown.Menu>
-                    <a href="https://play.google.com/store/apps/details?id=com.bradcypert.image2text" target="_blank">
+                    <a href="https://play.google.com/store/apps/details?id=com.bradcypert.image2text" rel="noreferrer" target="_blank">
                       <Dropdown.Item>On the Play Store</Dropdown.Item>
                     </a>
                     <Link to="/image2text-privacy-policy">

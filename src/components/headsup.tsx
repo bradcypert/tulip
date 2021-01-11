@@ -1,6 +1,5 @@
 import React from "react"
-import { Segment } from 'semantic-ui-react';
-
+import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
 interface Props {
   title: String;
 }

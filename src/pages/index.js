@@ -53,7 +53,7 @@ const IndexPage = () => {
               <Popup
                 content="Pyre Studios LLC is a small, independent multimedia studio in Louisville, Kentucky."
                 trigger={
-                  <a href="https://pyrestudios.io" target="_blank">
+                  <a href="https://pyrestudios.io" target="_blank" rel="noopener">
                     Pyre Studios LLC
                   </a>
                 }
@@ -62,7 +62,7 @@ const IndexPage = () => {
               <Popup
                 content="Luna Journal is a mobile and web app built to help track your pet's health and adventures, with the optional ability to forward entries to your pet's veterinary."
                 trigger={
-                  <a href="https://www.lunajournal.app" target="_blank">
+                  <a href="https://www.lunajournal.app" target="_blank" rel="noopener">
                     Luna Journal
                   </a>
                 }
@@ -71,7 +71,7 @@ const IndexPage = () => {
               <Popup
                 content="Bluejay.app helps aspiring writers succeed at writing their first book."
                 trigger={
-                  <a href="https://www.bluejay.app" target="_blank">
+                  <a href="https://www.bluejay.app" target="_blank" rel="noopener">
                     Bluejay.app
                   </a>
                 }
