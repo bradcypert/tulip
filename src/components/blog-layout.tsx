@@ -49,7 +49,7 @@ const BlogLayout = ({data, path}) => {
                         <Grid.Column mobile={16} computer={10}>
                             <main className="blog-content">
                                 <Segment inverted>
-                                    <Img alt={data.mdx.frontmatter.title} fluid={featuredImgFluid} />
+                                    <Img loading="eager" fadeIn={false} alt={data.mdx.frontmatter.title} fluid={featuredImgFluid} />
                                     <h1>{data.mdx.frontmatter.title}</h1>
                                     <h4 style={{ marginBottom: "1rem" }}>Posted: {formatter.format(date)}</h4>
                                     <h5>Tagged under: {data.mdx.frontmatter.tag.map(tag =>

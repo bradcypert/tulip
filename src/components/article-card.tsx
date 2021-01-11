@@ -18,7 +18,7 @@ const ArticleCard = ({ node }) => {
     return <Segment inverted>
         <article className="article-card-item">
             <div style={{maxHeight: "150px", overflow: "hidden"}}>
-                <Img alt={node.frontmatter.title} fluid={featuredImgFluid} />
+                <Img loading="eager" fadeIn={false} alt={node.frontmatter.title} fluid={featuredImgFluid} />
             </div>
             <h3>
                 <Link to={`/${node.slug}`}>{node.frontmatter.title}</Link>
