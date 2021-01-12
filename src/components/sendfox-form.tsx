@@ -23,33 +23,35 @@ const SendFoxForm: React.FunctionComponent<Props> = ({ form }) => {
             method="post"
         >
             <div className="field">
-                <label>First Name</label>
+                <label htmlFor="first_name">First Name</label>
                 <input
                     name="first_name"
+                    id="first_name"
                     placeholder="First Name"
                     required
                     type="text"
                 ></input>
             </div>
             <div className="field">
-                <label>Last Name</label>
+                <label htmlFor="last_name">Last Name</label>
                 <input
                     name="last_name"
+                    id="last_name"
                     placeholder="Last Name"
                     required
                     type="text"
                 ></input>
             </div>
             <div className="field">
-                <label>Email</label>
-                <input name="email" placeholder="Email" required type="email"></input>
+                <label htmlFor="email">Email</label>
+                <input name="email" id="email" placeholder="Email" required type="email"></input>
             </div>
             <div className="field">
                 <div className={`ui checkbox ${gdprCheck && "checked"}`}>
-                    <input name="gdpr" required type="checkbox" value="1" checked={gdprCheck} onChange={() => {
+                    <input id="gdpr" name="gdpr" required type="checkbox" value="1" checked={gdprCheck} onChange={() => {
                         setGdprChecked(!gdprCheck);
                     }}></input>
-                    <label>
+                    <label htmlFor="gdpr">
                         I agree to receive email updates and promotions.
                     </label>
                 </div>
