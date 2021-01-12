@@ -139,6 +139,23 @@ module.exports = {
         javascriptEnabled: true,
       },
     },
+    {
+      resolve: 'gatsby-plugin-purify-css',
+      options: {
+        /* Defaults */
+        styleId: 'gatsby-inlined-css',
+        purifyOptions: {
+          info: true,
+          minify: true
+        }
+      }
+    },
+    // {
+    //   resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
+    //   options: {
+    //     devMode: true,
+    //   },
+    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

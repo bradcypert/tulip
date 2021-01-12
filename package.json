@@ -46,6 +46,8 @@
     "typescript": "^4.0.3"
   },
   "devDependencies": {
+    "gatsby-plugin-purify-css": "^2.2.1",
+    "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.18",
     "prettier": "2.1.2"
   },
   "keywords": [

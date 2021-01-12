@@ -40,6 +40,7 @@ const IndexPage = () => {
               style={{ display: "block", margin: "0 auto" }}
               size="small"
               circular
+              alt="Brad Cypert"
               src={data.placeholderImage.childImageSharp.fluid.src}
             ></Image>
             <h1>👋 I'm Brad Cypert.</h1>
