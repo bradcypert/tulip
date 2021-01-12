@@ -69,8 +69,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `BradCypert.com`,
+        short_name: `BradCypert.com`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
@@ -129,7 +129,6 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-less`,
       options: {
@@ -138,17 +137,6 @@ module.exports = {
         },
         javascriptEnabled: true,
       },
-    },
-    {
-      resolve: 'gatsby-plugin-purify-css',
-      options: {
-        /* Defaults */
-        styleId: 'gatsby-inlined-css',
-        purifyOptions: {
-          info: true,
-          minify: true
-        }
-      }
     },
     // {
     //   resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
