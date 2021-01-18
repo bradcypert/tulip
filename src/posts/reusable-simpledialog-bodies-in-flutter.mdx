@@ -77,7 +77,7 @@ In this example, we show a Dialog with the title "Pick Someone" and two options,
 
 ## Making the SimpleDialog body reusable
 
-Now that we understand how the SimpleDialog works, we can take the steps to make a dialog with a reusable body. Let's set the stage. I'm working on a Flutter app that helps users log information about their pets and then share that information with any of the veternarians that they have listed on their account. This often leads to a _lot_ of SMS and Email icons that, when tapped by the user, ultimately leads to showing them their veternarians and prompting them to pick one. So let's break down the project.
+Now that we understand how the SimpleDialog works, we can take the steps to make a dialog with a reusable body. Let's set the stage. I'm working on a Flutter app that helps users log information about their pets and then share that information with any of the veterinarians that they have listed on their account. This often leads to a _lot_ of SMS and Email icons that, when tapped by the user, ultimately leads to showing them their veterinarians and prompting them to pick one. So let's break down the project.
 
 ![SimpleDialogs in the Luna Journal App](../images/simple-dialogs-in-luna-journal.png)
 
@@ -88,7 +88,7 @@ Now that we understand how the SimpleDialog works, we can take the steps to make
 With these requirements in mind, let's break down the architecture for this project.
 
 1. The content of this dialog is actually somewhat complicated. We'll be pulling data from ViewModels, so we want to encapsulate sourcing this data and rendering it in a component.
-2. We want to make the component configurable so that it can filter out Veternarians that dont have an email address when email is selected and vice versa for phone numbers.
+2. We want to make the component configurable so that it can filter out Veterinarians that dont have an email address when email is selected and vice versa for phone numbers.
 
 Let's start by defining how this component will interface with the rest of the "showDialog" flow.
 
