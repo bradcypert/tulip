@@ -122,12 +122,17 @@ module.exports = {
       }
     },
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: `gatsby-plugin-google-fonts-v2`,
       options: {
-        google: {
-          families: ["Heebo", "Open Sans"],
-        },
-      },
+        fonts: [
+          {
+            family: 'Heebo',
+          },
+          {
+            family: 'Open Sans'
+          }
+        ]
+      }
     },
     {
       resolve: `gatsby-plugin-less`,
