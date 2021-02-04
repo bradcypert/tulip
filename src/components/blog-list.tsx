@@ -43,12 +43,12 @@ const TagPage = (props) => {
                                     return <ArticleCard node={node} />
                                 })}
                                 {props.pageContext.currentPage != 1 && props.pageContext.currentPage != null &&
-                                    <Link to={`/blog/${props.pageContext.currentPage - 1}`}>
+                                    <Link className="no-bg" to={`/blog/${props.pageContext.currentPage - 1}`}>
                                         <Button content='Previous' icon='left arrow' labelPosition='left' />
                                     </Link>
                                 }
                                 {props.pageContext.currentPage != props.pageContext.numPages &&
-                                    <Link to={`/blog/${props.pageContext.currentPage + 1}`}>
+                                    <Link className="no-bg" to={`/blog/${props.pageContext.currentPage + 1}`}>
                                         <Button content='Next' icon='right arrow' labelPosition='right' />
                                     </Link>
                                 }
