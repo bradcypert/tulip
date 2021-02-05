@@ -3,12 +3,14 @@ import PropTypes from "prop-types"
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 import Layout from "./layout";
 import "./layout.less"
+import SEO from "./seo";
 
-const CenteredLayout = ({ children, pageContext: { frontmatter: { title } } }) => {
+const CenteredLayout = ({ children, pageContext: { frontmatter: { title, description } } }) => {
     return (
         <>
+            <SEO frontmatter={{title: title, description: description}}/>
             <Layout>
-                <div className={`centered-page ${title.toLowerCase()}-page`} style={{ margin: "15px 0" }}>
+                <div className={`centered-page ${title.toLowerCase().replace(" ", "-")}-page`} style={{ margin: "15px 0" }}>
                     <Grid>
                         <Grid.Column width={2}>
                         </Grid.Column>
