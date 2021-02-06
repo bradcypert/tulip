@@ -131,7 +131,7 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: 'Heebo',
+            family: 'Sora',
           },
           {
             family: 'Open Sans'
