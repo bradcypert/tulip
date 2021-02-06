@@ -1,12 +1,12 @@
 import React from "react"
-import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
+import Segment from "./segment";
 interface Props {
   title: String;
 }
 
 const HeadsUp: React.FunctionComponent<Props> = ({ title, children }) => (
   <div className="headsup" style={{ margin: "10px" }}>
-    <Segment inverted color='orange'>
+    <Segment color='orange'>
       <h4>{title}</h4>
       {children}
     </Segment>

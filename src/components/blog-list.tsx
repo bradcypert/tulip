@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import Layout from "./layout";
 import "./layout.less"
-import Button from "semantic-ui-react/dist/commonjs/elements/Button";
+import Button from "./button";
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 
 import { MDXProvider } from "@mdx-js/react";
@@ -38,18 +38,22 @@ const TagPage = (props) => {
                         </Grid.Column>
                         <Grid.Column mobile={16} computer={10}>
                             <main className="blog-content">
-                                <h1>The Archives</h1>
+                                <h1 className="text-4xl">The Archives</h1>
                                 {props.data.allMdx.nodes.map(node => {
                                     return <ArticleCard node={node} />
                                 })}
                                 {props.pageContext.currentPage != 1 && props.pageContext.currentPage != null &&
                                     <Link className="no-bg" to={`/blog/${props.pageContext.currentPage - 1}`}>
-                                        <Button content='Previous' icon='left arrow' labelPosition='left' />
+                                        <Button color="orange">
+                                            Previous
+                                        </Button>
                                     </Link>
                                 }
                                 {props.pageContext.currentPage != props.pageContext.numPages &&
                                     <Link className="no-bg" to={`/blog/${props.pageContext.currentPage + 1}`}>
-                                        <Button content='Next' icon='right arrow' labelPosition='right' />
+                                        <Button color="green">
+                                            Next
+                                        </Button>
                                     </Link>
                                 }
                             </main>

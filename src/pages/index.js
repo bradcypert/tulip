@@ -3,7 +3,7 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import Image from "semantic-ui-react/dist/commonjs/elements/Image";
+import Image from "../components/simple-image";
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
 
@@ -38,19 +38,20 @@ const IndexPage = () => {
           <Grid.Column mobile={16} computer={8}>
             <Image
               style={{ display: "block", margin: "0 auto" }}
-              size="small"
+              width="36"
+              height="36"
               circular
               alt="Brad Cypert"
               src={data.placeholderImage.childImageSharp.fluid.src}
             ></Image>
-            <h1>👋 I'm Brad Cypert and this is BradCypert.com.</h1>
-            <h2>Here you'll learn about a vast array of programming languages, frameworks, and technologies.</h2>
-            <h3 style={{marginTop: "10px"}}>
+            <h1 className="text-4xl m-4">👋 I'm Brad Cypert and this is BradCypert.com.</h1>
+            <h2 className="text-2xl m-3">Here you'll learn about a vast array of programming languages, frameworks, and technologies.</h2>
+            <h3 className="text-xl m-3">
               Who am I?<br/>I'm a programming language enthusiast. Sometimes I{" "}
               <Link to="/blog">write</Link>. Sometimes I post content on{" "}
               <a href="https://www.youtube.com/bradcypert">Youtube</a>.
             </h3>
-            <h4>
+            <h4 className="text-xl">
               I also run{" "}
               <Popup
                 content="Pyre Studios LLC is a small, independent multimedia studio in Louisville, Kentucky."

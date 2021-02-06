@@ -38,7 +38,9 @@ const TagPage = (props) => {
                         </Grid.Column>
                         <Grid.Column mobile={16} computer={10}>
                             <main className="blog-content">
-                                <h1>Tag: {props.pageContext.cleanTag}</h1>
+                                <h1 className="text-4xl">
+                                    Tag: {props.pageContext.cleanTag}
+                                </h1>
                                 {props.data.allMdx.nodes.map(node => {
                                     return <ArticleCard node={node} />
                                 })}

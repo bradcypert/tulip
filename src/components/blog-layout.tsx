@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
+import Segment from "./segment";
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 
 import Layout from "./layout";
@@ -48,10 +48,10 @@ const BlogLayout = ({data, path}) => {
                         </Grid.Column>
                         <Grid.Column mobile={16} computer={10}>
                             <main className="blog-content">
-                                <Segment inverted>
-                                    <h1>{data.mdx.frontmatter.title}</h1>
-                                    <h4 style={{ marginBottom: "1rem" }}>Posted: {formatter.format(date)}</h4>
-                                    <h5>Tagged under: {data.mdx.frontmatter.tag.map(tag =>
+                                <Segment>
+                                    <h1 className="text-4xl">{data.mdx.frontmatter.title}</h1>
+                                    <h4 className="text-2xl" style={{ marginBottom: "1rem" }}>Posted: {formatter.format(date)}</h4>
+                                    <h5 className="text-xl">Tagged under: {data.mdx.frontmatter.tag.map(tag =>
                                         <Link style={{ marginRight: "4px" }} to={`/tags/${tag}`}>
                                             {tag}
                                         </Link>

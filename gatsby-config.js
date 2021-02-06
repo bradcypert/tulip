@@ -10,6 +10,9 @@ module.exports = {
       logo: "https://www.bradcypert.com/bradcypert-logo-transparent.png",
     }
   },
+  flags: {
+    DEV_SSR: false
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     "gatsby-remark-embed-video",
@@ -148,6 +151,21 @@ module.exports = {
         javascriptEnabled: true,
       },
     },
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+          postCssPlugins: [require("tailwindcss")],
+          },
+      },
+    // {
+    //   resolve: `gatsby-plugin-sass`,
+    //   options: {
+    //     postCssPlugins: [
+    //       require("tailwindcss"),
+    //       // require("./tailwind.config.js"), // Optional: Load custom Tailwind CSS configuration
+    //     ],
+    //   },
+    // },
     // {
     //   resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
     //   options: {

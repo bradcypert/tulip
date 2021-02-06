@@ -11,6 +11,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
 import Header from "./header"
 import "./layout.less"
+import "./layout.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

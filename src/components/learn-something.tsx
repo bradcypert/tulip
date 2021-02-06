@@ -1,40 +1,42 @@
 import { Link } from "gatsby";
 import React from "react"
-import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
-import Label from "semantic-ui-react/dist/commonjs/elements/Label";
+import Segment from "./segment";
+import Badge from "./badge";
 
 const LearnSomething = () => {
     return (
-        <Segment inverted>
-            <div className="learn-something-new">
+        <Segment>
+            <div className="learn-something-new text-xl">
                 <h2>Learn Something New</h2>
-                <Link to="/tags/java">
-                    <Label color="yellow">Java</Label>
-                </Link>
-                <Link to="/tags/kotlin">
-                    <Label color="orange">Kotlin</Label>
-                </Link>
-                <Link to="/tags/scala">
-                    <Label color="red">Scala</Label>
-                </Link>
-                <Link to="/tags/clojure">
-                    <Label color="blue">Clojure</Label>
-                </Link>
-                <Link to="/tags/go">
-                    <Label color="teal">Go</Label>
-                </Link>
-                <Link to="/tags/typescript">
-                    <Label color="blue">TypeScript</Label>
-                </Link>
-                <Link to="/tags/react">
-                    <Label color="violet">React</Label>
-                </Link>
-                <Link to="/tags/php">
-                    <Label color="violet">PHP</Label>
-                </Link>
-                <Link to="/tags/python">
-                    <Label color="green">Python</Label>
-                </Link>
+                <div>
+                    <Link to="/tags/java">
+                        <Badge color="yellow">Java</Badge>
+                    </Link>
+                    <Link to="/tags/kotlin">
+                        <Badge color="pink">Kotlin</Badge>
+                    </Link>
+                    <Link to="/tags/scala">
+                        <Badge color="red">Scala</Badge>
+                    </Link>
+                    <Link to="/tags/clojure">
+                        <Badge color="blue">Clojure</Badge>
+                    </Link>
+                    <Link to="/tags/go">
+                        <Badge color="indigo">Go</Badge>
+                    </Link>
+                    <Link to="/tags/typescript">
+                        <Badge color="blue">TypeScript</Badge>
+                    </Link>
+                    <Link to="/tags/react">
+                        <Badge color="purple">React</Badge>
+                    </Link>
+                    <Link to="/tags/php">
+                        <Badge color="purple">PHP</Badge>
+                    </Link>
+                    <Link to="/tags/python">
+                        <Badge color="green">Python</Badge>
+                    </Link>
+                </div>
             </div>
         </Segment>)
 }

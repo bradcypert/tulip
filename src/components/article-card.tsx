@@ -1,8 +1,7 @@
 import { Link } from "gatsby";
 import React from "react";
-import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
+import Segment from "./segment";
 import Img from "gatsby-image";
-
 
 const formatter = new Intl.DateTimeFormat('en-US');
 
@@ -15,15 +14,15 @@ const ArticleCard = ({ node }) => {
     date.setFullYear(+expDateStr[0]);
     let featuredImgFluid = node.frontmatter.thumbnail?.childImageSharp?.fluid;
 
-    return <Segment inverted>
+    return <Segment>
         <article className="article-card-item">
             <div style={{maxHeight: "150px", overflow: "hidden"}}>
                 {/* <Img loading="eager" fadeIn={false} alt={node.frontmatter.title} fluid={featuredImgFluid} /> */}
             </div>
-            <h3>
+            <h3 className="text-3xl my-2">
                 <Link to={`/${node.slug}`}>{node.frontmatter.title}</Link>
             </h3>
-            <h4>Published: {formatter.format(date)}</h4>
+            <h4 className="text-2xl my-2">Published: {formatter.format(date)}</h4>
             <p>{node.excerpt}</p>
         </article>
     </Segment>
