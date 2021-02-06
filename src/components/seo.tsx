@@ -9,28 +9,41 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { StaticQuery, graphql } from "gatsby";
 import PropTypes from "prop-types";
+import SchemaOrg from "./schema-org";
 
 const SEO = ({ post, frontmatter, postImage, isBlogPost, slug }) => (
   <StaticQuery
     query={graphql`
       {
+        placeholderImage: file(relativePath: { eq: "brad_400x400.jpg" }) {
+          childImageSharp {
+            fluid(maxWidth: 300) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
         site {
           siteMetadata {
             title
             description
             siteUrl
             author
+            organization {
+              url
+              name
+              logo
+            }
           }
         }
       }
     `}
-    render={({ site: { siteMetadata: seo } }) => {
+    render={({ site: { siteMetadata: seo }, placeholderImage: {childImageSharp: imageSharp} }) => {
       const postMeta =
         frontmatter || post.frontmatter || {};
 
       const title = `${postMeta.title ? `${postMeta.title} | ` : ""}${seo.title}`;
       const description = postMeta.description || seo.description;
-      const image = postImage ? `${seo.siteUrl}${postImage}` : seo.image;
+      const image = postImage ? `${seo.siteUrl}${postImage}` : seo.siteUrl + imageSharp.fluid.src;
       const url = slug ? `${seo.siteUrl}${slug}` : seo.siteUrl;
       const datePublished = isBlogPost ? postMeta.datePublished : false;
 
@@ -57,7 +70,7 @@ const SEO = ({ post, frontmatter, postImage, isBlogPost, slug }) => (
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={image} />
           </Helmet>
-          {/* <SchemaOrg
+          <SchemaOrg
             isBlogPost={isBlogPost}
             url={url}
             title={title}
@@ -68,7 +81,7 @@ const SEO = ({ post, frontmatter, postImage, isBlogPost, slug }) => (
             author={seo.author}
             organization={seo.organization}
             defaultTitle={seo.title}
-          /> */}
+          />
         </React.Fragment>
       );
     }}

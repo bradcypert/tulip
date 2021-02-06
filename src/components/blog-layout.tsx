@@ -38,7 +38,7 @@ const BlogLayout = ({data, path}) => {
     return (
         <>
             <Layout>
-                <SEO post={data.mdx} slug={path} />
+                <SEO post={data.mdx} slug={path} isBlogPost />
                 <div style={{ margin: "15px 0" }}>
                     <Grid reversed='mobile vertically'>
                         <Grid.Column mobile={1} computer={1}>

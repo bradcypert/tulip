@@ -26,7 +26,7 @@ const IndexPage = () => {
 
   return (
     <>
-    <SEO />
+    <SEO postImage={data.placeholderImage.childImageSharp.fluid.src} />
     <div className="fancy-background-1">
       <Layout>
         <Grid
@@ -35,7 +35,7 @@ const IndexPage = () => {
           columns={16}
           style={{ minHeight: "95vh" }}
         >
-          <Grid.Column width={16}>
+          <Grid.Column mobile={16} computer={8}>
             <Image
               style={{ display: "block", margin: "0 auto" }}
               size="small"
@@ -43,14 +43,15 @@ const IndexPage = () => {
               alt="Brad Cypert"
               src={data.placeholderImage.childImageSharp.fluid.src}
             ></Image>
-            <h1>👋 I'm Brad Cypert.</h1>
-            <h3>
-              I'm a programming language enthusiast. Sometimes I{" "}
+            <h1>👋 I'm Brad Cypert and this is BradCypert.com.</h1>
+            <h2>Here you'll learn about a vast array of programming languages, frameworks, and technologies.</h2>
+            <h3 style={{marginTop: "10px"}}>
+              Who am I?<br/>I'm a programming language enthusiast. Sometimes I{" "}
               <Link to="/blog">write</Link>. Sometimes I post content on{" "}
               <a href="https://www.youtube.com/bradcypert">Youtube</a>.
             </h3>
             <h4>
-              I run{" "}
+              I also run{" "}
               <Popup
                 content="Pyre Studios LLC is a small, independent multimedia studio in Louisville, Kentucky."
                 trigger={

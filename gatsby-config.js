@@ -4,6 +4,11 @@ module.exports = {
     description: `Tutorials and resources for programming Android Apps, Web Servers and Web Clients. Languages include TypeScript, Kotlin, Dart, Go and many more!`,
     author: `@bradcypert`,
     siteUrl: "https://www.bradcypert.com",
+    organization: {
+      url: "https://www.bradcypert.com",
+      name: "Brad Cypert",
+      logo: "https://www.bradcypert.com/bradcypert-logo-transparent.png",
+    }
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -72,10 +77,10 @@ module.exports = {
         name: `BradCypert.com`,
         short_name: `BradCypert.com`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#456766`,
+        theme_color: `#456766`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `static/bradcypert-logo-transparent.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-sitemap`,
