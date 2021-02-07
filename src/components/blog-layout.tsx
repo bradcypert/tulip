@@ -1,9 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Segment from "./segment";
-
 import Layout from "./layout";
-import "./layout.less"
+import "./layout.css"
 
 import { MDXProvider } from "@mdx-js/react";
 import CodeBlock from './code-block';

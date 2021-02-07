@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 
 import Layout from "./layout";
-import "./layout.less"
+import "./layout.css"
 import Button from "./button";
 
 import { MDXProvider } from "@mdx-js/react";
@@ -40,7 +40,7 @@ const TagPage = (props) => {
                                     return <ArticleCard node={node} />
                                 })}
                                 {props.pageContext.currentPage != 1 && props.pageContext.currentPage != null &&
-                                    <Link className="no-bg" to={`/blog/${props.pageContext.currentPage - 1}`}>
+                                    <Link className="no-bg" to={`/blog/${props.pageContext.currentPage - 1 !== 1 ? props.pageContext.currentPage - 1 : ""}`}>
                                         <Button color="orange">
                                             Previous
                                         </Button>

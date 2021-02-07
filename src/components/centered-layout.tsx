@@ -1,7 +1,7 @@
 import React, { Children } from "react"
 import PropTypes from "prop-types"
 import Layout from "./layout";
-import "./layout.less"
+import "./layout.css"
 import SEO from "./seo";
 
 const CenteredLayout = ({ children, pageContext: { frontmatter: { title, description } } }) => {

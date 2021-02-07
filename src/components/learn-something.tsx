@@ -7,7 +7,7 @@ const LearnSomething = () => {
     return (
         <Segment>
             <div className="learn-something-new text-xl">
-                <h2>Learn Something New</h2>
+                <div className="text-xl">Learn Something New</div>
                 <div>
                     <Link to="/tags/java">
                         <Badge color="yellow">Java</Badge>
