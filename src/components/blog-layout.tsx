@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Segment from "./segment";
-import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 
 import Layout from "./layout";
 import "./layout.less"
@@ -40,13 +39,11 @@ const BlogLayout = ({data, path}) => {
             <Layout>
                 <SEO post={data.mdx} slug={path} isBlogPost />
                 <div style={{ margin: "15px 0" }}>
-                    <Grid reversed='mobile vertically'>
-                        <Grid.Column mobile={1} computer={1}>
-                        </Grid.Column>
-                        <Grid.Column mobile={16} computer={3}>
+                    <div className="grid grid-cols-1 md:grid-cols-12">
+                        <div className="md:col-start-2 md:col-span-2 p-2">
                             <LeftRail />
-                        </Grid.Column>
-                        <Grid.Column mobile={16} computer={10}>
+                        </div>
+                        <div className="md:col-start-4 md:col-span-7 p-2">
                             <main className="blog-content">
                                 <Segment>
                                     <h1 className="text-4xl">{data.mdx.frontmatter.title}</h1>
@@ -64,8 +61,8 @@ const BlogLayout = ({data, path}) => {
                                     </div>
                                 </Segment>
                             </main>
-                        </Grid.Column>
-                    </Grid>
+                        </div>
+                    </div>
                 </div>
             </Layout>
         </>

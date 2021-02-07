@@ -4,7 +4,6 @@ import PropTypes from "prop-types"
 import Layout from "./layout";
 import "./layout.less"
 import Button from "./button";
-import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 
 import { MDXProvider } from "@mdx-js/react";
 import CodeBlock from './code-block';
@@ -30,14 +29,12 @@ const TagPage = (props) => {
         <>
             <Layout>
                 <div style={{ margin: "15px 0" }}>
-                    <Grid reversed='mobile vertically'>
-                        <Grid.Column mobile={1} computer={1}>
-                        </Grid.Column>
-                        <Grid.Column mobile={16} computer={3}>
-                            <LeftRail />
-                        </Grid.Column>
-                        <Grid.Column mobile={16} computer={10}>
-                            <main className="blog-content">
+                <div className="grid grid-cols-1 md:grid-cols-12">
+                    <div className="md:col-start-2 md:col-span-2 p-2">
+                        <LeftRail />
+                    </div>
+                    <div className="md:col-start-4 md:col-span-7 p-2">
+                        <main className="blog-content">
                                 <h1 className="text-4xl">The Archives</h1>
                                 {props.data.allMdx.nodes.map(node => {
                                     return <ArticleCard node={node} />
@@ -57,8 +54,8 @@ const TagPage = (props) => {
                                     </Link>
                                 }
                             </main>
-                        </Grid.Column>
-                    </Grid>
+                        </div>
+                    </div>
                 </div>
             </Layout>
         </>
