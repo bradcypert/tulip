@@ -14,6 +14,7 @@ module.exports = {
     DEV_SSR: false
   },
   plugins: [
+    `gatsby-plugin-preact`,
     `gatsby-plugin-react-helmet`,
     "gatsby-remark-embed-video",
     "gatsby-plugin-robots-txt",
