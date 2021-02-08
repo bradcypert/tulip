@@ -22,10 +22,10 @@ const IndexPage = () => {
   return (
     <>
     <SEO postImage={data.placeholderImage.childImageSharp.fluid.src} />
-    <div className="fancy-background-1" style={{height: "100vh"}}>
+    <div className="fancy-background-1" style={{height: "100%"}}>
       <Layout>
         <div className="flex" style={{height: "90vh"}}>
-          <div className="grid h-4/5 flex-1 content-center grid-cols-1 md:grid-cols-12">
+          <div className="grid md:h-4/5 flex-1 content-center grid-cols-1 md:grid-cols-12">
             <div className="col-span-12">
             <Image
                 style={{ display: "block", margin: "0 auto" }}
