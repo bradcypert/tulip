@@ -9,10 +9,10 @@ const Nav: React.FunctionComponent<Props> = ({}) => {
     return (
         <nav className="m-2 rounded border border-gray-800 bg-gray-800">
             <ul className="flex flex-col md:flex-row gap-4 text-center">
-                <li className="p-4 flex-1 md:border-r-2 border-gray-400">
+                <li className="p-4 flex items-center justify-center flex-1 md:border-r-2 border-gray-400">
                     <Link to="/">BradCypert.com</Link>
                 </li>
-                <li className="p-4 flex-1 group md:border-r-2 border-gray-400 cursor-pointer">
+                <li className="p-4 flex items-center justify-center flex-1 group md:border-r-2 border-gray-400 cursor-pointer">
                     <div>Language Specific Resources</div>
                     <ul className="absolute hidden hover:block group-hover:block border border-gray-800 bg-gray-800 z-50 p-4">
                         <li>
@@ -52,10 +52,10 @@ const Nav: React.FunctionComponent<Props> = ({}) => {
                         </li>
                     </ul>
                 </li>
-                <li className="p-4 flex-1 md:border-r-2 border-gray-400">
+                <li className="p-4 flex items-center justify-center flex-1 md:border-r-2 border-gray-400">
                     <Link to="/blog">Blog</Link>
                 </li>
-                <li className="p-4 flex-1 group cursor-pointer">
+                <li className="p-4 flex items-center justify-center flex-1 group cursor-pointer">
                     <div>About</div>
                     <ul className="absolute hidden hover:block group-hover:block border border-gray-800 bg-gray-800 z-50 p-4">
                         <li>
