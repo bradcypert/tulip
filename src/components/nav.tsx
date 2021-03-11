@@ -57,7 +57,7 @@ const Nav: React.FunctionComponent<Props> = ({}) => {
                 </li>
                 <li className="p-4 flex items-center justify-center flex-1 group cursor-pointer">
                     <div>About</div>
-                    <ul className="absolute hidden hover:block group-hover:block border border-gray-800 bg-gray-800 z-50 p-4">
+                    <ul className="absolute hidden hover:block group-hover:block border border-gray-800 bg-gray-800 z-50 p-4 transform translate-y-2/4">
                         <li>
                             <Link to="/contact">
                                 Contact
