@@ -14,7 +14,7 @@ const Nav: React.FunctionComponent<Props> = ({}) => {
                 </li>
                 <li className="p-4 flex items-center justify-center flex-1 group md:border-r-2 border-gray-400 cursor-pointer">
                     <div>Language Specific Resources</div>
-                    <ul className="absolute hidden hover:block group-hover:block border border-gray-800 bg-gray-800 z-50 p-4">
+                    <ul className="absolute hidden hover:block group-hover:block border border-gray-800 bg-gray-800 z-50 p-4 translate-y-2/4">
                         <li>
                             <Link to="/clojure-resources">
                                 Clojure
