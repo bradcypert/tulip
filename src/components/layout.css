@@ -211,3 +211,7 @@ blockquote {
   margin: 0 1em;
   font-style: italic;
 }
+
+code {
+  background-color: #FFFFFF15;
+}
