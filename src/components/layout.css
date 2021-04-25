@@ -92,7 +92,7 @@ p,
 li {
   font-size: 1.4rem;
   margin: 2rem 0;
-  line-height: 1.8rem;
+  line-height: 2.2rem;
 }
 
 nav li {
@@ -205,4 +205,9 @@ main a:hover {
 /* transparent backgrounds and dark text. */
 .gatsby-image-wrapper {
   background: white;
+}
+
+blockquote {
+  margin: 0 1em;
+  font-style: italic;
 }
