@@ -141,8 +141,8 @@ main a:hover {
 }
 
 .blog-content .mdx pre {
-    font-size: 1.4rem;
-    line-height: 2rem;
+    font-size: 1rem;
+    line-height: 1.4rem;
     overflow: auto;
 }
 
