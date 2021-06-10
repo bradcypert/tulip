@@ -92,9 +92,37 @@ function createTagPages(graphql, actions) {
       ),
     ];
 
+    // TODO: We can make this better, right?
     tags.forEach((tag, index) => {
       createPage({
         path: "/tags/" + tag,
+        component: tagLayout,
+        context: {
+          tag: `/^${tag}$/i`,
+          cleanTag: tag,
+        },
+      });
+      
+      createPage({
+        path: "/tag/" + tag,
+        component: tagLayout,
+        context: {
+          tag: `/^${tag}$/i`,
+          cleanTag: tag,
+        },
+      });
+      
+      createPage({
+        path: "/tags/" + tag.toLowerCase(),
+        component: tagLayout,
+        context: {
+          tag: `/^${tag}$/i`,
+          cleanTag: tag,
+        },
+      });
+      
+      createPage({
+        path: "/tag/" + tag.toLowerCase(),
         component: tagLayout,
         context: {
           tag: `/^${tag}$/i`,
