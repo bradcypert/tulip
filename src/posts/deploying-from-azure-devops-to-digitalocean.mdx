@@ -41,7 +41,7 @@ Deploying from [Azure DevOps](http://dev.azure.com) to DigitalOcean isn’t as d
 
 ## How we deploy Porios
 
-My team at Pyre Studios deploys [Porios ](https://www.porios.com)via Azure DevOps. The frontend is built and deployed to Azure Blob Storage (more on that in another post), but the API is particularly interesting. We deploy our Golang API to a DigitalOcean droplet, but you can also use this guide to deploy to any server that supports SSH.
+My team at Pyre Studios deploys Porios via Azure DevOps. The frontend is built and deployed to Azure Blob Storage (more on that in another post), but the API is particularly interesting. We deploy our Golang API to a DigitalOcean droplet, but you can also use this guide to deploy to any server that supports SSH.
 
 ## Setting up your DigitalOcean Droplet
 
@@ -55,17 +55,12 @@ Once you’ve setup your account (the rest of this guide will show the steps for
 
 From the Logged In screen, search the top of the page and find something similar to the image below:
 
-<div class="wp-block-image">
-  ![Digital Ocean's menu for creating a new
-  resource.](../images/Screenshot_2020-02-19-DigitalOcean-brad-cypert-project.png)
-</div>
+![Digital Ocean's menu for creating a new resource.](../images/Screenshot_2020-02-19-DigitalOcean-brad-cypert-project.png)
 From there, select “Create” (the green button) and select “Droplets”. You’ll be presented
 with a rather long form. I’ll show you what you probably want to change, but you
 can leave the default value for most of the items.
 
-<div class="wp-block-image">
-  ![](../images/Screenshot_2020-02-19-DigitalOcean-Create-Droplets1.png)
-</div>
+![DigitalOcean's Select an Image View](../images/Screenshot_2020-02-19-DigitalOcean-Create-Droplets1.png)
 The first thing that DigitalOcean will ask you to do is choose an image. Feel free
 to choose what you’re most comfortable with but the rest of this guide assumes that
 you’ve picked Ubuntu 18.04.X (it will likely work with other Ubuntu versions, though!).
@@ -75,12 +70,8 @@ as trying to figure out what you need in AWS or estimating the cost of an Azure 
 group. The cost and CPU/RAM is clearly defined and obvious — one of my favorite things
 about DigitalOcean.
 
-<div class="wp-block-image">
-  <figure class="aligncenter size-full">
-    ![DigitalOcean's choose a plan options](../images/Screenshot_2020-02-19-DigitalOcean-Create-Droplets2.png)
-    <figcaption>Select Starter and $5/mo</figcaption>
-  </figure>
-</div>
+![DigitalOcean's choose a plan options](../images/Screenshot_2020-02-19-DigitalOcean-Create-Droplets2.png)
+
 As of the time of this post was originally written, DigitalOcean defaults you to
 a $40/month droplet. If you’re just trying this out as an alternative, save yourself
 some money and try a $5/mo droplet. You can scale up easily afterwards if you need
