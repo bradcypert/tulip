@@ -171,16 +171,14 @@ This YAML represents our pipeline, so yours might look slightly different.
 
 Finally, we can create our Release Pipeline. Our release pipeline will take our artifact from Azure DevOps and push it over SSH to our DigitalOcean droplet. I’ll also give you an example of how you can run commands before/after the push.
 
-<div class="wp-block-image">
-  ![](../images/Screenshot_2020-02-19-Releases-Pipelines.png)
-</div>
+![](../images/Screenshot_2020-02-19-Releases-Pipelines.png)
+
 Click on Releases and create a new release. You’ll be prompted to select a template.
 Unfortunately, there’s not a template for copying files outside of Azure, so we’ll
 select “Empty Job” at the top of the “Choose Template” view.
 
-<div class="wp-block-image">
-  ![](../images/Screenshot_2020-02-19-New-release-pipeline-Pipelines.png)
-</div>
+![](../images/Screenshot_2020-02-19-New-release-pipeline-Pipelines.png)
+
 You should now see a small graph with two sections. First, click on Artifacts. You
 should then be presented with the artifact select screen.
 
@@ -193,24 +191,19 @@ step in the gray box above the “Add” button.
 Add this artifact source and then click on “1 job, 0 task” in Stage 1 (or whatever
 you renamed this stage to).
 
-<div class="wp-block-image">
-  ![](../images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services.png)
-</div>
+![](../images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services.png)
+
 You should be presented with a familiar screen. You can rename your job and create
 tasks for it just like with a release. If you need an agent, click on the three dots
 next to the job name and select “Add an Agent Job.”
 
 The key task here is to copy files over SSH. Make sure you add a task for that module.
 
-<div class="wp-block-image">
-  ![](../images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services3.png)
-</div>
+![](../images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services3.png)
 You’ll want to setup that task to do something like the following:
 
-<div class="wp-block-image">
-  ![](../images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services4-1.png)
-</div>
-I’ve blacked out a few private values, but hopefully this is still fairly legible.
+![](../images/Screenshot_2020-02-19-Deployment-groups-Azure-DevOps-Services4-1.png)
+I’ve censored out a few private values, but hopefully this is still fairly legible.
 Your SSH service connection isn’t setup yet, so if you hit manage, you’ll be taken
 to where you can set that up. Let’s do that now.
 
