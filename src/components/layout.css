@@ -168,6 +168,10 @@ main a:hover {
   color: black !important;
 }
 
+.sendfox-form [type="checkbox"] {
+  margin-right: 4px;
+}
+
 .learn-something-new h2 {
     color: white;
     margin: 0 0 1rem 0;
