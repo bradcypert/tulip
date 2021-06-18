@@ -45,9 +45,9 @@ const BlogLayout = ({data, path}) => {
                         <div className="md:col-start-4 md:col-span-7 p-2">
                             <main className="blog-content">
                                 <Segment>
-                                    <h1 className="text-4xl">{data.mdx.frontmatter.title}</h1>
-                                    <h4 className="text-2xl" style={{ marginBottom: "1rem" }}>Posted: {formatter.format(date)}</h4>
-                                    <h5 className="text-xl">Tagged under: {data.mdx.frontmatter.tag.map(tag =>
+                                    <h1 className="text-6xl">{data.mdx.frontmatter.title}</h1>
+                                    <h4 className="text-3xl" style={{ marginBottom: "1rem" }}>Posted: {formatter.format(date)}</h4>
+                                    <h5 className="text-2xl">Tagged under: {data.mdx.frontmatter.tag.map(tag =>
                                         <Link style={{ marginRight: "4px" }} to={`/tags/${tag}`}>
                                             {tag}
                                         </Link>
