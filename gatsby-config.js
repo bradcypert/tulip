@@ -138,7 +138,7 @@ module.exports = {
             family: 'Sora',
           },
           {
-            family: 'Open Sans'
+            family: 'Source Serif Pro'
           }
         ]
       }

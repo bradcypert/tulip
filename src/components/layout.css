@@ -37,7 +37,7 @@ main h5 {
 }
 
 * {
-  font-family: "Open Sans";
+  font-family: "Source Serif Pro";
   font-display: swap;
 }
 
@@ -93,6 +93,7 @@ li {
   font-size: 1.5rem;
   margin: 2rem 0;
   line-height: 2rem;
+  letter-spacing: 0.05em;
 }
 
 nav li {
