@@ -111,24 +111,6 @@ function createTagPages(graphql, actions) {
           cleanTag: tag,
         },
       });
-      
-      createPage({
-        path: "/tags/" + tag.toLowerCase(),
-        component: tagLayout,
-        context: {
-          tag: `/^${tag}$/i`,
-          cleanTag: tag,
-        },
-      });
-      
-      createPage({
-        path: "/tag/" + tag.toLowerCase(),
-        component: tagLayout,
-        context: {
-          tag: `/^${tag}$/i`,
-          cleanTag: tag,
-        },
-      });
     });
   });
 }
