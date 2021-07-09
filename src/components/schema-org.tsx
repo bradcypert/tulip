@@ -56,7 +56,7 @@ export default React.memo(
             description,
             author: {
               '@type': 'Person',
-              name: author.name,
+              name: 'Brad Cypert',
             },
             publisher: {
               '@type': 'Organization',

@@ -45,7 +45,7 @@ const SEO = ({ post, frontmatter, postImage, isBlogPost, slug }) => (
       const description = postMeta.description || seo.description;
       const image = postImage ? `${seo.siteUrl}${postImage.src}` : seo.siteUrl + imageSharp.fluid.src;
       const url = slug ? `${seo.siteUrl}${slug}` : seo.siteUrl;
-      const datePublished = isBlogPost ? postMeta.datePublished : false;
+      const datePublished = isBlogPost ? postMeta.date : false;
 
       return (
         <React.Fragment>
