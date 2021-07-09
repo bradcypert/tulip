@@ -43,7 +43,7 @@ const SEO = ({ post, frontmatter, postImage, isBlogPost, slug }) => (
 
       const title = `${postMeta.title ? `${postMeta.title} | ` : ""}${seo.title}`;
       const description = postMeta.description || seo.description;
-      const image = postImage ? `${seo.siteUrl}${postImage}` : seo.siteUrl + imageSharp.fluid.src;
+      const image = postImage ? `${seo.siteUrl}${postImage.src}` : seo.siteUrl + imageSharp.fluid.src;
       const url = slug ? `${seo.siteUrl}${slug}` : seo.siteUrl;
       const datePublished = isBlogPost ? postMeta.datePublished : false;
 
