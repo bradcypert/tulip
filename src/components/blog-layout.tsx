@@ -36,7 +36,7 @@ const BlogLayout = ({data, path}) => {
     return (
         <>
             <Layout>
-                <SEO post={data.mdx} slug={path} isBlogPost />
+                <SEO post={data.mdx} slug={path} postImage={featuredImgFluid} isBlogPost />
                 <div style={{ margin: "15px 0" }}>
                     <div className="grid grid-cols-1 md:grid-cols-12">
                         <div className="md:col-start-2 md:col-span-2 p-2">
