@@ -10,7 +10,12 @@ require("prismjs/components/prism-clojure");
 
 
 export default (props) => {
-    const isDark = window && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    const [isDark, setIsDark] = React.useState(false);
+    React.useEffect(() => {
+        if (window && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            setIsDark(true);
+        }
+    });
     const className = props.children.props.className || ''
     const matches = className.match(/language-(?<lang>.*)/)
     return (
