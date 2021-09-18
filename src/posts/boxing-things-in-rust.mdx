@@ -16,7 +16,6 @@ tag:
 
 import HeadsUp from "../components/headsup";
 
-
 Rust's memory management can feel a bit intimidating for most developers. Rust gives you some control over whether you're allocating data on the stack or the heap and its up to you to decide where memory should be allocated.
 
 When you allocate memory for values in Rust, that memory is allocated on the [Stack](https://en.wikipedia.org/wiki/Stack-based_memory_allocation). Memory on the Stack is allocated in a "stack frame" which contains information for the Stack's local variables and some metadata about that stack frame. When a function exits, that functions stack frame gets deallocated. This structure is a LIFO (Last in, First out) pattern for reclaiming memory.
@@ -24,7 +23,7 @@ When you allocate memory for values in Rust, that memory is allocated on the [St
 The stack does not work for every usecase. For example, you may want to pass some memory between different functions or keep some memory alive longer than a single function's stack frame. To do this, you can allocate memory on the heap (sometimes referred to as dynamic memory).
 
 <HeadsUp title="Stack? Heap? Whaaa?">
-  If the idea of the Stack and/or Heap is confusing -- no worries! Memory management is very a complicated topic as its fundamental to how computers operate. Most programming languages help fully abstract these concerns from you, however there are a few that do not. Rust is one of those languages. If you don't feel comfortable with the Stack and Heap yet, you can learn it as you go!
+  If the idea of the Stack and/or Heap is confusing -- no worries! Memory management is a very complicated topic as its fundamental to how computers operate. Most programming languages help abstract these concerns from you, however there are a few that do not. Rust is one of those languages. If you don't feel comfortable with the Stack and Heap yet, you can learn more about them as you go! Don't let it hold you up!
 </HeadsUp>
 
 Boxing is a practice for allocating memory on the heap. A Box is a [smart pointer](https://doc.rust-lang.org/book/ch15-00-smart-pointers.html) to a value allocated on the heap. As an example, if we wanted to box a User, we can use a `Box<User>`.
