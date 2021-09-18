@@ -7,6 +7,7 @@ import Prism from "prism-react-renderer/prism";
 require("prismjs/components/prism-kotlin");
 require("prismjs/components/prism-dart");
 require("prismjs/components/prism-clojure");
+require("prismjs/components/prism-rust");
 
 
 export default (props) => {
