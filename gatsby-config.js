@@ -156,8 +156,63 @@ module.exports = {
       resolve: `gatsby-plugin-postcss`,
       options: {
           postCssPlugins: [require("tailwindcss"), require("./tailwind.config.js"),],
+        },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+        {
+          site {
+            siteMetadata {
+              title
+              description
+              siteUrl
+            }
+          }
+        }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [{ "content:encoded": edge.node.html }],
+                })
+              })
+            },
+            query: `
+            {
+              allMdx(
+                sort: { fields: [frontmatter___date], order: DESC }
+                filter: {frontmatter: {status: {eq: "publish"}}}
+                limit: 1000
+              ) {
+                edges {
+                  node {
+                    id
+                    fields {
+                      slug
+                    }
+                    frontmatter {
+                      title
+                    }
+                    excerpt
+                  }
+                }
+              }
+            }
+            `,
+            output: "/rss.xml",
+            title: "BradCypert.com's RSS Feed",
           },
-      },
+        ]
+      }
+    }
     // {
     //   resolve: `gatsby-plugin-sass`,
     //   options: {
