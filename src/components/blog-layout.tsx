@@ -25,7 +25,7 @@ const MdxBlock: React.FunctionComponent<any> = ({ children }) => {
 }
 const formatter = new Intl.DateTimeFormat('en-US');
 
-const BlogLayout = ({data, path}) => {
+const BlogLayout = ({ data, path }) => {
     const date = new Date();
     const dateStr = data.mdx.frontmatter.date;
     const expDateStr = dateStr.split("/");
@@ -58,6 +58,15 @@ const BlogLayout = ({data, path}) => {
                                     <div className="mdx">
                                         <MdxBlock>{data.mdx.body}</MdxBlock>
                                     </div>
+                                    <h4 style={{marginLeft: "0.5em"}}>Comments</h4>
+                                    <script src="https://utteranc.es/client.js"
+                                        repo="bradcypert/tulip"
+                                        issue-term="pathname"
+                                        label="blog_comments"
+                                        theme="preferred-color-scheme"
+                                        crossorigin="anonymous"
+                                        async>
+                                    </script>
                                 </Segment>
                             </main>
                         </div>
