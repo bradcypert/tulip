@@ -40,7 +40,7 @@ Imagine that you have `N` operations that all work independently of each-other. 
 
 #### A bigger example
 
-I’ve recently been working on an “omnisearch” feature for a Clojure api that I work on for [Porios (The Podcast Place)](http://www.porios.com). One of the parts about this search is that it needs to query 3 different sources to determine matches. We check usernames, podcast names, and episode names. The response is simply all the results that match a given query. Notice that since the result of one call isn’t dependent on the results of a previous, these make great targets for multithreading with futures.
+I’ve recently been working on an “omnisearch” feature for a Clojure api that I work on for Porios (The Podcast Place). One of the parts about this search is that it needs to query 3 different sources to determine matches. We check usernames, podcast names, and episode names. The response is simply all the results that match a given query. Notice that since the result of one call isn’t dependent on the results of a previous, these make great targets for multithreading with futures.
 
 Here’s some code to accomplish that!
 
