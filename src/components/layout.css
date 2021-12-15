@@ -91,7 +91,8 @@ p {
 p,
 li {
   margin: 2rem 0;
-  line-height: 1.5rem;
+  line-height: 2.4rem;
+  font-size: 1.4rem;
 }
 
 nav li {
