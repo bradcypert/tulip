@@ -55,16 +55,7 @@ A buffer is simply a region of memory allocated for storing something temporaril
 
 In most Android applications, the SurfaceFlinger has access to three different buffers. A buffer for the Status Bar, a buffer for the Navigation Bar, and a Buffer for the application content. You can see each of these regions in the diagram below.
 
-<div class="wp-block-image">
-  <figure class="aligncenter">
-    ![](../images/3parts.jpg)
-    <figcaption>
-      The Status Bar, App Content and Navigation Bar sections highlighted in
-      [Brad Cypert’s Image2Text
-      application](https://play.google.com/store/apps/details?id=com.bradcypert.image2text&hl=en_US).
-    </figcaption>
-  </figure>
-</div>
+![Brad Cypert's Image2Text Application](../images/3parts.jpg)   
 
 The above image shows three different sections of our Android device’s screen, each
 powered by their own buffer! If you’ve built apps before, you’ll know that we cant
@@ -90,15 +81,7 @@ When an app is summoned to the foreground, the WindowManager system-service asks
 
 A great question! Fortunately Google has built a fantastic diagram that shows the flow of data from inception to render.
 
-<div class="wp-block-image">
-  <figure class="aligncenter">
-    ![](../images/ape_fwk_graphics.png)
-    <figcaption>
-      Android Graphic’s Components, courtesy of [The Android Source
-      Documentation for Graphics.](https://source.android.com/devices/graphics)
-    </figcaption>
-  </figure>
-</div>
+![Diagram showing the flow of data from inception to render in Android](../images/ape_fwk_graphics.png)
 
 In the above image, you can see that many different components can create buffer
 data. The buffer data makes its way to the SurfaceFlinger (or an OpenGL ES App, but that’s another topic entirely)
@@ -110,14 +93,6 @@ Most Android Devices (phones and tablets) have a 60FPS (or 60 frames per second)
 
 With these things in mind, it would be odd to assume that the surface flinger just draws whenever there is buffer data available. While it may looks this way, because our eyes have trouble seeing this fast, the SurfaceFlinger actually sleeps until the VSYNC signal arrives. When that signal does arrive, the SurfaceFlinger wakes up and walks through each list of layers, looking for new buffers. If it finds a new buffer, it’ll toss the reference to the old one and use the new buffer instead, otherwise it’ll hold onto the old buffer.
 
-<span class="bctt-click-to-tweet">
-  <span class="bctt-ctt-text">
-    [ To avoid this, it's imperative that the SurfaceFlinger only updates
-    contents between refreshes.
-    ](https://twitter.com/intent/tweet?url&text=%20To%20avoid%20this%2C%20it%27s%20imperative%20that%20the%20SurfaceFlinger%20only%20updates%20contents%20between%20refreshes.&via=bradcypert&related=bradcypert)
-  </span>
-  [Click To Tweet](https://twitter.com/intent/tweet?url&text=%20To%20avoid%20this%2C%20it%27s%20imperative%20that%20the%20SurfaceFlinger%20only%20updates%20contents%20between%20refreshes.&via=bradcypert&related=bradcypert)
-</span>
 Finally, the SurfaceFlinger then reaches out to the HAL to ask how it should handle
 compositing these buffers.
 
