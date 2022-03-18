@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    background-color: #ffe;
+    background-color: #fffbf4;
 }
 
 main h1 {
@@ -104,8 +104,8 @@ nav li {
 }
 
 main a {
-  color: #10b981;
-  background: linear-gradient(to bottom, #10b981 0%, #10b981 100%);
+  color: #395347;
+  background: linear-gradient(to bottom, #a7f3d0 0%, #a7f3d0 100%);
   background-position: 0 100%;
   background-repeat: repeat-x;
   background-size: 4px 4px;
