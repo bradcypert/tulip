@@ -13,32 +13,6 @@ category:
 tag:
   - dart
 post_format: []
-wp_last_modified_info:
-  - "September 9, 2020 @ 5:26 pm"
-wplmi_shortcode:
-  - "[lmt-post-modified-info]"
-hefo_before:
-  - "0"
-hefo_after:
-  - "0"
-saswp_custom_schema_field:
-  - ""
-saswp_webpage_speakable_3050:
-  - "0"
-saswp_modify_this_schema_3049:
-  - "0"
-saswp_blogposting_speakable_3049:
-  - "0"
-_yoast_wpseo_primary_category:
-  - "450"
-_yoast_wpseo_focuskw:
-  - "dart constructor"
-_yoast_wpseo_metadesc:
-  - "Dart provides several constructors for developers to use. Classic constructors, factory constructors, and many more."
-_yoast_wpseo_linkdex:
-  - "54"
-_yoast_wpseo_content_score:
-  - "90"
 ---
 
 Last night, as I was writing code in a Flutter app, I came across an interesting dilemma. I wanted to throw a custom exception if I was unable to sign in with Apple on the login screen — nothing too crazy. Naturally, this lead me to creating a custom exception. I tried something along the lines of:
@@ -176,7 +150,9 @@ class Person {
 }
 ```
 
-I honestly cant think of many use cases where I would prefer a constant constructor, but I suppose if you’re working with Read-Only data, it might be a good way to illustrate that.
+Constantr Contstructors work great with Read-Only data and are extremely effective in sharing memory. For example, since the constructor is constant, any time that you pass the same arguments to a constant constructor, the same object will be shared between the references. This means that calling the same constant constructor with the same arguments will only create one object in memory.
+
+It's important to note that your properties may also need to be constant for this to effectively work. For example, a list being passed to a constant constructor also needs to be a constant list (use the `const`) keyword when creating that list.
 
 ## Factory Constructors
 
