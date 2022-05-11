@@ -152,6 +152,10 @@ main a:hover {
     color: #0d2f0f
 }
 
+.blog-content p {
+  margin: 1rem;
+}
+
 .form input[type="text"],
 .form input[type="email"] {
   color: black !important;
