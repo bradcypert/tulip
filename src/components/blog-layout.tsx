@@ -54,7 +54,7 @@ const BlogLayout = ({ data, path }) => {
                                     )}
                                     </h5>
                                     {!!data.mdx.frontmatter.lastUpdated ? <h4>Last Updated: {data.mdx.frontmatter.date}</h4> : null}
-                                    {featuredImgFluid && <Img loading="eager" fadeIn={false} alt={data.mdx.frontmatter.title} fluid={featuredImgFluid} />}
+                                    {featuredImgFluid && <Img loading="eager" fadeIn={false} alt={data.mdx.frontmatter.title} style={{borderRadius: '4px'}} fluid={featuredImgFluid} />}
                                     <div className="mdx">
                                         <MdxBlock>{data.mdx.body}</MdxBlock>
                                     </div>
