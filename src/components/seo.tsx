@@ -46,6 +46,7 @@ const SEO = ({ post, frontmatter, postImage, isBlogPost, slug }) => (
       const image = postImage ? `${seo.siteUrl}${postImage.src}` : seo.siteUrl + imageSharp.fluid.src;
       const url = slug ? `${seo.siteUrl}${slug}` : seo.siteUrl;
       const datePublished = isBlogPost ? postMeta.date : false;
+      const dateModified = isBlogPost ? postMeta.lastUpdated : null;
 
       return (
         <React.Fragment>
@@ -77,6 +78,7 @@ const SEO = ({ post, frontmatter, postImage, isBlogPost, slug }) => (
             image={image}
             description={description}
             datePublished={datePublished}
+            dateModified={dateModified}
             siteUrl={seo.siteUrl}
             author={seo.author}
             organization={seo.organization}
