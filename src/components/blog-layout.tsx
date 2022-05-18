@@ -45,7 +45,7 @@ const BlogLayout = ({ data, path }) => {
                         <div className="md:col-start-4 md:col-span-7 p-2">
                             <main className="blog-content">
                                 <Segment>
-                                    <h1 className="text-6xl">{data.mdx.frontmatter.title}</h1>
+                                    <h1 className="text-4xl">{data.mdx.frontmatter.title}</h1>
                                     <h4 className="text-3xl" style={{ marginBottom: "1rem" }}>Posted: {formatter.format(date)}</h4>
                                     <h5 className="text-2xl">Tagged under: {data.mdx.frontmatter.tag.map((tag: String) =>
                                         <Link style={{ marginRight: "4px" }} to={`/tags/${tag}`}>
@@ -54,7 +54,7 @@ const BlogLayout = ({ data, path }) => {
                                     )}
                                     </h5>
                                     {!!data.mdx.frontmatter.lastUpdated ? <h4>Last Updated: {data.mdx.frontmatter.date}</h4> : null}
-                                    {featuredImgFluid && <Img loading="eager" fadeIn={false} alt={data.mdx.frontmatter.title} fluid={featuredImgFluid} />}
+                                    {featuredImgFluid && <Img loading="eager" fadeIn={false} alt={data.mdx.frontmatter.title} style={{borderRadius: '4px'}} fluid={featuredImgFluid} />}
                                     <div className="mdx">
                                         <MdxBlock>{data.mdx.body}</MdxBlock>
                                     </div>

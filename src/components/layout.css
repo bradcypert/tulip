@@ -84,11 +84,6 @@ h6 {
   font-size: 1em;
 }
 
-p {
-  margin: 40px 0;
-}
-
-p,
 li {
   margin: 2rem 0;
   line-height: 2.4rem;
@@ -137,8 +132,6 @@ main a:hover {
 }
 
 .blog-content .mdx pre {
-    font-size: 1.5rem;
-    line-height: 2rem;
     overflow: auto;
 }
 
@@ -157,6 +150,10 @@ main a:hover {
 
 .blog-content .headsup a {
     color: #0d2f0f
+}
+
+.blog-content p {
+  margin: 1rem;
 }
 
 .form input[type="text"],
