@@ -39,7 +39,7 @@ const BlogLayout = ({ data, path }) => {
                 <SEO post={data.mdx} slug={path} postImage={featuredImgFluid} isBlogPost />
                 <div style={{ margin: "15px 0" }}>
                     <div className="grid grid-cols-1 md:grid-cols-12">
-                        <div className="md:col-start-2 md:col-span-2 p-2">
+                        <div className="md:col-start-2 md:col-span-2 p-2 row-start-2 md:row-start-1">
                             <LeftRail />
                         </div>
                         <div className="md:col-start-4 md:col-span-7 p-2">

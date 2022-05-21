@@ -120,6 +120,7 @@ main a:hover {
 
 .blog-content .mdx {
     margin-top: 1rem;
+    @apply text-lg;
 }
 
 .blog-content .mdx h1,
