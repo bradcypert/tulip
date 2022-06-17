@@ -245,6 +245,11 @@ code {
   main a {
     color: #2ae792;
     background: linear-gradient(to bottom, #2ae792 0%, #2ae792 100%);
+    background-position: 0 100%;
+    background-repeat: repeat-x;
+    background-size: 4px 4px;
+    text-decoration: none;
+    transition: background-size 0.2s, color 0.2s;
   }
   
 }
