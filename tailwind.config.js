@@ -13,7 +13,6 @@ module.exports = {
     theme: {},
     variants: {
       display: ["group-hover"],
-      darkMode: "class"
     },
     plugins: [
         require('@tailwindcss/forms'),
