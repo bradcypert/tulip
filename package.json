@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "tulip",
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Brad Cypert",
   "dependencies": {
     "@deckdeckgo/highlight-code": "^2.1.1",
     "@mdx-js/mdx": "^1.6.22",
@@ -49,7 +49,7 @@
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "rsuite": "^5.0.0",
-    "tailwindcss": "^2.2.15",
+    "tailwindcss": "^3.1.3",
     "typescript": "^4.4.3"
   },
   "devDependencies": {
