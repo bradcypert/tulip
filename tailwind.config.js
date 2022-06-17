@@ -1,9 +1,22 @@
 module.exports = {
     content: ["./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
+    safelist: [
+        {
+          pattern: '/bg-*-*/',
+          variants: ['hover', 'focus', 'dark'],
+        },
+        {
+          pattern: '/border-*-*/',
+          variants: ['hover', 'focus', 'dark'],
+        },
+        {
+          pattern: '/h-36/
+        }
+        {
+          pattern: '/w-36/'
+        }
+    ],
     options: {
-      safelist: {
-        standard: [/^bg-/, /^border-/, /^h-36/, /^w-36/],
-      },
       blocklist: [/^debug-/],
       keyframes: false,
       fontFace: true,
