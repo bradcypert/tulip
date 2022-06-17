@@ -242,7 +242,7 @@ code {
     background-color: #131515;
   }
 
-  .main a {
+  main a {
     color: #2ae792;
     background: linear-gradient(to bottom, #2ae792 0%, #2ae792 100%);
   }
