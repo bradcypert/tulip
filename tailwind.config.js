@@ -11,7 +11,7 @@ module.exports = {
         },
         {
           pattern: /h-36/
-        }
+        },
         {
           pattern: /w-36/
         }
